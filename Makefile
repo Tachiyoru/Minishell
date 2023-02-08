@@ -4,14 +4,19 @@ GREEN		=	\033[1;32m
 RED			=	\033[1;31m
 DEFAULT		=	\033[0m
 
-BUILTIN_DIR	=	builtins/
+GNL_DIR		=	GNL/
+PARSING_DIR	=	Srcs/1-Parsing/
+BUILTIN_DIR	=	Srcs/4-Exec/builtins/
 FREE_DIR	=	free/
-PARSING_DIR	=	parsing/
-UTIS_DIR	=	utils/
+UTIS_DIR	=	Srcs/utils/
 
-SRCS		=
+SRCS		=	main.c	\
+				${PARSING_DIR}parsing.c	\
+				${UTILS_DIR}utils_1.c	\
+				${GNL_DIR}get_next_line.c		\
+				${GNL_DIR}get_next_line_utils.c
 
-OBJS		=	${SRCS:.c=.o}
+OBJS		=	$(SRCS:%.c=%.o)
 
 CC			=	clang
 CFLAGS		=	-Werror -Wall -Wextra -g3
@@ -21,7 +26,7 @@ CFLAGS		=	-Werror -Wall -Wextra -g3
 
 $(NAME):	${OBJS}
 		${CC} ${CFLAGS} ${OBJS} -o ${NAME}
-@echo "$(GREEN)##### Minishell compiling finished! #####$(DEFAULT)"
+	@echo "$(GREEN)##### Minishell compiling finished! #####$(DEFAULT)"
 
 all:	${NAME}
 
