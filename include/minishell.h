@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/08 18:54:37 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/09 14:20:00 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/types.h>
-# include <dirent.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 
