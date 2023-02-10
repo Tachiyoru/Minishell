@@ -6,62 +6,143 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:48:54 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/08 19:00:04 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/10 14:52:08 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-#include "../../GNL/get_next_line.h"
 
-int	ft_begin(void)
+char	*ft_readline(char *str)
 {
+	str = readline("~~");
+	add_history(str);
+	return (str);
+}
+
+int	ft_begin(char **envp)
+{
+	t_val	*data;
 	char	*buf;
 
+	(void)envp;
+	data = ft_calloc(sizeof(t_val), 1);
+	buf = NULL;
 	while (1)
 	{
-		write(STDIN_FILENO, "~", 1);
-		buf = get_next_line(0, 0);
+		buf = ft_readline(buf);
 		if (!buf)
 			return (0);
 		else
-			parsing(buf);
+			parsing(data, buf);
 		free(buf);
 	}
-	get_next_line(0, 1);
 	return (0);
 }
 
-void	parsing(char *str)
+void	parsing(t_val *data, char *str)
 {
-	t_val	*data = NULL;
 	int		i;
 	int		j;
 
-	i = -1;
-	while (str[++i])
+	i = 0;
+	j = 0;
+	while (j < ft_strlen2(str))
 	{
-		j = i;
-		while (str[j] != ' ' || str[j] != '('
-			|| str[j] != '|' || str[j] != '&')
+		while (str[j] != '\n' && str[j] != '"' && str[j] != '<'
+			&& str[j] != '>' && str[j] != ' ' && str[j] != '|')
 			j++;
-		if (str[j] == ' ')
-			set_val(str, data, i, j - i);
-		else if (str[j] == '(')
+		if (str[j] == '"')
 		{
-			while (str[j] != ')')
+			i = j++;
+			while (str[j] != '"')
 				j++;
-			set_val(str, data, i, j - i);
+			set_val(str, &data, i + 1, j - i - 1);
+			j++;
+			if (str[j] == ' ')
+					j++;
+			i = j - 1;
 		}
-		else if (str[j] == '|')
-			set_val(str, data, i, 1);
-		else if (str[j] == '&')
-			set_val(str, data, i, 2);
-		j++;
-		i = j;
+		else if ((str[j] == ' ' && str[j + 1] == '>') || str[j] == '>')
+		{
+			if (str[j] == '>')
+			{
+				if (str[j + 1] == '>')
+				{
+					set_val(str, &data, i + 1, j - i + 1);
+					j += 2;
+				}
+				else
+				{
+					set_val(str, &data, i + 1, j - i);
+					j++;
+				}
+				if (str[j] == ' ')
+					j++;
+				i = j - 1;
+			}
+			else
+			{
+				set_val(str, &data, i + 1, j - i - 1);
+				j++;
+				if (str[j] == ' ')
+					j++;
+				i = j - 1;
+			}
+		}
+		else if (str[j] == '<' || (str[j] == ' ' && str[j + 1] == '<'))
+		{
+			if (str[j] == '<')
+			{
+				if (str[j + 1] == '<')
+				{
+					set_val(str, &data, i + 1, j - i + 1);
+					j += 2;
+				}
+				else
+				{
+					set_val(str, &data, i + 1, j - i);
+					j++;
+				}
+				if (str[j] == ' ')
+					j++;
+				i = j - 1;
+			}
+			else
+			{
+				set_val(str, &data, i + 1, j - i - 1);
+				j++;
+				if (str[j] == ' ')
+					j++;
+				i = j - 1;
+			}
+		}
+		else if ((str[j] == ' ' && str[j + 1] == '|') || str[j] == '|')
+		{
+			if (str[j] == '|')
+			{
+				set_val(str, &data, i + 1, j - i);
+				j++;
+				if (str[j] == ' ')
+					j++;
+			}
+			else
+			{
+				set_val(str, &data, i, j - i);
+				j++;
+			}
+		}
+		else if (str[j] == ' ')
+		{
+			set_val(str, &data, i, j - i);
+			j++;
+		}
+		i = j - 1;
 	}
 	printlist(data);
 }
 
+// salut decverv >> "fr4 def <> rrg" << gtfrv >>
+//                                           42
 void	printlist(t_val *data)
 {
 	while (data)
@@ -71,24 +152,31 @@ void	printlist(t_val *data)
 	}
 }
 
-void	set_val(char *str, t_val *data, int i, int size)
+void	set_val(char *str, t_val **data, int i, int size)
 {
 	t_val	*new;
-	int		j = i;
+	t_val	*tmp;
+	int		s;
 
+	s = 0;
+	tmp = *data;
 	new = ft_calloc(sizeof(t_val), 1);
 	new->val = ft_calloc(sizeof(char), (size + 1));
 	while (size--)
 	{
-		new->val[j] = str[j];
-		j++;
+		new->val[s] = str[i];
+		i++;
+		s++;
 	}
-	if (!data)
-		data = new;
+	if (!tmp->val)
+	{
+		tmp = new;
+		*data = tmp;
+	}
 	else
 	{
-		while (data->next)
-			data = data->next;
-		data->next = new;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
 	}
 }

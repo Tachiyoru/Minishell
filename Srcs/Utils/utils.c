@@ -6,29 +6,15 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:25:35 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/09 14:15:17 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/10 14:47:58 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_strncmp(char *a, char *b, size_t l)
+int	ft_strlen2( char *str)
 {
-	size_t	i;
-
-	i = 0;
-	while ((a[i] || b[i]) && i < l)
-	{
-		if (a[i] != b[i])
-			return (((unsigned char *)a)[i] - ((unsigned char *)b)[i]);
-		i++;
-	}
-	return (0);
-}
-
-size_t	ft_strlen( char *str)
-{
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -38,17 +24,17 @@ size_t	ft_strlen( char *str)
 
 void	msg(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	i = ft_strlen(str);
+	i = ft_strlen2(str);
 	write(2, str, i);
 	write(2, "\n", 1);
 }
 
-void	*ft_memset(void *a, int i, size_t count)
+void	*ft_memset(void *a, int i, int count)
 {
-	size_t			s;
+	int			s;
 	unsigned char	*ptr;
 
 	s = 0;

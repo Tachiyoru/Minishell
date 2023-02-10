@@ -13,8 +13,6 @@ FREE_DIR	=	Srcs/free/
 SRCS		=	main.c	\
 				${PARSING_DIR}parsing.c	\
 				${UTILS_DIR}utils.c	\
-				${GNL_DIR}get_next_line.c		\
-				${GNL_DIR}get_next_line_utils.c
 
 OBJS		=	$(SRCS:%.c=%.o)
 
@@ -25,7 +23,7 @@ CFLAGS		=	-Werror -Wall -Wextra -g3
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):	${OBJS}
-		${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+		${CC} ${CFLAGS} -lreadline ${OBJS} -o ${NAME}
 	@echo "$(GREEN)##### Minishell compiling finished! #####$(DEFAULT)"
 
 all:	${NAME}

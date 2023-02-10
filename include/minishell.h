@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/09 14:20:00 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/10 14:44:00 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,19 @@ void	printlist(t_val *data);
 
 /////\ PARSING \//////
 // --parsing--
-int		ft_begin(void);
-void	parsing(char *str);
-void	set_val(char *str, t_val *data, int i, int size);
+char	*ft_readline(char *str);
+void	parsing(t_val *data, char *str);
+int		ft_begin(char **envp);
+void	set_val(char *str, t_val **data, int i, int size);
 
 /////\ FREE-PARSING \//////
 
 /////\ BUILTINS \//////
 /////\ UTILS \//////
+int		ft_ccmp(char a, char b);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_strncmp(char *a, char *b, size_t l);
-size_t	ft_strlen( char *str);
+int		ft_strlen2( char *str);
 void	msg(char *str);
 
 #endif
