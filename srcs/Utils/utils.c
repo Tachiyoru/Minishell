@@ -6,13 +6,34 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:25:35 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/11 13:04:02 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/11 17:42:36 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "minishell.h"
 
-int	ft_strlen2( char *str)
+/**
+ * @brief print a message in stderror
+ *
+ * @param str
+ */
+void	msg(char *str)
+{
+	int	i;
+
+	i = 0;
+	i = ft_strlen(str);
+	write(STDERR_FILENO, str, i);
+	write(STDERR_FILENO, "\n", 1);
+}
+
+/**
+ * @brief calculate he size of the string
+ *
+ * @param str string to  be mesured
+ * @return the size
+ */
+int	ft_strlen( char *str)
 {
 	int	i;
 
@@ -22,6 +43,13 @@ int	ft_strlen2( char *str)
 	return (i);
 }
 
+/**
+ * @brief look for the char c in the string str
+ *
+ * @param str
+ * @param c
+ * @return 1 if the char is found in the str else 0
+ */
 int	ft_strchr(const char *str, int c)
 {
 	char	*s;
@@ -29,7 +57,7 @@ int	ft_strchr(const char *str, int c)
 	s = (char *)str;
 	if (*s == '\0')
 		return (0);
-	while (*s != (char)c)
+	while (*s && *s != (char)c)
 	{
 		if (*s == (char)c)
 			return (1);
@@ -38,16 +66,14 @@ int	ft_strchr(const char *str, int c)
 	return (0);
 }
 
-void	msg(char *str)
-{
-	int	i;
-
-	i = 0;
-	i = ft_strlen2(str);
-	write(2, str, i);
-	write(2, "\n", 1);
-}
-
+/**
+ * @brief set ever allocated space to 0
+ *
+ * @param a
+ * @param i
+ * @param count
+ * @return void*
+ */
 void	*ft_memset(void *a, int i, int count)
 {
 	int				s;
@@ -60,8 +86,13 @@ void	*ft_memset(void *a, int i, int count)
 	return (a);
 }
 
-//MEMO simplife calloc et memset en 1 si possible
-
+/**
+ * @brief allocate size spaces of nmemb size
+ *
+ * @param nmemb
+ * @param size
+ * @return void*
+ */
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	char	*mem;

@@ -4,34 +4,40 @@ GREEN		=	\033[1;32m
 RED			=	\033[1;31m
 DEFAULT		=	\033[0m
 
-GNL_DIR		=	GNL/
-PARSING_DIR	=	Srcs/1-Parsing/
-BUILTIN_DIR	=	Srcs/4-Exec/builtins/
-UTILS_DIR	=	Srcs/Utils/
-FREE_DIR	=	Srcs/free/
+OBJ_DIR		=	objs
+INC_DIR		=	include
+SRC_DIR		=	$(shell find srcs -type d)
+
+vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
+
+RM			= /usr/bin/rm
 
 SRCS		=	main.c	\
-				${PARSING_DIR}parsing.c	\
-				${PARSING_DIR}parsing_rec.c	\
-				${PARSING_DIR}parsing_rec_utils.c	\
-				${UTILS_DIR}utils.c	\
+				ft_substr.c	\
+				parsing_rec.c	\
+				parsing_rec_utils.c	\
+				utils.c	\
+				utils2.c	\
 
-OBJS		=	$(SRCS:%.c=%.o)
+OBJS		=	$(SRCS:%.c=${OBJ_DIR}/%.o)
 
 CC			=	clang
 CFLAGS		=	-Werror -Wall -Wextra -g3
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(NAME):	${OBJS}
-		${CC} ${CFLAGS} -lreadline ${OBJS} -o ${NAME}
-	@echo "$(GREEN)##### Minishell compiling finished! #####$(DEFAULT)"
-
 all:	${NAME}
 
+$(NAME):	${OBJS} $(INC_DIR)/minishell.h
+		${CC} ${CFLAGS} -lreadline ${OBJS} -I ${INC_DIR} -o ${NAME}
+	@echo "$(GREEN)##### Minishell compiling finished! #####$(DEFAULT)"
+
+$(OBJ_DIR)/%.o: %.c $(INC_DIR)/minishell.h | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
+
+$(OBJ_DIR) :
+	mkdir -p $@
+
 clean:
-		${RM} ${OBJS}
+		${RM} -r $(OBJ_DIR)
 
 fclean:		clean
 		${RM} ${NAME}
