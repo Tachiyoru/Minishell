@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:25:35 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/11 17:42:36 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/11 18:11:43 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,9 @@ int	ft_strchr(const char *str, int c)
 	if (*s == '\0')
 		return (0);
 	while (*s && *s != (char)c)
-	{
-		if (*s == (char)c)
-			return (1);
 		s++;
-	}
+	if (*s == (char)c)
+		return (1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 12:01:56 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/11 17:35:20 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/11 18:08:43 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,10 @@ int	word_end(char *line, int start)
 	quote = 0;
 	if (!line[start])
 		return (0);
+	printf("str %c \n", line[start]);
 	if (ft_strchr("><|&", line[start]))
 	{
-		if (ft_strchr("><|&", line[start + 1]))
+		if (ft_strchr("><", line[start + 1]))
 			return (2);
 		return (1);
 	}
