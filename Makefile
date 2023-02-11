@@ -14,9 +14,11 @@ RM			= /usr/bin/rm
 
 SRCS		=	main.c	\
 				ft_substr.c	\
+				parsing_token.c	\
 				parsing_rec.c	\
 				parsing_rec_utils.c	\
 				utils.c	\
+				free.c	\
 				utils2.c	\
 
 OBJS		=	$(SRCS:%.c=${OBJ_DIR}/%.o)
