@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/11 17:08:09 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/11 20:41:57 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ typedef enum e_fd			t_fd;
 typedef struct s_val		t_val;
 typedef struct s_env		t_env;
 
-// enum e_fd{
-// 	DEFAULT = -1,
-// 	IN,
-// 	OUT,
-// 	MAX_FD,
-// 	HEREDOC,
-// };
+enum e_token
+{
+	WORD,
+	R_IN,
+	FD,
+	R_OUT,
+	LIMITOR,
+	HEREDOC = 6,
+	APPEND = 8,
+	PIPE = 10,
+};
 
 struct s_env{
 	char	*key;
@@ -65,18 +69,28 @@ int		main(int ac, char **av, char **envp);
 
 /////\ PARSING \//////
 // --parsing_recursive utils--
+void	check_token(t_val *data);
+
+// --parsing_recursive utils--
 int		set_val_tab(char *str, t_val **data);
 int		word_end(char *line, int start);
 int		word_start(char *line);
 // --parsing_recursive--
 void	split_pars(char *buf);
 
-/////\ FREE-PARSING \//////
+
 
 /////\ BUILTINS \//////
+
 /////\ UTILS \//////
+//free
+void	free_lst(t_val	*data);
+void	free_tab(char **tab);
+//substr
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+//utils2
 char	*ft_strdup(const char *s);
+//utils
 int		ft_strchr(const char *str, int c);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_strlen( char *str);
