@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:25:35 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/10 14:47:58 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/11 13:04:02 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@ int	ft_strlen2( char *str)
 	return (i);
 }
 
+int	ft_strchr(const char *str, int c)
+{
+	char	*s;
+
+	s = (char *)str;
+	if (*s == '\0')
+		return (0);
+	while (*s != (char)c)
+	{
+		if (*s == (char)c)
+			return (1);
+		s++;
+	}
+	return (0);
+}
+
 void	msg(char *str)
 {
 	int	i;
@@ -34,7 +50,7 @@ void	msg(char *str)
 
 void	*ft_memset(void *a, int i, int count)
 {
-	int			s;
+	int				s;
 	unsigned char	*ptr;
 
 	s = 0;

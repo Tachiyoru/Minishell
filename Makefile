@@ -12,6 +12,8 @@ FREE_DIR	=	Srcs/free/
 
 SRCS		=	main.c	\
 				${PARSING_DIR}parsing.c	\
+				${PARSING_DIR}parsing_rec.c	\
+				${PARSING_DIR}parsing_rec_utils.c	\
 				${UTILS_DIR}utils.c	\
 
 OBJS		=	$(SRCS:%.c=%.o)

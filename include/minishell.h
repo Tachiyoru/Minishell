@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/10 14:44:00 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/11 13:36:04 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,13 @@ struct s_pipex
 void	printlist(t_val *data);
 
 /////\ PARSING \//////
+// --parsing_recursive utils--
+int		word_end(char *line, int start);
+int		word_start(char *line);
+// --parsing_recursive--
+int		ft_begin2(char **envp);
+
 // --parsing--
-char	*ft_readline(char *str);
 void	parsing(t_val *data, char *str);
 int		ft_begin(char **envp);
 void	set_val(char *str, t_val **data, int i, int size);
@@ -74,6 +79,7 @@ void	set_val(char *str, t_val **data, int i, int size);
 
 /////\ BUILTINS \//////
 /////\ UTILS \//////
+int		ft_strchr(const char *str, int c);
 int		ft_ccmp(char a, char b);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_strncmp(char *a, char *b, size_t l);
