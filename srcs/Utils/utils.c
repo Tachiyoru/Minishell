@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:25:35 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/11 18:11:43 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/13 16:07:30 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	msg(char *str)
  * @param str string to  be mesured
  * @return the size
  */
-int	ft_strlen( char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 
