@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 12:01:56 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/13 15:30:51 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/13 16:13:37 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	split_rec(char *line, char ***tab, int i)
 	{
 		split_rec(line + end, tab, i + 1);
 		(*tab)[i] = ft_substr(line, start, end - start);
+		if (!(*tab)[i])
+			return ;
 	}
 	if (end == 0)
 	{
