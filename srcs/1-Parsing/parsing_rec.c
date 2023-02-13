@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_rec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 12:01:56 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/13 08:52:01 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/13 14:08:02 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	split_rec(char *line, char ***tab, int i)
 		(*tab)[i] = NULL;
 	}
 }
-// TODO Allouer le tableau avant de le remplir ?
+
 /**
  * @brief put the value inside every tab of tab in link chain
  *
@@ -56,7 +56,7 @@ void	tab_to_list(char **tab, t_val **data)
 	while (tab[++i])
 		set_val_tab(tab[i], data);
 }
-// TODO On ne devrait pas faire avancer data avant de l'envoyer ?
+
 void	print_list(t_val *data)
 {
 	while (data)
@@ -86,5 +86,4 @@ void	split_pars(char *buf)
 		check_token(data);
 	return ;
 }
-	// TODO On free le tab ?
 	// TODO call token
