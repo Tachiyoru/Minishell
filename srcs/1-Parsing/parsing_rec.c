@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 12:01:56 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/13 14:08:02 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/13 14:29:06 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,6 @@ void	tab_to_list(char **tab, t_val **data)
 		set_val_tab(tab[i], data);
 }
 
-void	print_list(t_val *data)
-{
-	while (data)
-	{
-		printf("%s \n", data->val);
-		data = data->next;
-	}
-}
-
 /**
  * @brief split the string then set it in linkchain
  *
@@ -80,10 +71,8 @@ void	split_pars(char *buf)
 	tab = NULL;
 	split_rec(buf, &tab, 0);
 	tab_to_list(tab, &data);
-	print_list(data);
-	// free_tab(tab);
 	if (data)
 		check_token(data);
 	return ;
 }
-	// TODO call token
+	// free_tab(tab);

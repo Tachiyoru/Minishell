@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/11 20:53:50 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/13 14:12:36 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ struct s_pipex
 	t_val	*redir;
 	t_pipex	*next;
 };
+
+void	print_list(t_val *data);
 
 int		main(int ac, char **av, char **envp);
 

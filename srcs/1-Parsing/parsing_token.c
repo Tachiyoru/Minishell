@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_token.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:05:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/13 08:57:57 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/13 14:44:20 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,15 @@ int	what_token(char *str, int prev)
 	}
 	return (WORD);
 }
-//TODO On ne comptabilise pas le & ?
+
+void	print_list(t_val *data)
+{
+	while (data)
+	{
+		printf("%s - token = %d\n", data->val, data->token);
+		data = data->next;
+	}
+}
 
 /**
  * @brief go trhough the linkchain et set what kind of token it is
@@ -108,5 +116,6 @@ void	check_token(t_val *data)
 	}
 	if (!good_parsing(data))
 		return ;
-		// free_lst(data);
+	print_list(data);
 }
+		// free_lst(data);
