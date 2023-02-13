@@ -1,8 +1,8 @@
 1 - PARSING
 faire une recursive
-dans la recursive changer le debut et la fin de chque ligne a chaque apel
+dans la recursive changer le debut et la fin de chaque ligne a chaque appel
 jusqu'a la fin de la chaine puis malloc pour avoir la size total grace a incre a chaque rec
-debut du ;ot sauter espace et tab
+debut du mot sauter espace et tab
 fin du mot arriver au prochain espace ou operateur
 utiliser un *int pour savoir si on est dans des quote simple ou double
 utiliser strrchr pour les operateur

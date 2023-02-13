@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_token.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:05:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/11 20:42:24 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/13 08:57:57 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	what_token(char *str, int prev)
 	}
 	return (WORD);
 }
+//TODO On ne comptabilise pas le & ?
 
 /**
  * @brief go trhough the linkchain et set what kind of token it is
