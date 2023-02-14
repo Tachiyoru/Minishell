@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/13 14:12:36 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/14 16:41:07 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,16 @@ struct s_pipex
 	t_pipex	*next;
 };
 
+/////\ ENV \//////
+t_env	**handle_env(char **env, char *add, char *delete);
+t_env	**get_env(void);
+void	del_from_env(char *delete);
+void	add_to_env(char *add);
+void	store_env(char **env);
+t_env	*init_env2(char *env, t_env *env_s);
+t_env	*ft_last_env(t_env **data);
+t_env	*init_env(char **env);
+
 void	print_list(t_val *data);
 
 int		main(int ac, char **av, char **envp);
@@ -74,6 +84,7 @@ int		main(int ac, char **av, char **envp);
 void	check_token(t_val *data);
 
 // --parsing_recursive utils--
+t_val	*ft_last(t_val **data);
 int		set_val_tab(char *str, t_val **data);
 int		word_end(char *line, int start);
 int		word_start(char *line);
@@ -90,6 +101,7 @@ void	free_tab(char **tab);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 //utils2
 char	*ft_strdup(const char *s);
+char	*ft_strndup(const char *s, int size);
 //utils
 int		ft_strchr(const char *str, int c);
 void	*ft_calloc(size_t nmemb, size_t size);

@@ -13,6 +13,8 @@ vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 RM			= /usr/bin/rm
 
 SRCS		=	main.c	\
+				ft_env.c	\
+				ft_env_utils.c	\
 				ft_substr.c	\
 				parsing_token.c	\
 				parsing_rec.c	\
