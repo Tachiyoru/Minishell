@@ -65,6 +65,16 @@ struct s_pipex
 	t_pipex	*next;
 };
 
+/////\ ENV \//////
+t_env	**handle_env(char **env, char *add, char *delete);
+t_env	**get_env(void);
+void	del_from_env(char *delete);
+void	add_to_env(char *add);
+void	store_env(char **env);
+t_env	*init_env2(char *env, t_env *env_s);
+t_env	*ft_last_env(t_env **data);
+t_env	*init_env(char **env);
+
 void	print_list(t_val *data);
 
 int		main(int ac, char **av, char **envp);
@@ -74,6 +84,7 @@ int		main(int ac, char **av, char **envp);
 void	check_token(t_val *data);
 
 // --parsing_recursive utils--
+t_val	*ft_last(t_val **data);
 int		set_val_tab(char *str, t_val **data);
 int		word_end(char *line, int start);
 int		word_start(char *line);
@@ -92,6 +103,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s);
 char	*word_replacing(int start, int end, char *content, char *new_word);
 char	*var_replacing(int start, int end, char *content, t_env *env);
+char	*ft_strndup(const char *s, int size);
+
 //utils
 int		ft_strchr(const char *str, int c);
 void	*ft_calloc(size_t nmemb, size_t size);

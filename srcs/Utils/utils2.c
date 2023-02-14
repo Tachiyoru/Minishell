@@ -96,3 +96,21 @@ char	*var_replacing(int start, int end, char *content, t_env *env)
 		return (NULL);
 	return(dest);
 }
+
+char	*ft_strndup(const char *s, int size)
+{
+	char	*str;
+	int		i;
+
+	str = (char *)malloc(sizeof (char) * (size + 1));
+	i = 0;
+	if (str == 0)
+		return (NULL);
+	while (i < size)
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
