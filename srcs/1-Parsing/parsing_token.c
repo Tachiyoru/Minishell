@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:05:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/13 14:44:20 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/13 16:18:45 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@
 // R_OUT = redirection out donc >
 // APPEND = >>
 // PIPE = |
+
+void	token_error(char *val)
+{
+	g_error = 2;
+	msg("syntax error near unexpected token `");
+	msg(val);
+	msg("'\n");
+}
 
 /**
  * @brief check if the parsing is correct and possible
@@ -35,20 +43,20 @@ int	good_parsing(t_val *data)
 	while (data)
 	{
 		if (prev == HEREDOC && data->token != LIMITOR)
-			return (msg("error token to be define"), 0);
+			return (token_error(data->val), 0);
 		if ((prev == R_OUT || prev == APPEND) && data->token != FD)
-			return (msg("error token to be define"), 0);
+			return (token_error(data->val), 0);
 		if (data->token == PIPE && (prev == PIPE || prev == R_IN
 				|| prev == APPEND || prev == HEREDOC))
-			return (msg("error token to be define"), 0);
+			return (token_error(data->val), 0);
 		if (data->token == PIPE && prev == -1)
-			return (msg("error token to be define"), 0);
+			return (token_error(data->val), 0);
 		prev = data->token;
 		data = data->next;
 	}
 	if (prev == PIPE || prev == R_IN || prev == R_OUT || prev == APPEND
 		|| prev == HEREDOC)
-		return (msg("error token to be define"), 0);
+		return (token_error(data->val), 0);
 	return (1);
 }
 
@@ -115,7 +123,10 @@ void	check_token(t_val *data)
 		head = head->next;
 	}
 	if (!good_parsing(data))
+	{
+		free_lst(data);
 		return ;
+	}
 	print_list(data);
 }
 		// free_lst(data);

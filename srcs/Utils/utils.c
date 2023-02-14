@@ -6,7 +6,11 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:25:35 by sleon             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/02/14 16:09:45 by ajeanne          ###   ########.fr       */
+=======
+/*   Updated: 2023/02/13 16:07:30 by sleon            ###   ########.fr       */
+>>>>>>> origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +37,7 @@ void	msg(char *str)
  * @param str string to  be mesured
  * @return the size
  */
-int	ft_strlen( char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 

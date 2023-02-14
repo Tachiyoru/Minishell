@@ -6,11 +6,13 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:24:33 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/11 17:45:54 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/13 16:17:34 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	g_error;
 
 int	main(int ac, char **av, char **envp)
 {
@@ -19,6 +21,7 @@ int	main(int ac, char **av, char **envp)
 	(void)envp;
 	(void)av;
 	(void)ac;
+	buf = NULL;
 	while (1)
 	{
 		buf = readline("Minishell ~");
@@ -32,5 +35,5 @@ int	main(int ac, char **av, char **envp)
 	}
 	rl_clear_history();
 	write(STDOUT_FILENO, "exit\n", 5);
-	return (0);
+	return (g_error);
 }
