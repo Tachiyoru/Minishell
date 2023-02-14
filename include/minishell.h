@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/14 15:57:01 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/14 22:37:01 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,16 @@ char	*ft_strdup(const char *s);
 char	*word_replacing(int start, int end, char *content, char *new_word);
 char	*var_replacing(int start, int end, char *content, t_env *env);
 char	*ft_strndup(const char *s, int size);
+int		ft_strcmp(const char *s1, const char *s2);
 
 //utils
 int		ft_strchr(const char *str, int c);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_strlen( char *str);
 void	msg(char *str);
+
+// expand
+int		quote_treatment(t_val *data);
+t_val	*ft_lstnew_token(void *content, t_val *next);
 
 #endif

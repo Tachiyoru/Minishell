@@ -22,7 +22,8 @@ SRCS		=	main.c	\
 				utils.c	\
 				free.c	\
 				utils2.c	\
-				expand_quote.c
+				expand_quote.c \
+				expand_utils.c
 
 OBJS		=	$(SRCS:%.c=${OBJ_DIR}/%.o)
 

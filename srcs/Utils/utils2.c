@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:57:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/14 16:11:14 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/14 21:38:19 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ char	*ft_strdup(const char *s)
 	return (str);
 }
 
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	i = 0;
+	while (s1[i] || s2[i])
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
+}
+
 char	*word_replacing(int start, int end, char *content, char *new_word)
 {
 	int		word_size;
@@ -71,30 +85,6 @@ char	*word_replacing(int start, int end, char *content, char *new_word)
 		i++;
 	}
 	return (dest);
-}
-
-char	*var_replacing(int start, int end, char *content, t_env *env)
-{
-	char	*name;
-	char	*dest;
-	t_env	*tmp;
-
-	name = ft_substr(content, start + 1, end - (start - 1));
-	dest = NULL;
-	tmp = env;
-	while (tmp && tmp->key != name)
-		tmp = tmp->next;
-	if (!tmp)
-	{
-		dest = word_replacing(start, end, content, NULL);
-		if (!dest)
-			return (NULL);
-		return (0);
-	}
-	dest = word_replacing(start, end, content, tmp->val);
-	if (!dest)
-		return (NULL);
-	return(dest);
 }
 
 char	*ft_strndup(const char *s, int size)
