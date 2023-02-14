@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/14 16:41:07 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/14 15:57:01 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ void	free_tab(char **tab);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 //utils2
 char	*ft_strdup(const char *s);
+char	*word_replacing(int start, int end, char *content, char *new_word);
+char	*var_replacing(int start, int end, char *content, t_env *env);
 char	*ft_strndup(const char *s, int size);
+
 //utils
 int		ft_strchr(const char *str, int c);
 void	*ft_calloc(size_t nmemb, size_t size);

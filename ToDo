@@ -15,5 +15,13 @@ la recursive remet ensuite chaque morceau dans le tableau envoyer en ***tab
 2 - TOKEN
 
 3 - EXPAND
+// Si "" = Afficher ce qu'il y a entre les quotes
+// Si '' = afficher ce qu'il y a entre les quotes
+// Si "'' = Error
+// Si "''" = ''
+// Si "'"' = Error
+// Si "'"'' = '
+
+
 
 4 - EXEC
