@@ -9,8 +9,9 @@ utiliser strrchr pour les operateur
 
 la recursive remet ensuite chaque morceau dans le tableau envoyer en ***tab
 
+LE PARSING CONSIDERE QUE REDIRECTION DOIT AVOIR ESPACE AVANT TOKEN ALORS QUE NON
 
-
+>out echo>out1>out2"lol">out3 lol>out4 "|"'' ""
 
 2 - TOKEN
 
@@ -22,6 +23,14 @@ la recursive remet ensuite chaque morceau dans le tableau envoyer en ***tab
 // Si "'"' = Error
 // Si "'"'' = '
 
+PASSER LES VALEURS DES CHARS EXPAND EN NEGATIF POUR SE SOUVENIR QU'ILS SONT EXPAND
+RE SPLIT LES TOKENS APRES EXPAND, UNIQUEMENT CEUX AUI SONT EXPAND (VARIABLE)
+SUPPRIMER LES TOKENS SI LA VAL EST NULLE
 
+
+
+BUILT IN
+
++= de export
 
 4 - EXEC
