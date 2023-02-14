@@ -6,91 +6,75 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/13 16:19:29 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:27:36 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	right_nb_quote(char *content)
+int	simple_increment(char *content, int *i)
 {
-	int		i;
-	int		nb_quotes;
-	char	c;
-
-	i = 0;
-	nb_quotes = 0;
-	c = 0;
-	if (content[0] == '\'')
-		c = '\'';
-	else
-		c = '"';
-	while (content[i])
+	(*i)++;
+	while (content[*i] != '\'')
 	{
-		if (content[i] == c)
-			nb_quotes++;
-		i++;
+		if (!content[*i])
+			return (1);
+		(*i)++;
 	}
-	return (nb_quotes);
+	return (0);
 }
 
-int	simple_quote_treat(char *content, t_val *val)
+int	is_var(char *content, int i, t_val *data, t_env *env)
 {
-	int		i;
-	int		j;
-	int		q_nb;
-	char	*dest;
+	int	j;
 
-	i = -1;
 	j = 0;
-	q_nb = right_nb_quote(content);
-	if (q_nb % 2)
-		return (msg("Quote error wrong quotes number"), 0);
-	dest = ft_calloc(ft_strlen(content) - q_nb, 1);
-	if (!dest)
-		return (0);
-	while (content[++i])
-	{
-		if (content[i] && content[i] != '\'')
-		{
-			dest[j] = content[i];
-			j++;
-		}
-	}
-	free(val->val);
-	val->val = dest;
-	return (1);
+	while (content[i + j] && ((content[i + j] >= 'A' && content[i + j] <= 'Z')
+		|| (content[i + j] >= 'a' && content[i + j] <= 'z')
+		|| content[i + j] == '_'))
+		j++;
+	j--;
+	data->val = var_replacing(i, j, content, env);
+	free(content);
+	if (!data->val)
+		return (1);
+	return (0);
 }
 
-int	double_quote_treat(char *content, t_val *val)
+int	is_error_qm(char *content, t_val *data, t_env *env)
 {
 	int	i;
 
 	i = 0;
-	if (right_nb_quote(content) % 2)
-		return (msg("Quote error wrong quotes number"), 0);
 	while (content[i])
 	{
-
+		if (content[i] == '\'')
+			if(simple_increment(content, &i))
+				return (1);
+		if (content[i] == '"')
+		{
+			i++;
+			while (content[i] != '"')
+			{
+				if (!content[i])
+					return (1);
+				if (content[i] == '$')
+					if(is_var(content, i, data, env))
+						return (1);
+				i++;
+			}
+		}
+		i++;
 	}
+	return (0);
 }
 
-int	quote_dispatcher(t_val *val)
+int	quote_treatment(t_val *data, t_env *env)
 {
 	t_val	*tmp;
 
-	tmp = val;
-	while (tmp)
-	{
-		if (tmp->token == WORD && tmp->val[0] == '"')
-		{
-			double_quote_treat(tmp->val, tmp);
-		}
-		else if (tmp->token == WORD && tmp->val[0] == '\'')
-		{
-			simple_quote_treat(tmp->val, tmp);
-		}
-		tmp = tmp->next;
-	}
-
+	tmp = data;
+	if (is_error_qm(tmp->val, tmp, env))
+		return (1);
+	return (0);
 }
