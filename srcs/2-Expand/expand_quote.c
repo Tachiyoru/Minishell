@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/14 23:48:41 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/15 13:18:19 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ int	is_var(char *content, int i, t_val *data, t_env *env)
 
 	j = 0;
 	while (content[i + j] && ((content[i + j] >= 'A' && content[i + j] <= 'Z')
-		|| (content[i + j] >= 'a' && content[i + j] <= 'z')
-		|| content[i + j] == '_'
-		|| content[i + j] == '$'))
+			|| (content[i + j] >= 'a' && content[i + j] <= 'z')
+			|| content[i + j] == '_' || content[i + j] == '$'))
 		j++;
 	j--;
 	data->val = var_replacing(i, i + j, content, env);
@@ -50,7 +49,7 @@ int	is_error_qm(char *content)
 	while (content[i])
 	{
 		if (content[i] == '\'')
-			if(simple_increment(content, &i))
+			if (simple_increment(content, &i))
 				return (1);
 		if (content[i] == '"')
 		{
@@ -81,7 +80,8 @@ int	quote_parsing(char *content, t_val *data, t_env *env)
 			i++;
 			while (content[i + j] != '\'')
 				j++;
-			content = word_replacing(i - 1, i + j, content, ft_substr(content, i, j));
+			content = word_replacing(i - 1, i + j, content,
+					ft_substr(content, i, j));
 			if (!content)
 				return (1);
 			i = (i - 1) + j;
@@ -94,14 +94,15 @@ int	quote_parsing(char *content, t_val *data, t_env *env)
 			{
 				if (content[i + j] == '$')
 				{
-					if(is_var(content, i + j, data, env))
+					if (is_var(content, i + j, data, env))
 						return (1);
 					// free(content);
 					content = data->val;
 				}
 				j++;
 			}
-			content = word_replacing(i - 1, i + j, content, ft_substr(content, i, j));
+			content = word_replacing(i - 1, i + j, content,
+					ft_substr(content, i, j));
 			if (!content)
 				return (1);
 			i = (i - 1) + j;
@@ -111,7 +112,7 @@ int	quote_parsing(char *content, t_val *data, t_env *env)
 		{
 			if (content[i + j] == '$')
 			{
-				if(is_var(content, i + j, data, env))
+				if (is_var(content, i + j, data, env))
 					return (1);
 				// free(content);
 				content = data->val;
@@ -125,8 +126,8 @@ int	quote_parsing(char *content, t_val *data, t_env *env)
 
 int	space_in_expand(char *content, t_val *data)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*token1;
 	char	*token2;
 
@@ -165,7 +166,7 @@ int	expand_space(char *content, t_val *data)
 		{
 			if (content[i] == -32 || content[i] == -9)
 			{
-				if(space_in_expand(content, data))
+				if (space_in_expand(content, data))
 					return (1);
 				return (0);
 			}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:37:20 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/14 23:05:39 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/15 13:18:36 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*var_replacing(int start, int end, char *content, t_env *env)
 	dest = word_replacing_var(start, end, content, tmp->val);
 	if (!dest)
 		return (NULL);
-	return(dest);
+	return (dest);
 }
 
 t_val	*ft_lstnew_token(void *content, t_val *next)
@@ -84,7 +84,6 @@ t_val	*ft_lstnew_token(void *content, t_val *next)
 
 void	ft_lstdelone_data(t_val *lst)
 {
-	
 	free(lst);
 	lst = NULL;
 }
