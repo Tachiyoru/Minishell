@@ -25,7 +25,9 @@ SRCS		=	main.c	\
 				expand_quote.c \
 				expand_utils.c \
 				expand_quote_parsing_utils.c \
-				expand_var.c
+				expand_var.c \
+				expand_spaces.c \
+				ft_itoa.c
 
 OBJS		=	$(SRCS:%.c=${OBJ_DIR}/%.o)
 

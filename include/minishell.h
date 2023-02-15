@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/15 18:42:14 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/15 23:25:07 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,11 @@ void	exec(t_val	*data);
 void	free_lst(t_val	*data);
 void	free_tab(char **tab);
 //substr
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 //utils2
 char	*ft_strdup(const char *s);
 char	*word_replacing(int start, int end, char *content, char *new_word);
-char	*var_replacing(int start, int end, char *content, t_env *env);
+char	*var_replacing(int start, int end, char *content);
 char	*ft_strndup(const char *s, int size);
 int		ft_strcmp(const char *s1, const char *s2);
 
@@ -114,11 +114,13 @@ int		ft_strchr(const char *str, int c);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_strlen( char *str);
 void	msg(char *str);
+char	*ft_itoa(int n);
 
 // expand
 int		quote_treatment(t_val *data);
 t_val	*ft_lstnew_token(void *content, t_val *next);
-int		quote_parsing(char *content, t_val *data, t_env *env);
-int		is_var(char *content, int i, t_val *data, t_env *env);
+int		quote_parsing(char *content, t_val *data);
+int		is_var(char *content, int i, t_val *data);
+int		expand_space(char *content, t_val *data);
 
 #endif
