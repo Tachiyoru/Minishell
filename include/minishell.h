@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/14 22:37:01 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/15 13:57:07 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ int		word_end(char *line, int start);
 int		word_start(char *line);
 // --parsing_recursive--
 void	split_pars(char *buf);
+
+/////\ BUILTINS \//////
+void	exec(t_val	*data);
 
 /////\ BUILTINS \//////
 

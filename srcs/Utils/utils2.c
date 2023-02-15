@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:57:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/14 21:38:19 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/15 16:12:13 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ char	*word_replacing(int start, int end, char *content, char *new_word)
 	return (dest);
 }
 
+/**
+ * @brief duplicate only the size received from the string
+ *
+ * @param s the string
+ * @param size the size
+ * @return the new string of size == size
+ */
 char	*ft_strndup(const char *s, int size)
 {
 	char	*str;
