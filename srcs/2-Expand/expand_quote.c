@@ -3,126 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/15 13:39:41 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/15 19:17:47 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	simple_increment(char *content, int *i)
-{
-	(*i)++;
-	while (content[*i] != '\'')
-	{
-		if (!content[*i])
-			return (1);
-		(*i)++;
-	}
-	return (0);
-}
-
-int	is_var(char *content, int i, t_val *data, t_env *env)
-{
-	int	j;
-
-	j = 0;
-	while (content[i + j] && ((content[i + j] >= 'A' && content[i + j] <= 'Z')
-			|| (content[i + j] >= 'a' && content[i + j] <= 'z')
-			|| content[i + j] == '_' || content[i + j] == '$'))
-		j++;
-	j--;
-	data->val = var_replacing(i, i + j, content, env);
-	// free(content);
-	if (!data->val)
-		return (1);
-	return (0);
-}
-
-int	is_error_qm(char *content)
-{
-	int	i;
-
-	i = 0;
-	while (content[i])
-	{
-		if (content[i] == '\'')
-			if (simple_increment(content, &i))
-				return (1);
-		if (content[i] == '"')
-		{
-			i++;
-			while (content[i] != '"')
-			{
-				if (!content[i])
-					return (1);
-				i++;
-			}
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	quote_parsing(char *content, t_val *data, t_env *env)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (content[i])
-	{
-		if (content[i] == '\'')
-		{
-			i++;
-			while (content[i + j] != '\'')
-				j++;
-			content = word_replacing(i - 1, i + j, content,
-					ft_substr(content, i, j));
-			if (!content)
-				return (1);
-			i = (i - 1) + j;
-			j = 0;
-		}
-		else if (content[i] == '"')
-		{
-			i++;
-			while (content[i + j] != '"')
-			{
-				if (content[i + j] == '$')
-				{
-					if (is_var(content, i + j, data, env))
-						return (1);
-					// free(content);
-					content = data->val;
-				}
-				j++;
-			}
-			content = word_replacing(i - 1, i + j, content,
-					ft_substr(content, i, j));
-			if (!content)
-				return (1);
-			i = (i - 1) + j;
-			j = 0;
-		}
-		else
-		{
-			if (content[i + j] == '$')
-			{
-				if (is_var(content, i + j, data, env))
-					return (1);
-				// free(content);
-				content = data->val;
-			}
-			i++;
-		}
-	}
-	data->val = content;
-	return (0);
-}
 
 int	space_in_expand(char *content, t_val *data)
 {
@@ -215,6 +103,101 @@ void	clean_data(t_val **data)
 	}
 }
 
+int	quote_parsing(char *content, t_val *data, t_env *env)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (content[i])
+	{
+		if (content[i] == '\'')
+		{
+			i++;
+			while (content[i + j] != '\'')
+				j++;
+			content = word_replacing(i - 1, i + j, content,
+					ft_substr(content, i, j));
+			if (!content)
+				return (1);
+			i = (i - 1) + j;
+			j = 0;
+		}
+		else if (content[i] == '"')
+		{
+			i++;
+			while (content[i + j] != '"')
+			{
+				if (content[i + j] == '$' && content[(i + j)] != '$')
+				{
+					if (is_var(content, i + j, data, env))
+						return (1);
+					// free(content);
+					content = data->val;
+				}
+				j++;
+			}
+			content = word_replacing(i - 1, i + j, content,
+					ft_substr(content, i, j));
+			if (!content)
+				return (1);
+			i = (i - 1) + j;
+			j = 0;
+		}
+		else
+		{
+			if (content[i + j] == '$' && content[(i + j)] != '$')
+			{
+				if (is_var(content, i + j, data, env))
+					return (1);
+				// free(content);
+				content = data->val;
+			}
+			i++;
+		}
+	}
+	data->val = content;
+	return (0);
+}
+
+int	simple_increment(char *content, int *i)
+{
+	(*i)++;
+	while (content[*i] != '\'')
+	{
+		if (!content[*i])
+			return (1);
+		(*i)++;
+	}
+	return (0);
+}
+
+int	is_error_qm(char *content)
+{
+	int	i;
+
+	i = 0;
+	while (content[i])
+	{
+		if (content[i] == '\'')
+			if (simple_increment(content, &i))
+				return (1);
+		if (content[i] == '"')
+		{
+			i++;
+			while (content[i] != '"')
+			{
+				if (!content[i])
+					return (1);
+				i++;
+			}
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	quote_treatment(t_val *data)
 {
 	t_val	*tmp;
@@ -235,7 +218,7 @@ int	quote_treatment(t_val *data)
 	}
 	clean_data(&data);
 	print_list(data);
-	exec(data);
+	// exec(data);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/15 13:57:07 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/15 18:42:14 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,7 @@ void	msg(char *str);
 // expand
 int		quote_treatment(t_val *data);
 t_val	*ft_lstnew_token(void *content, t_val *next);
+int		quote_parsing(char *content, t_val *data, t_env *env);
+int		is_var(char *content, int i, t_val *data, t_env *env);
 
 #endif
