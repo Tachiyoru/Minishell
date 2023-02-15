@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:07:51 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/14 16:30:20 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/15 13:20:11 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_env	**handle_env(char **env, char *add, char *delete)
 /**
  * @brief call the function that has the singleton env stored
  *
- * @return the **t_env tout the functiun that will need it
+ * @return the **t_env to the functiun that will need it
  */
 t_env	**get_env(void)
 {

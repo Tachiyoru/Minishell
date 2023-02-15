@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:40:43 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/14 20:55:56 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/15 13:25:57 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief get the last node in the env linkchain
+ *
+ * @param data the env linkchain
+ * @return the last node
+ */
 t_env	*ft_last_env(t_env **data)
 {
 	t_env	*tmp;
@@ -22,6 +28,13 @@ t_env	*ft_last_env(t_env **data)
 	return (tmp);
 }
 
+/**
+ * @brief store the current string of the environnement in the env linkchain
+ *
+ * @param env	one string from env to add in our linkchain
+ * @param env_s
+ * @return the new node to add a the end of the final linkchain env
+ */
 t_env	*init_env2(char *env, t_env *env_s)
 {
 	int	size;
@@ -46,6 +59,13 @@ void	print_list2(t_env *data)
 	}
 }
 
+/**
+ * @brief will make the whole structure that we use to store the env and
+ * that will serv in the funciun needing it
+ *
+ * @param env original env
+ * @return pointer to our env
+ */
 t_env	*init_env(char **env)
 {
 	t_env	*env_struct;
