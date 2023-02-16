@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   pre_exec_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/16 13:26:04 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/16 15:16:56 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief will go to the last node of cmd part and add the t_val node
+ *
+ * @param exec 
+ * @param data the cmd to add
+ */
 void	add_word(t_pipex **exec, t_val **data)
 {
 	t_val	*list;
@@ -27,6 +33,12 @@ void	add_word(t_pipex **exec, t_val **data)
 	list->next = NULL;
 }
 
+/**
+ * @brief will go to the last node of redir part and add the t_val node
+ *
+ * @param exec
+ * @param data the redir add
+ */
 void	add_redir(t_pipex **exec, t_val **data)
 {
 	t_val	*list;
@@ -42,6 +54,12 @@ void	add_redir(t_pipex **exec, t_val **data)
 	list->next = NULL;
 }
 
+/**
+ * @brief return the last node of t_pipex
+ *
+ * @param data
+ * @return t_pipex*
+ */
 t_pipex	*ft_last_cmd(t_pipex **data)
 {
 	t_pipex	*tmp;
@@ -52,6 +70,12 @@ t_pipex	*ft_last_cmd(t_pipex **data)
 	return (tmp);
 }
 
+/**
+ * @brief init a node to receive all info for inside one pipe
+ *
+ * @param cmd
+ * @return int
+ */
 int	init_cmd(t_pipex **cmd)
 {
 	t_pipex	*tmp;
