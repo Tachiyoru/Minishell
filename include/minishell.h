@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/15 13:57:07 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/16 13:28:20 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,12 @@ int		word_start(char *line);
 // --parsing_recursive--
 void	split_pars(char *buf);
 
-/////\ BUILTINS \//////
-void	exec(t_val	*data);
+/////\ exec \//////
+void	add_word(t_pipex **exec, t_val **data);
+void	add_redir(t_pipex **exec, t_val **data);
+t_pipex	*ft_last_cmd(t_pipex **data);
+int		init_cmd(t_pipex **cmd);
+void	pre_exec(t_val	*data);
 
 /////\ BUILTINS \//////
 
