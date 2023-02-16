@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/16 13:31:12 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/16 13:38:30 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	quote_treatment(t_val *data)
 	}
 	clean_data(&data);
 	print_list(data);
-	pre_exec(data);
+	exec(data);
 	return (0);
 }
 

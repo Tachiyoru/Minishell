@@ -27,7 +27,7 @@ SRCS		=	main.c	\
 				expand_quote_parsing_utils.c \
 				expand_var.c \
 				expand_spaces.c \
-				ft_itoa.c
+				ft_itoa.c		\
 				pre_exec.c		\
 				pre_exec_utils.c
 

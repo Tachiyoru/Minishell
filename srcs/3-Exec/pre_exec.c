@@ -6,11 +6,15 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/16 13:28:50 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/16 13:38:21 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	exec_pipex(t_pipex *cmd)
+{
+}
 
 int	make_struct_exec(t_val *data, t_pipex **exec)
 {
@@ -41,7 +45,7 @@ int	make_struct_exec(t_val *data, t_pipex **exec)
 	return (1);
 }
 
-void	pre_exec(t_val	*data)
+void	exec(t_val	*data)
 {
 	t_pipex	*cmd;
 
@@ -50,5 +54,5 @@ void	pre_exec(t_val	*data)
 		return ;
 	if (!cmd)
 		return ;
-	// exec(cmd);
+	exec_pipex(cmd);
 }
