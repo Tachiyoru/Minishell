@@ -6,15 +6,40 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/15 16:48:04 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/16 13:26:04 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_val	*add_word(t_val *data)
+void	add_word(t_pipex **exec, t_val **data)
 {
-	return (data.)
+	t_val	*list;
+	t_val	*next;
+
+	list = *data;
+	if (!(*exec)->cmd)
+		(*exec)->cmd = list;
+	else
+		ft_last(&(*exec)->cmd)->next = list;
+	next = list->next;
+	*data = next;
+	list->next = NULL;
+}
+
+void	add_redir(t_pipex **exec, t_val **data)
+{
+	t_val	*list;
+	t_val	*next;
+
+	list = *data;
+	if (!(*exec)->redir)
+		(*exec)->redir = list;
+	else
+		ft_last(&(*exec)->redir)->next = list;
+	next = list->next;
+	*data = next;
+	list->next = NULL;
 }
 
 t_pipex	*ft_last_cmd(t_pipex **data)
@@ -27,8 +52,10 @@ t_pipex	*ft_last_cmd(t_pipex **data)
 	return (tmp);
 }
 
-int	init_cmd(t_pipex **cmd, t_pipex *tmp)
+int	init_cmd(t_pipex **cmd)
 {
+	t_pipex	*tmp;
+
 	tmp = ft_calloc(sizeof(t_pipex), 1);
 	if (!tmp)
 		return (0);
@@ -42,31 +69,4 @@ int	init_cmd(t_pipex **cmd, t_pipex *tmp)
 	else
 		ft_last_cmd(cmd)->next = tmp;
 	return (1);
-}
-// MEMO pas sur d'avoir besoin de tmp.redir si il est compris dans cmd en soit.
-
-int	make_struct_exec(t_val *data, t_pipex **cmd)
-{
-	t_pipex	*tmp;
-	t_val	*save;
-
-	tmp = *cmd;
-	save = data;
-	if (!init_cmd(cmd, tmp))
-		return (0);
-	while (data)
-	{
-		if (data->token == WORD)
-			ft_last(tmp->cmd) = add_word(data);
-	}
-	return (1);
-}
-
-void	exec(t_val	*data)
-{
-	t_pipex	*cmd;
-
-	cmd = NULL;
-	if (!make_struct_exec(data, &cmd))
-		return ;
 }

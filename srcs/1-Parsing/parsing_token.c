@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_token.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:05:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/14 23:48:36 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/16 13:14:03 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,5 @@ void	check_token(t_val *data)
 		free_lst(data);
 		return ;
 	}
-	// print_list(data);
 	quote_treatment(data);
 }
-		// free_lst(data);
