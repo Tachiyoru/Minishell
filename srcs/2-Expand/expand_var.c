@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/16 00:36:49 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/20 17:55:40 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	is_var(char *content, int i, t_val *data)
 
 	j = 0;
 	if (content[(i + j) + 1] && ((content[(i + j) + 1] != '?'))
-		&& ((content[(i + j) + 1] < '0') && (content[(i + j) + 1] > '9')))
+		&& ((content[(i + j) + 1] < '0') || (content[(i + j) + 1] > '9')))
 	{
 		while (content[(i + j) + 1]
 			&& ((content[(i + j) + 1] >= 'A' && content[(i + j) + 1] <= 'Z')
