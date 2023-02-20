@@ -6,13 +6,12 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:13:03 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 18:10:58 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/20 18:14:50 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//faire une fction pour les tailles des str pour les lignes
 char	*ft_strdup_env(t_env *env)
 {
 	char	*str;

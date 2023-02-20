@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 18:13:12 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/20 19:13:05 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,53 @@ void	exec_call(t_pipex *exec, t_pipex *start)
 		exec->pid = pid;
 }
 
+int	is_builtin(char *cmd, t_pipex **exec)
+{
+	int	res;
+
+	res = 0;
+	if (ft_strcmp(cmd, "echo"))
+		res = b_in_echo((*exec)->cmd->next, (*exec)->fd[1]);
+	else if (ft_strcmp(cmd, "cd"))
+		res = b_in_cd((*exec)->cmd->next, (*exec)->fd[0], (*exec)->fd[1]);
+	else if (ft_strcmp(cmd, "pwd"))
+		res = b_in_pwd((*exec)->fd[1]);
+	else if (ft_strcmp(cmd, "export"))
+		res = b_in_export((*exec)->cmd->next);
+	else if (ft_strcmp(cmd, "unset"))
+		res = b_in_unset((*exec)->cmd->next);
+	else if (ft_strcmp(cmd, "env"))
+		res = b_in_env((*exec)->fd[1]);
+	else if (ft_strcmp(cmd, "exit"))
+		res = b_in_exit((*exec)->cmd->next, cmd);
+	return (res);
+}
+
 /**
  * @brief call all the functiun before the exec
  *
  * @param cmd
  */
-void	exec_pipex(t_pipex **cmd)
+void	exec_pipex(t_pipex **exec)
 {
 	t_pipex	*start;
 	int		builtin;
 
 	builtin = 0;
-	start = *cmd;
-	while (*cmd)
+	start = *exec;
+	while (*exec)
 	{
-		if ((*cmd)->next)
-			setup_pipe(*cmd);
-		if ((*cmd)->redir)
-			setup_redir(*cmd);
-		if (!builtin)
-			exec_call((*cmd), start);
-		if ((*cmd)->fd[0] != STDIN_FILENO)
-			close((*cmd)->fd[0]);
-		if ((*cmd)->fd[1] != STDOUT_FILENO)
-			close((*cmd)->fd[1]);
-		(*cmd) = (*cmd)->next;
+		if ((*exec)->next)
+			setup_pipe(*exec);
+		if ((*exec)->redir)
+			setup_redir(*exec);
+		if (!is_builtin((*exec)->cmd->val, exec))
+			exec_call((*exec), start);
+		if ((*exec)->fd[0] != STDIN_FILENO)
+			close((*exec)->fd[0]);
+		if ((*exec)->fd[1] != STDOUT_FILENO)
+			close((*exec)->fd[1]);
+		(*exec) = (*exec)->next;
 	}
 	while (start)
 	{
