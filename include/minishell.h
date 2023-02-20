@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/16 18:06:20 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/20 16:20:44 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int		word_start(char *line);
 // --parsing_recursive--
 void	split_pars(char *buf);
 
-/////\ exec \//////
+/////\ EXEC \//////
 void	add_word(t_pipex **exec, t_val **data);
 void	add_redir(t_pipex **exec, t_val **data);
 t_pipex	*ft_last_cmd(t_pipex **data);
@@ -102,6 +102,13 @@ void	set_redir_in(t_pipex *cmd);
 void	set_redir_out(t_pipex *cmd);
 void	set_redir_append(t_pipex *cmd);
 
+char	*ft_strdup_env(t_env *env);
+int		lst_size(t_env *env);
+char	**make_env_tab(void);
+char	**make_cmd_tab(t_val *cmd);
+char	*pathfinder(char *val, char **env);
+
+void	check_fd(t_pipex *exec);
 void	setup_redir(t_pipex *cmd);
 void	setup_pipe(t_pipex *cmd);
 
@@ -114,6 +121,7 @@ void	free_tab(char **tab);
 //substr
 char	*ft_substr(char *s, unsigned int start, size_t len);
 //utils2
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *s);
 char	*word_replacing(int start, int end, char *content, char *new_word);
 char	*var_replacing(int start, int end, char *content);

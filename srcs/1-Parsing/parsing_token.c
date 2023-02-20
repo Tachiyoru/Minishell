@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:05:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/16 13:14:03 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/20 13:23:07 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ int	what_token(char *str, int prev)
 	size = ft_strlen(str);
 	if (size == 1)
 	{
-		if (*str == '>')
+		if (*str == '<')
 			return (R_IN);
-		else if (*str == '<')
+		else if (*str == '>')
 			return (R_OUT);
 		else if (*str == '|')
 			return (PIPE);

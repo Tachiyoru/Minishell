@@ -6,27 +6,82 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/16 18:29:10 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/20 17:15:13 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	exec_child(t_pipex *exec, t_pipex *start)
+{
+	char	**cmd;
+	char	**env;
+	char	*path;
+
+	(void)start;
+	env = make_env_tab();
+	cmd = make_cmd_tab(exec->cmd);
+	path = pathfinder(exec->cmd->val, env);
+	// free_struct(start);
+	printf("oui");
+	if (path)
+		execve(path, cmd, env);
+	// free_char(cmd, env, path);
+	exit(g_error);
+}
+
+void	exec_call(t_pipex *exec, t_pipex *start)
+{
+	pid_t	pid;
+
+	g_error = 0;
+	if (!exec->cmd->val)
+		return ;
+	pid = fork();
+	if (pid == -1)
+		printf("Error fork on cmd = %s\n", exec->cmd->val);
+	else if (pid == 0)
+	{
+		check_fd(exec);
+		exec_child(exec, start);
+	}
+	else
+		exec->pid = pid;
+}
 
 /**
  * @brief call all the functiun before the exec
  *
  * @param cmd
  */
-void	exec_pipex(t_pipex *cmd)
+void	exec_pipex(t_pipex **cmd)
 {
-	while (cmd)
+	t_pipex	*start;
+	int		builtin;
+
+	builtin = 0;
+	start = *cmd;
+	while (*cmd)
 	{
-		if (cmd->next)
-			setup_pipe(cmd);
-		if (cmd->redir)
-			setup_redir(cmd);
+		if ((*cmd)->next)
+			setup_pipe(*cmd);
+		if ((*cmd)->redir)
+			setup_redir(*cmd);
+		if (!builtin)
+			exec_call((*cmd), start);
+		// if ((*cmd)->fd != STDIN_FILENO)
+		// 	close((*cmd)->fd[0]);
+		// if ((*cmd)->fd != STDOUT_FILENO)
+		// 	close((*cmd)->fd[1]);
+		(*cmd) = (*cmd)->next;
+	}
+	while (start)
+	{
+		waitpid(start->pid, NULL, 0);
+		start = start->next;
 	}
 }
+//check if the functiun called is a builtin in exec_pipex
 
 /**
  * @brief make a new struct, each node is for a pipe
@@ -61,6 +116,7 @@ int	make_struct_exec(t_val *data, t_pipex **exec)
 		else
 			add_redir(exec, &data);
 	}
+	*exec = head;
 	return (1);
 }
 
@@ -79,5 +135,5 @@ void	exec(t_val	*data)
 		return ;
 	if (!cmd)
 		return ;
-	exec_pipex(cmd);
+	exec_pipex(&cmd);
 }

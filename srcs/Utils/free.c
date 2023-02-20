@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:13:30 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/15 13:26:15 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/20 16:19:14 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,9 @@ void	free_lst(t_val	*data)
 	}
 	data = NULL;
 }
+
+// void	free_char(char **cmd, char **env, char *path);
+
+// void	free_struct(t_pipex *start)
+// {
+// }

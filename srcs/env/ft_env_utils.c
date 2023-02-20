@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:40:43 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/15 13:25:57 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/20 12:58:49 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ t_env	*init_env(char **env)
 		else
 			ft_last_env(&env_struct)->next = tmp;
 	}
-	print_list2(env_struct);
 	return (env_struct);
 }
 

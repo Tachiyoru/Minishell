@@ -29,7 +29,11 @@ SRCS		=	main.c	\
 				expand_spaces.c \
 				ft_itoa.c		\
 				exec.c		\
-				pre_exec_utils.c
+				pre_exec_utils.c	\
+				redir_fct.c		\
+				redir_utils.c		\
+				exec_utils.c		\
+
 
 OBJS		=	$(SRCS:%.c=${OBJ_DIR}/%.o)
 
