@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 17:48:52 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/20 18:13:12 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	exec_pipex(t_pipex **cmd)
 			setup_redir(*cmd);
 		if (!builtin)
 			exec_call((*cmd), start);
-		// if ((*cmd)->fd != STDIN_FILENO)
-		// 	close((*cmd)->fd[0]);
-		// if ((*cmd)->fd != STDOUT_FILENO)
-		// 	close((*cmd)->fd[1]);
+		if ((*cmd)->fd[0] != STDIN_FILENO)
+			close((*cmd)->fd[0]);
+		if ((*cmd)->fd[1] != STDOUT_FILENO)
+			close((*cmd)->fd[1]);
 		(*cmd) = (*cmd)->next;
 	}
 	while (start)
@@ -87,8 +87,6 @@ int	make_struct_exec(t_val *data, t_pipex **exec)
 	t_val	*save;
 
 	save = data;
-	if (!init_cmd(exec))
-		return (0);
 	head = *exec;
 	while (data)
 	{
@@ -122,6 +120,8 @@ void	exec(t_val	*data)
 	t_pipex	*cmd;
 
 	cmd = NULL;
+	if (!init_cmd(&cmd))
+		return ;
 	if (!make_struct_exec(data, &cmd))
 		return ;
 	if (!cmd)

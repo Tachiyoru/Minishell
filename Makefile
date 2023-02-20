@@ -15,7 +15,7 @@ RM			= /usr/bin/rm
 SRCS		=	main.c	\
 				ft_env.c	\
 				ft_env_utils.c	\
-				ft_substr.c	\
+				utils3.c	\
 				parsing_token.c	\
 				parsing_rec.c	\
 				parsing_rec_utils.c	\
@@ -33,6 +33,7 @@ SRCS		=	main.c	\
 				redir_fct.c		\
 				redir_utils.c		\
 				exec_utils.c		\
+				cmd_utils.c
 
 
 OBJS		=	$(SRCS:%.c=${OBJ_DIR}/%.o)
