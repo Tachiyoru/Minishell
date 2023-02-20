@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 18:08:21 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/20 18:31:42 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int		lst_size(t_env *env);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *s);
 char	*word_replacing(int start, int end, char *content, char *new_word);
-char	*var_replacing(int start, int end, char *content);
+char	*var_replacing(int start, int end, char *content, int *i);
 char	*ft_strndup(const char *s, int size);
 int		ft_strcmp(const char *s1, const char *s2);
 
@@ -146,7 +146,7 @@ char	*ft_itoa(int n);
 int		quote_treatment(t_val *data);
 t_val	*ft_lstnew_token(void *content, t_val *next);
 int		quote_parsing(char *content, t_val *data);
-int		is_var(char *content, int i, t_val *data);
+int		is_var(char *content, int i, t_val *data, int *iadd);
 int		expand_space(char *content, t_val *data);
 
 #endif
