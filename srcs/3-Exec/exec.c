@@ -6,34 +6,20 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 17:15:13 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/20 17:48:52 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec_child(t_pipex *exec, t_pipex *start)
+void	exec_call(t_pipex *exec, t_pipex *start)
 {
+	pid_t	pid;
 	char	**cmd;
 	char	**env;
 	char	*path;
 
 	(void)start;
-	env = make_env_tab();
-	cmd = make_cmd_tab(exec->cmd);
-	path = pathfinder(exec->cmd->val, env);
-	// free_struct(start);
-	printf("oui");
-	if (path)
-		execve(path, cmd, env);
-	// free_char(cmd, env, path);
-	exit(g_error);
-}
-
-void	exec_call(t_pipex *exec, t_pipex *start)
-{
-	pid_t	pid;
-
 	g_error = 0;
 	if (!exec->cmd->val)
 		return ;
@@ -43,7 +29,12 @@ void	exec_call(t_pipex *exec, t_pipex *start)
 	else if (pid == 0)
 	{
 		check_fd(exec);
-		exec_child(exec, start);
+		env = make_env_tab();
+		cmd = make_cmd_tab(exec->cmd);
+		path = pathfinder(exec->cmd->val, env);
+		if (path)
+			execve(path, cmd, env);
+		exit(g_error);
 	}
 	else
 		exec->pid = pid;
