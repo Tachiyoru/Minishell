@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:33:47 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/16 00:38:10 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/20 18:19:19 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*case_of_dq(int	*i, int	*j, char *content, t_val *data)
 				|| content[(*i + *j) + 1] == '_'
 				|| content[(*i + *j) + 1] == '?'))
 		{
-			if (is_var(content, *i + *j, data))
+			if (is_var(content, *i + *j, data, i))
 				return (NULL);
 			content = data->val;
 		}
@@ -63,7 +63,7 @@ char	*case_of_nq(int	*i, int	*j, char *content, t_val *data)
 			|| (content[(*i + *j) + 1] >= '0' && content[(*i + *j) + 1] <= '9')
 			|| content[(*i + *j) + 1] == '_' || content[(*i + *j) + 1] == '?'))
 	{
-		if (is_var(content, *i + *j, data))
+		if (is_var(content, *i + *j, data, i))
 			return (NULL);
 		content = data->val;
 	}

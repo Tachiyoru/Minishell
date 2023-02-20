@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/20 17:55:40 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/20 18:22:39 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*word_replacing_var(int start, int end, char *content, char *new_word)
 	return (dest);
 }
 
-char	*var_replacing(int start, int end, char *content)
+char	*var_replacing(int start, int end, char *content, int *i)
 {
 	char	*name;
 	char	*dest;
@@ -69,7 +69,7 @@ char	*var_replacing(int start, int end, char *content)
 			return (NULL);
 		if (content)
 			free(content);
-		return (dest);
+		return ((*i)--, dest);
 	}
 	dest = word_replacing_var(start, end, content, tmp->val);
 	if (!dest)
@@ -94,7 +94,7 @@ void	unusual_state(char *content, int i, int j, t_val *data)
 	}
 }
 
-int	is_var(char *content, int i, t_val *data)
+int	is_var(char *content, int i, t_val *data, int *iadd)
 {
 	int	j;
 
@@ -107,7 +107,7 @@ int	is_var(char *content, int i, t_val *data)
 				|| (content[(i + j) + 1] >= 'a' && content[(i + j) + 1] <= 'z')
 				|| content[(i + j) + 1] == '_'))
 			j++;
-		data->val = var_replacing(i, i + j, content);
+		data->val = var_replacing(i, i + j, content, iadd);
 		if (!data->val)
 			return (1);
 	}
