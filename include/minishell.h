@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 16:20:44 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/20 18:08:21 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,21 @@ void	check_fd(t_pipex *exec);
 void	setup_redir(t_pipex *cmd);
 void	setup_pipe(t_pipex *cmd);
 
+char	*ft_strnstr(const char *big, const char *little, size_t len);
+char	**ft_split2(char	*str, char set);
+
 /////\ BUILTINS \//////
 
 /////\ UTILS \//////
 //free
 void	free_lst(t_val	*data);
 void	free_tab(char **tab);
-//substr
+
+//utils3
 char	*ft_substr(char *s, unsigned int start, size_t len);
+int		lst_size_val(t_val *env);
+int		lst_size(t_env *env);
+
 //utils2
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *s);
