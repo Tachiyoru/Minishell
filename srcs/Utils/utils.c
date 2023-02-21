@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:25:35 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/14 17:28:18 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/21 14:14:34 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	msg(char *str)
 	i = 0;
 	i = ft_strlen(str);
 	write(STDERR_FILENO, str, i);
-	write(STDERR_FILENO, "\n", 1);
 }
 
 /**

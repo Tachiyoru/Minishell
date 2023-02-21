@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:05:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 13:23:07 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/21 16:27:37 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,31 @@ void	token_error(char *val)
  * @param data linkchain
  * @return 0 if problem else 1
  */
-int	good_parsing(t_val *data)
+int	good_parsing(t_val *data, int pre)
 {
-	int	prev;
+	t_val	*prev;
 
-	prev = -1;
+	prev = data;
 	while (data)
 	{
-		if (prev == HEREDOC && data->token != LIMITOR)
+		if (prev->token == HEREDOC && data->token != LIMITOR)
 			return (token_error(data->val), 0);
-		if ((prev == R_OUT || prev == APPEND) && data->token != FD)
+		if ((prev->token == R_OUT || prev->token == APPEND)
+			&& data->token != FD)
 			return (token_error(data->val), 0);
-		if (data->token == PIPE && (prev == PIPE || prev == R_IN
-				|| prev == APPEND || prev == HEREDOC))
+		if (data->token == PIPE && (prev->token == PIPE || prev->token == R_IN
+				|| prev->token == APPEND || prev->token == HEREDOC))
 			return (token_error(data->val), 0);
-		if (data->token == PIPE && prev == -1)
+		if (data->token == PIPE && pre == -1)
 			return (token_error(data->val), 0);
-		prev = data->token;
+		pre = 0;
+		prev = data;
 		data = data->next;
 	}
-	if (prev == PIPE || prev == R_IN || prev == R_OUT || prev == APPEND
-		|| prev == HEREDOC)
-		return (token_error(data->val), 0);
+	if (!data)
+		if (prev->token == PIPE || prev->token == R_IN || prev->token == R_OUT
+			|| prev->token == APPEND || prev->token == HEREDOC)
+			return (token_error(prev->val), 0);
 	return (1);
 }
 
@@ -81,17 +84,14 @@ int	what_token(char *str, int prev)
 		else if (*str == '|')
 			return (PIPE);
 	}
-	else
-	{
-		if (str[0] == '>' && str[1] == '>')
-			return (APPEND);
-		else if (str[0] == '<' && str[1] == '<')
-			return (HEREDOC);
-		else if (prev == HEREDOC)
-			return (LIMITOR);
-		else if (prev == APPEND || prev == R_OUT || prev == R_IN)
-			return (FD);
-	}
+	if (str[0] == '>' && str[1] == '>')
+		return (APPEND);
+	else if (str[0] == '<' && str[1] == '<')
+		return (HEREDOC);
+	else if (prev == HEREDOC)
+		return (LIMITOR);
+	else if (prev == APPEND || prev == R_OUT || prev == R_IN)
+		return (FD);
 	return (WORD);
 }
 
@@ -122,7 +122,7 @@ void	check_token(t_val *data)
 		prev = head->token;
 		head = head->next;
 	}
-	if (!good_parsing(data))
+	if (!good_parsing(data, -1))
 	{
 		free_lst(data);
 		return ;
