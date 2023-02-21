@@ -6,12 +6,21 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/20 18:22:39 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/20 20:50:17 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Replacing, for being under 25 lines
+ *
+ * @param dest
+ * @param content
+ * @param i
+ * @param end
+ * @return char*
+ */
 char	*end_of_replacing(char *dest, char *content, int i, int end)
 {
 	while (content && content[end])
@@ -23,6 +32,15 @@ char	*end_of_replacing(char *dest, char *content, int i, int end)
 	return (dest);
 }
 
+/**
+ * @brief Replacing var by her value
+ *
+ * @param start
+ * @param end
+ * @param content
+ * @param new_word
+ * @return char*
+ */
 char	*word_replacing_var(int start, int end, char *content, char *new_word)
 {
 	int		word_size;
@@ -51,6 +69,15 @@ char	*word_replacing_var(int start, int end, char *content, char *new_word)
 	return (dest);
 }
 
+/**
+ * @brief Replacing var by her value main
+ *
+ * @param start
+ * @param end
+ * @param content
+ * @param i
+ * @return char*
+ */
 char	*var_replacing(int start, int end, char *content, int *i)
 {
 	char	*name;
@@ -79,6 +106,14 @@ char	*var_replacing(int start, int end, char *content, int *i)
 	return (dest);
 }
 
+/**
+ * @brief Unusual case treatment $1, $?
+ *
+ * @param content
+ * @param i
+ * @param j
+ * @param data
+ */
 void	unusual_state(char *content, int i, int j, t_val *data)
 {
 	if (content[(i + j) + 1] && ((content[(i + j) + 1] == '?')))
@@ -94,6 +129,15 @@ void	unusual_state(char *content, int i, int j, t_val *data)
 	}
 }
 
+/**
+ * @brief Treatment if var exist
+ *
+ * @param content
+ * @param i
+ * @param data
+ * @param iadd
+ * @return int
+ */
 int	is_var(char *content, int i, t_val *data, int *iadd)
 {
 	int	j;

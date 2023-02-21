@@ -6,12 +6,17 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/20 18:23:30 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/21 15:37:12 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief * -1 for char in negative
+ *
+ * @param data
+ */
 void	back_to_positive(t_val *data)
 {
 	int	i;
@@ -25,6 +30,11 @@ void	back_to_positive(t_val *data)
 	}
 }
 
+/**
+ * @brief Clear empty content in data
+ *
+ * @param data
+ */
 void	clean_data(t_val **data)
 {
 	t_val	*tmp;
@@ -50,6 +60,13 @@ void	clean_data(t_val **data)
 	}
 }
 
+/**
+ * @brief Increment in case of simple quote
+ *
+ * @param content
+ * @param i
+ * @return int
+ */
 int	simple_increment(char *content, int *i)
 {
 	(*i)++;
@@ -62,6 +79,12 @@ int	simple_increment(char *content, int *i)
 	return (0);
 }
 
+/**
+ * @brief Check if we have the right number of quotes
+ *
+ * @param content
+ * @return int
+ */
 int	is_error_qm(char *content)
 {
 	int	i;
@@ -87,20 +110,31 @@ int	is_error_qm(char *content)
 	return (0);
 }
 
+/**
+ * @brief Main treatment of expand, calling all parts
+ *
+ * @param data
+ * @return int
+ */
 int	quote_treatment(t_val *data)
 {
 	t_val	*tmp;
 
 	tmp = data;
+	if (ambigous_redirect_checker(data))
+		return (1);
 	while (tmp)
 	{
-		if (is_error_qm(tmp->val))
-			return (1);
-		if (quote_parsing(tmp->val, tmp))
-			return (1);
-		if (expand_space(tmp->val, tmp))
-			return (1);
-		back_to_positive(tmp);
+		if (tmp->token == WORD || tmp->token == FD)
+		{
+			if (is_error_qm(tmp->val))
+				return (1);
+			if (quote_parsing(tmp->val, tmp))
+				return (1);
+			if (expand_space(tmp->val, tmp))
+				return (1);
+			back_to_positive(tmp);
+		}
 		tmp = tmp->next;
 	}
 	clean_data(&data);
@@ -109,5 +143,3 @@ int	quote_treatment(t_val *data)
 		exec(data);
 	return (0);
 }
-
-// '"klasjgdg'"'""suite'"'fin' '"'"'"$USER"'"
