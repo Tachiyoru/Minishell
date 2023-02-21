@@ -6,12 +6,19 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 21:14:36 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/15 21:20:46 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/20 18:51:18 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Spaces and tab checker increment
+ *
+ * @param i
+ * @param j
+ * @param content
+ */
 void	for_space_checker(int *i, int *j, char *content)
 {
 	while (content[*i] == -32 || content[*i] == -9)
@@ -20,6 +27,13 @@ void	for_space_checker(int *i, int *j, char *content)
 		(*j)++;
 }
 
+/**
+ * @brief Space and tabs checker
+ *
+ * @param content
+ * @param data
+ * @return int
+ */
 int	space_in_expand(char *content, t_val *data)
 {
 	int		i;
@@ -48,6 +62,13 @@ int	space_in_expand(char *content, t_val *data)
 	return (0);
 }
 
+/**
+ * @brief Expand for tabs and spaces main
+ *
+ * @param content
+ * @param data
+ * @return int
+ */
 int	expand_space(char *content, t_val *data)
 {
 	int	i;
