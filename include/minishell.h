@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/21 14:58:48 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/21 18:09:07 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ char	**ft_split2(char	*str, char set);
 /////\ UTILS \//////
 //free
 void	free_lst(t_val	*data);
+void	free_lst_env(t_env	*data);
 void	free_tab(char **tab);
 
 //utils3
@@ -149,5 +150,8 @@ int		quote_parsing(char *content, t_val *data);
 int		is_var(char *content, int i, t_val *data, int *iadd);
 int		expand_space(char *content, t_val *data);
 int		ambigous_redirect_checker(t_val *data);
+
+// buildin
+int		env_cmd();
 
 #endif
