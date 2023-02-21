@@ -6,12 +6,17 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:33:47 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/20 18:19:19 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/20 20:50:42 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/**
+ * @brief Treatment in case of simple quote
+ *
+ * @param int *i, int *j, char *content
+ * @return char*
+ */
 char	*case_of_sq(int	*i, int	*j, char *content)
 {
 	(*i)++;
@@ -26,6 +31,12 @@ char	*case_of_sq(int	*i, int	*j, char *content)
 	return (content);
 }
 
+/**
+ * @brief Treatment in case of double quote
+ *
+ * @param int	*i, int	*j, char *content, t_val *data
+ * @return char*
+ */
 char	*case_of_dq(int	*i, int	*j, char *content, t_val *data)
 {
 	(*i)++;
@@ -55,6 +66,12 @@ char	*case_of_dq(int	*i, int	*j, char *content, t_val *data)
 	return (content);
 }
 
+/**
+ * @brief Treatment in case of no quote
+ *
+ * @param int	*i, int	*j, char *content, t_val *data
+ * @return char*
+ */
 char	*case_of_nq(int	*i, int	*j, char *content, t_val *data)
 {
 	while (content[*i + *j] == '$' && ((content[(*i + *j) + 1] >= 'A'
@@ -71,6 +88,13 @@ char	*case_of_nq(int	*i, int	*j, char *content, t_val *data)
 	return (content);
 }
 
+/**
+ * @brief Parsing differents quotes
+ *
+ * @param content
+ * @param data
+ * @return int
+ */
 int	quote_parsing(char *content, t_val *data)
 {
 	int	i;

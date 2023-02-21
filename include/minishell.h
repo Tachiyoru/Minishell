@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 18:31:42 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/21 14:58:48 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,6 @@ t_val	*ft_lstnew_token(void *content, t_val *next);
 int		quote_parsing(char *content, t_val *data);
 int		is_var(char *content, int i, t_val *data, int *iadd);
 int		expand_space(char *content, t_val *data);
+int		ambigous_redirect_checker(t_val *data);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:57:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 16:55:38 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/20 20:11:34 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ char	*ft_strdup(const char *s)
 	return (str);
 }
 
+/**
+ * @brief Compare 2 strings
+ *
+ * @param s1
+ * @param s2
+ * @return int
+ */
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
