@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/22 18:34:29 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/22 19:18:12 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,11 @@ void	setup_pipe(t_pipex *cmd);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	**ft_split2(char	*str, char set);
 
-int		b_in_cd(t_val *option, int in, int out);
-int		b_in_pwd(int fd_out);
-
 /////\ BUILTINS \//////
+
+int		b_in_cd(t_val *option, int in, int out);
+int		b_in_echo(t_val *options, int fd);
+int		b_in_pwd(int fd_out);
 
 /////\ UTILS \//////
 //free
@@ -130,6 +131,7 @@ void	free_tab(char **tab);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 int		lst_size_val(t_val *env);
 int		lst_size(t_env *env);
+void	ft_putstr_fd(int fd, char *s);
 
 //utils2
 char	*ft_strjoin(char *s1, char *s2);

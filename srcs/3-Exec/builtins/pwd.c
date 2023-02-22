@@ -6,18 +6,11 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:22:27 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/22 17:03:58 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/22 19:17:54 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_putstr_fd(int fd, char *s)
-{
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
-}
 
 /**
  * @brief find the pwd thanks to getpwd

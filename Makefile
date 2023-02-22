@@ -35,6 +35,7 @@ SRCS		=	main.c	\
 				exec_utils.c		\
 				cmd_utils.c			\
 				pwd.c				\
+				echo.c				\
 				cd.c
 
 
