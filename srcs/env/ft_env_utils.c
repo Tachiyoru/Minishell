@@ -6,11 +6,33 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:40:43 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 12:58:49 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/22 17:04:39 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/**
+ * @brief look for the str find in the env->key
+ *
+ * @param find the env->key to find
+ * @return ptr to env->val of the key if found
+ */
+char	*find_env(char *find)
+{
+	t_env	*env;
+
+	if (!find)
+		return (NULL);
+	env = *get_env();
+	while (env)
+	{
+		if (!ft_strcmp(find, env->key))
+			return (env->val);
+		env = env->next;
+	}
+	return (NULL);
+}
 
 /**
  * @brief get the last node in the env linkchain

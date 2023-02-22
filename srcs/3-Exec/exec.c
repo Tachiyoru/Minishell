@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 19:13:05 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/22 16:08:25 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,22 @@ int	is_builtin(char *cmd, t_pipex **exec)
 	int	res;
 
 	res = 0;
-	if (ft_strcmp(cmd, "echo"))
-		res = b_in_echo((*exec)->cmd->next, (*exec)->fd[1]);
-	else if (ft_strcmp(cmd, "cd"))
+	if (!ft_strcmp(cmd, "cd"))
 		res = b_in_cd((*exec)->cmd->next, (*exec)->fd[0], (*exec)->fd[1]);
-	else if (ft_strcmp(cmd, "pwd"))
+	else if (!ft_strcmp(cmd, "pwd"))
 		res = b_in_pwd((*exec)->fd[1]);
-	else if (ft_strcmp(cmd, "export"))
-		res = b_in_export((*exec)->cmd->next);
-	else if (ft_strcmp(cmd, "unset"))
-		res = b_in_unset((*exec)->cmd->next);
-	else if (ft_strcmp(cmd, "env"))
-		res = b_in_env((*exec)->fd[1]);
-	else if (ft_strcmp(cmd, "exit"))
-		res = b_in_exit((*exec)->cmd->next, cmd);
 	return (res);
 }
+	// if (!ft_strcmp(cmd, "echo"))
+	// 	res = b_in_echo((*exec)->cmd->next, (*exec)->fd[1]);
+	// else if (!ft_strcmp(cmd, "export"))
+	// 	res = b_in_export((*exec)->cmd->next);
+	// else if (!ft_strcmp(cmd, "unset"))
+	// 	res = b_in_unset((*exec)->cmd->next);
+	// else if (!ft_strcmp(cmd, "env"))
+	// 	res = b_in_env((*exec)->fd[1]);
+	// else if (!ft_strcmp(cmd, "exit"))
+	// 	res = b_in_exit((*exec)->cmd->next, cmd);
 
 /**
  * @brief call all the functiun before the exec

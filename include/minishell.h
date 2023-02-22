@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 18:31:42 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/22 18:20:32 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	store_env(char **env);
 t_env	*init_env2(char *env, t_env *env_s);
 t_env	*ft_last_env(t_env **data);
 t_env	*init_env(char **env);
+char	*find_env(char *find);
 
 void	print_list(t_val *data);
 
@@ -114,6 +115,9 @@ void	setup_pipe(t_pipex *cmd);
 
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	**ft_split2(char	*str, char set);
+
+int		b_in_cd(t_val *option, int in, int out);
+int		b_in_pwd(int fd_out);
 
 /////\ BUILTINS \//////
 
