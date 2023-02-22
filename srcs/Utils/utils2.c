@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:57:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 20:11:34 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/22 18:41:45 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,32 +89,26 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 char	*word_replacing(int start, int end, char *content, char *new_word)
 {
-	int		word_size;
 	char	*dest;
 	int		i;
 	int		j;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	word_size = end - start;
-	dest = calloc((ft_strlen(content) - word_size) + ft_strlen(new_word), 1);
+	dest = ft_calloc((ft_strlen(content) - end - start)
+			+ ft_strlen(new_word), 1);
 	if (!dest)
 		return (NULL);
-	while (content && i < start)
-	{
+	while (content && ++i < start)
 		dest[i] = content[i];
-		i++;
-	}
 	while (new_word && new_word[j])
 	{
 		dest[i + j] = new_word[j];
 		j++;
 	}
-	end++;
-	while (content && content[end])
+	while (content && content[++end])
 	{
 		dest[i + j] = content[end];
-		end++;
 		i++;
 	}
 	return (dest);
