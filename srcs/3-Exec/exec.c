@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/22 19:15:52 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/22 19:30:34 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,15 @@ int	is_builtin(char *cmd, t_pipex *exec)
 		res = b_in_echo(exec->cmd->next, exec->fd[1]);
 	else if (!ft_strcmp(cmd, "pwd"))
 		res = b_in_pwd(exec->fd[1]);
+	else if (!ft_strcmp(cmd, "unset"))
+		if ((*exec)->cmd->next)
+			res = unset_cmd((*exec)->cmd->next->val);
+	else if (!ft_strcmp(cmd, "env"))
+		res = env_cmd();
 	return (res);
 }
 	// else if (!ft_strcmp(cmd, "export"))
 	// 	res = b_in_export((*exec)->cmd->next);
-	// else if (!ft_strcmp(cmd, "unset"))
-	// 	res = b_in_unset((*exec)->cmd->next);
-	// else if (!ft_strcmp(cmd, "env"))
-	// 	res = b_in_env((*exec)->fd[1]);
 	// else if (!ft_strcmp(cmd, "exit"))
 	// 	res = b_in_exit((*exec)->cmd->next, cmd);
 
@@ -87,7 +88,7 @@ void	exec_pipex(t_pipex **exec)
 			setup_pipe(*exec);
 		if ((*exec)->redir)
 			setup_redir(*exec);
-		if (!is_builtin((*exec)->cmd->val, (*exec)))
+		if (!is_builtin((*exec)->cmd->val, exec))
 			exec_call((*exec), start);
 		if ((*exec)->fd[0] != STDIN_FILENO)
 			close((*exec)->fd[0]);

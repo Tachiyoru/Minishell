@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:13:30 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 16:19:14 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/21 18:08:44 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ void	free_lst(t_val	*data)
 	{
 		save = data;
 		data = data->next;
+		free(save->val);
+		free(save);
+	}
+	data = NULL;
+}
+
+void	free_lst_env(t_env	*data)
+{
+	t_env	*save;
+
+	while (data)
+	{
+		save = data;
+		data = data->next;
+		free(save->key);
 		free(save->val);
 		free(save);
 	}

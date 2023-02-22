@@ -36,7 +36,9 @@ SRCS		=	main.c	\
 				cmd_utils.c			\
 				pwd.c				\
 				echo.c				\
-				cd.c
+				cd.c	\
+				env.c	\
+				unset.c
 
 
 OBJS		=	$(SRCS:%.c=${OBJ_DIR}/%.o)

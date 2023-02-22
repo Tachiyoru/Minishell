@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/22 19:18:12 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/22 19:30:44 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int		b_in_pwd(int fd_out);
 /////\ UTILS \//////
 //free
 void	free_lst(t_val	*data);
+void	free_lst_env(t_env	*data);
 void	free_tab(char **tab);
 
 //utils3
@@ -155,5 +156,9 @@ int		quote_parsing(char *content, t_val *data);
 int		is_var(char *content, int i, t_val *data, int *iadd);
 int		expand_space(char *content, t_val *data);
 int		ambigous_redirect_checker(t_val *data);
+
+// buildin
+int		env_cmd();
+int		unset_cmd(char *key_d);
 
 #endif
