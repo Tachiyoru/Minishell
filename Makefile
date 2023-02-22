@@ -34,7 +34,8 @@ SRCS		=	main.c	\
 				redir_utils.c		\
 				exec_utils.c		\
 				cmd_utils.c	\
-				env.c
+				env.c	\
+				unset.c
 
 
 OBJS		=	$(SRCS:%.c=${OBJ_DIR}/%.o)

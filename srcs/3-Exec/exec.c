@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/21 18:03:03 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/22 19:09:52 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ int	is_builtin(char *cmd, t_pipex **exec)
 	// 	res = b_in_pwd((*exec)->fd[1]);
 	// else if (ft_strcmp(cmd, "export"))
 	// 	res = b_in_export((*exec)->cmd->next);
-	// else if (ft_strcmp(cmd, "unset"))
-	// 	res = b_in_unset((*exec)->cmd->next);
-	if (!ft_strcmp(cmd, "env"))
+	if (!ft_strcmp(cmd, "unset"))
+		if ((*exec)->cmd->next)
+			res = unset_cmd((*exec)->cmd->next->val);
+	else if (!ft_strcmp(cmd, "env"))
 		res = env_cmd();
 	// else if (ft_strcmp(cmd, "exit"))
 	// 	res = b_in_exit((*exec)->cmd->next, cmd);

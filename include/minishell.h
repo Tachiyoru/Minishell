@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/21 18:09:07 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/22 18:55:31 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,6 @@ int		ambigous_redirect_checker(t_val *data);
 
 // buildin
 int		env_cmd();
+int		unset_cmd(char *key_d);
 
 #endif
