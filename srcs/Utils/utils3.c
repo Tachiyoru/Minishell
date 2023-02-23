@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:55:50 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/22 19:18:04 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/22 22:23:33 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,17 @@ void	ft_putstr_fd(int fd, char *s)
 	if (!s)
 		return ;
 	write(fd, s, ft_strlen(s));
+}
+
+t_env	*lst_env_new(char *key, char *val)
+{
+	t_env	*new_element;
+
+	new_element = malloc(sizeof(t_env));
+	if (!new_element)
+		return (NULL);
+	new_element->key = key;
+	new_element->val = val;
+	new_element->next = NULL;
+	return (new_element);
 }
