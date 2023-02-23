@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/22 19:30:44 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/22 22:36:19 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len);
 int		lst_size_val(t_val *env);
 int		lst_size(t_env *env);
 void	ft_putstr_fd(int fd, char *s);
+t_env	*lst_env_new(char *key, char *val);
 
 //utils2
 char	*ft_strjoin(char *s1, char *s2);
@@ -160,5 +161,6 @@ int		ambigous_redirect_checker(t_val *data);
 // buildin
 int		env_cmd();
 int		unset_cmd(char *key_d);
+int		export_cmd(char *key_val);
 
 #endif

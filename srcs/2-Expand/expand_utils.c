@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:37:20 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/21 20:25:47 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:05:21 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int	ambigous_redirect_checker(t_val *data)
 	tmp = data;
 	while (tmp)
 	{
-		if (!ft_strcmp(tmp->val, "<") && tmp->next->val[0] == '$'
+		if ((!ft_strcmp(tmp->val, "<") || !ft_strcmp(tmp->val, ">>")
+			|| !ft_strcmp(tmp->val, ">")) && tmp->next->val[0] == '$'
 			&& existing_var(tmp->next->val))
 		{
 			msg(tmp->next->val);
