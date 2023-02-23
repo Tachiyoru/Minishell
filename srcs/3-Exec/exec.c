@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/22 23:03:56 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:32:52 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,24 @@ int	is_builtin(char *cmd, t_pipex *exec)
 		res = b_in_echo(exec->cmd->next, exec->fd[1]);
 	else if (!ft_strcmp(cmd, "pwd"))
 		res = b_in_pwd(exec->fd[1]);
-	else if (!ft_strcmp(cmd, "unset"))
+	else if (!ft_strcmp(cmd, "unset") && exec->cmd->next)
 	{
-		if (exec->cmd->next)
+		while (exec->cmd->next)
+		{
 			res = unset_cmd(exec->cmd->next->val);
+			exec->cmd->next = exec->cmd->next->next;
+		}
 	}
 	else if (!ft_strcmp(cmd, "env"))
 		res = env_cmd();
 	else if (!ft_strcmp(cmd, "export") && exec->cmd->next)
-		res = export_cmd(exec->cmd->next->val);
+	{
+		while (exec->cmd->next)
+		{
+			res = export_cmd(exec->cmd->next->val);
+			exec->cmd->next = exec->cmd->next->next;
+		}
+	}
 	else if (!ft_strcmp(cmd, "export") && !exec->cmd->next)
 		res = export_cmd(NULL);
 	return (res);
