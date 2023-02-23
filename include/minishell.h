@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/22 19:30:44 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/23 13:07:15 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ struct s_pipex
 };
 
 /////\ ENV \//////
-t_env	**handle_env(char **env, char *add, char *delete);
+t_env	**handle_env(char **env);
 t_env	**get_env(void);
 void	del_from_env(char *delete);
 void	add_to_env(char *add);
