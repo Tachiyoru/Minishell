@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 22:12:13 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/24 22:28:40 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/24 22:54:11 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,45 @@ int	is_okvar_present(char *val)
 int	ambigous_redirect_checker(t_val *data)
 {
 	t_val	*tmp;
+	t_val	*tmp2;
 
 	tmp = data;
-	while (tmp)
+	while (tmp && tmp->val[0] != '$')
 	{
-		if (is_okvar_present(tmp->val))
-			return (0);
+		tmp2 = tmp;
 		tmp = tmp->next;
 	}
-	tmp = data;
-	while (tmp)
+	if ((!ft_strcmp(tmp2->val, "<") || !ft_strcmp(tmp2->val, ">>")
+		|| !ft_strcmp(tmp2->val, ">")) && tmp2->next->val[0] == '$'
+		&& !is_okvar_present(tmp2->next->val))
 	{
-		if ((!ft_strcmp(tmp->val, "<") || !ft_strcmp(tmp->val, ">>")
-			|| !ft_strcmp(tmp->val, ">")) && tmp->next->val[0] == '$')
-		{
-            message_ambigous(tmp->next->val);
-			return (1);
-		}
-		tmp = tmp->next;
+		message_ambigous(tmp2->next->val);
+		return (1);
 	}
 	return (0);
 }
+
+// int	ambigous_redirect_checker(t_val *data)
+// {
+// 	t_val	*tmp;
+
+// 	tmp = data;
+// 	while (tmp)
+// 	{
+// 		if (tmp->val && tmp->val[0] && !is_okvar_present(tmp->val))
+// 			return (0);
+// 		tmp = tmp->next;
+// 	}
+// 	tmp = data;
+// 	while (tmp)
+// 	{
+// 		if ((!ft_strcmp(tmp->val, "<") || !ft_strcmp(tmp->val, ">>")
+// 			|| !ft_strcmp(tmp->val, ">")) && tmp->next->val[0] == '$')
+// 		{
+//             message_ambigous(tmp->next->val);
+// 			return (1);
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// 	return (0);
+// }

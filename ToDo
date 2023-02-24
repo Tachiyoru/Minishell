@@ -22,4 +22,4 @@ SI pas de = et que valeur existe pas de changement
 
 SI juste valeur sans = et que pas existe appliquer et ne pas afficher dans env
 
-SI 
+echo < " $toto$USER$lul" mal traite
