@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/23 13:09:04 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/24 12:19:50 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,19 @@ int	is_builtin(char *cmd, t_pipex *exec)
 		res = b_in_echo(exec->cmd->next, exec->fd[1]);
 	else if (!ft_strcmp(cmd, "pwd"))
 		res = b_in_pwd(exec->fd[1]);
+	else if (!ft_strcmp(cmd, "env"))
+		res = env_cmd();
+	else if (!ft_strcmp(cmd, "exit"))
+		res = b_in_exit(exec->cmd->next, exec);
 	else if (!ft_strcmp(cmd, "unset"))
 	{
 		if (exec->cmd->next)
 			res = unset_cmd(exec->cmd->next->val);
 	}
-	else if (!ft_strcmp(cmd, "env"))
-		res = env_cmd();
 	return (res);
 }
 	// else if (!ft_strcmp(cmd, "export"))
 	// 	res = b_in_export((*exec)->cmd->next);
-	// else if (!ft_strcmp(cmd, "exit"))
-	// 	res = b_in_exit((*exec)->cmd->next, cmd);
 
 /**
  * @brief call all the functiun before the exec

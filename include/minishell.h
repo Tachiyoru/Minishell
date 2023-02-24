@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/23 13:07:15 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/24 12:20:21 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ struct s_pipex
 };
 
 /////\ ENV \//////
+void	del_env(void);
+
 t_env	**handle_env(char **env);
 t_env	**get_env(void);
 void	del_from_env(char *delete);
@@ -121,12 +123,16 @@ char	**ft_split2(char	*str, char set);
 int		b_in_cd(t_val *option, int in, int out);
 int		b_in_echo(t_val *options, int fd);
 int		b_in_pwd(int fd_out);
+int		b_in_exit(t_val *option, t_pipex *exec);
+int		env_cmd(void);
+int		unset_cmd(char *key_d);
 
 /////\ UTILS \//////
 //free
 void	free_lst(t_val	*data);
 void	free_lst_env(t_env	*data);
 void	free_tab(char **tab);
+void	free_lst_exec(t_pipex *exec);
 
 //utils3
 char	*ft_substr(char *s, unsigned int start, size_t len);
@@ -156,9 +162,5 @@ int		quote_parsing(char *content, t_val *data);
 int		is_var(char *content, int i, t_val *data, int *iadd);
 int		expand_space(char *content, t_val *data);
 int		ambigous_redirect_checker(t_val *data);
-
-// buildin
-int		env_cmd();
-int		unset_cmd(char *key_d);
 
 #endif

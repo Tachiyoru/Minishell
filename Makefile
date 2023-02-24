@@ -38,6 +38,7 @@ SRCS		=	main.c	\
 				echo.c				\
 				cd.c	\
 				env.c	\
+				exit.c	\
 				unset.c
 
 
