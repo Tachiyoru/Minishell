@@ -6,12 +6,19 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:29 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/22 19:20:30 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/24 12:58:04 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief behave like the echo functiun
+ *
+ * @param options if option 1 is -n then no \n at the end
+ * @param fd where to write the output
+ * @return int
+ */
 int	b_in_echo(t_val *options, int fd)
 {
 	int	n;
@@ -20,7 +27,8 @@ int	b_in_echo(t_val *options, int fd)
 	g_error = 0;
 	if (!options)
 		return (write(fd, "\n", 1), 1);
-	if (options->val[0] == '-' && options->val[1] == 'n')
+	if (options->val[0] == '-' && options->val[1] == 'n'
+		&& options->val[2] == ' ')
 	{
 		options = options->next;
 		n = 1;

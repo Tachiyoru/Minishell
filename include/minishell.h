@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 12:28:00 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/24 12:55:20 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ t_pipex	*ft_last_cmd(t_pipex **data);
 int		init_cmd(t_pipex **cmd);
 void	exec(t_val	*data);
 
-void	set_redir_in(t_pipex *cmd);
-void	set_redir_out(t_pipex *cmd);
-void	set_redir_append(t_pipex *cmd);
+int		set_redir_in(t_pipex *cmd);
+int		set_redir_out(t_pipex *cmd);
+int		set_redir_append(t_pipex *cmd);
 
 char	*ft_strdup_env(t_env *env);
 int		lst_size(t_env *env);
@@ -120,7 +120,7 @@ char	**ft_split2(char	*str, char set);
 
 /////\ BUILTINS \//////
 
-int		b_in_cd(t_val *option, int in, int out);
+int		b_in_cd(t_val *option);
 int		b_in_echo(t_val *options, int fd);
 int		env_cmd(void);
 int		b_in_exit(t_val *option, t_pipex *exec);
@@ -131,7 +131,6 @@ int		unset_cmd(char *key_d);
 /////\ UTILS \//////
 //free
 void	free_lst(t_val	*data);
-void	free_lst_env(t_env	*data);
 void	free_tab(char **tab);
 void	free_lst_exec(t_pipex *exec);
 

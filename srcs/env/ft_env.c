@@ -6,12 +6,16 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:07:51 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 12:07:32 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/24 13:10:53 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Delete the env stored at the end
+ *
+ */
 void	del_env(void)
 {
 	t_env	*tmp;

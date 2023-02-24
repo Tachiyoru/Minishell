@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:13:30 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 12:16:20 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/24 13:12:33 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
+/**
+ * @brief free the lst used in the parsing / expand / exec (inside the cmd list)
+ *
+ * @param data
+ */
 void	free_lst(t_val	*data)
 {
 	t_val	*save;
@@ -41,6 +46,11 @@ void	free_lst(t_val	*data)
 	data = NULL;
 }
 
+/**
+ * @brief free the cmd list used in exec
+ *
+ * @param exec
+ */
 void	free_lst_exec(t_pipex *exec)
 {
 	t_pipex	*tmp;

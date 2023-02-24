@@ -6,12 +6,20 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:04:39 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 18:05:23 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/24 12:52:45 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief look for the string PATH= in an other string
+ *
+ * @param big big string from env that may contain PATH=
+ * @param little PATH=
+ * @param len
+ * @return char*
+ */
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
@@ -34,6 +42,13 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	return (0);
 }
 
+/**
+ * @brief count the number of word for the malloc
+ *
+ * @param str
+ * @param set
+ * @return int
+ */
 int	word_count(char *str, char set)
 {
 	int	i;
@@ -55,6 +70,14 @@ int	word_count(char *str, char set)
 	return (j);
 }
 
+/**
+ * @brief count the number of char to copy
+ *
+ * @param str
+ * @param set
+ * @param pos
+ * @return int
+ */
 int	char_count(char *str, char set, int pos)
 {
 	int	i;
@@ -80,6 +103,15 @@ int	char_count(char *str, char set, int pos)
 	return (k);
 }
 
+/**
+ * @brief set up the words in the tab
+ *
+ * @param str
+ * @param tab
+ * @param set
+ * @param pos
+ * @return char*
+ */
 char	*ft_putword(char *str, char *tab, char set, int pos)
 {
 	int	i;
@@ -109,6 +141,13 @@ char	*ft_putword(char *str, char *tab, char set, int pos)
 	return (tab);
 }
 
+/**
+ * @brief split used for aking the path of cmd
+ *
+ * @param str
+ * @param set
+ * @return char**
+ */
 char	**ft_split2(char	*str, char set)
 {
 	int		j;

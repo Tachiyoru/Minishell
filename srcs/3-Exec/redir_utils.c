@@ -6,12 +6,17 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 14:12:47 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/24 12:45:46 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief check if the fd is not the same a standart
+ *
+ * @param exec
+ */
 void	check_fd(t_pipex *exec)
 {
 	if (exec->fd[0] != STDIN_FILENO)
@@ -26,6 +31,11 @@ void	check_fd(t_pipex *exec)
 	}
 }
 
+/**
+ * @brief detup the redirection depending on the token
+ *
+ * @param cmd
+ */
 void	setup_redir(t_pipex *cmd)
 {
 	while (cmd->redir)
@@ -43,6 +53,11 @@ void	setup_redir(t_pipex *cmd)
 		// 	set_redir_heredoc(cmd);
 //	MEMO a faire apres que l'expand soit termine !!!
 
+/**
+ * @brief Set the up pipe between the two command
+ *
+ * @param cmd
+ */
 void	setup_pipe(t_pipex *cmd)
 {
 	int	tmp_pipe[2];

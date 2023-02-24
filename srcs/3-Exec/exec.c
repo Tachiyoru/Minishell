@@ -6,12 +6,19 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 12:30:44 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/24 12:55:30 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief create child process give him his list of action so that he can
+ * execute his cmd
+ *
+ * @param exec the cmd
+ * @param start the whole struct to free in the child
+ */
 void	exec_call(t_pipex *exec, t_pipex *start)
 {
 	pid_t	pid;
@@ -39,6 +46,7 @@ void	exec_call(t_pipex *exec, t_pipex *start)
 	else
 		exec->pid = pid;
 }
+	// free_lst_exec(start);
 
 /**
  * @brief check if the cmd that will be executed is a builtin or not
@@ -53,7 +61,7 @@ int	is_builtin(char *cmd, t_pipex *exec)
 
 	res = 0;
 	if (!ft_strcmp(cmd, "cd"))
-		res = b_in_cd(exec->cmd->next, exec->fd[0], exec->fd[1]);
+		res = b_in_cd(exec->cmd->next);
 	else if (!ft_strcmp(cmd, "echo"))
 		res = b_in_echo(exec->cmd->next, exec->fd[1]);
 	else if (!ft_strcmp(cmd, "pwd"))

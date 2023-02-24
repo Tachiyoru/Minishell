@@ -6,12 +6,18 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:20 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 12:22:58 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/24 13:10:16 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief turn the option in char to be written
+ *
+ * @param str
+ * @return int
+ */
 int	ft_atoi(const char *str)
 {
 	int	result;
@@ -37,6 +43,12 @@ int	ft_atoi(const char *str)
 	return (result *= sign);
 }
 
+/**
+ * @brief check if there is only digit in the option
+ *
+ * @param str
+ * @return int
+ */
 int	option_is_digit(char *str)
 {
 	int	i;
@@ -48,6 +60,13 @@ int	option_is_digit(char *str)
 	return (1);
 }
 
+/**
+ * @brief behave like the exit functiun
+ *
+ * @param option only one and only digit
+ * @param exec the struc to free
+ * @return int
+ */
 int	b_in_exit(t_val *option, t_pipex *exec)
 {
 	g_error = 0;

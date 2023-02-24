@@ -6,12 +6,18 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:13:03 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/20 18:14:50 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/24 12:48:41 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief strdup but modified to make env variable style
+ *
+ * @param env
+ * @return char*
+ */
 char	*ft_strdup_env(t_env *env)
 {
 	char	*str;
@@ -40,6 +46,11 @@ char	*ft_strdup_env(t_env *env)
 	return (str);
 }
 
+/**
+ * @brief make envp** needed for the execve functiun
+ *
+ * @return char**
+ */
 char	**make_env_tab(void)
 {
 	char	**start;
@@ -63,6 +74,12 @@ char	**make_env_tab(void)
 	return (start);
 }
 
+/**
+ * @brief make char** of the cmd needed for the execve functiun
+ *
+ * @param cmd
+ * @return char**
+ */
 char	**make_cmd_tab(t_val *cmd)
 {
 	char	**tab;
@@ -82,6 +99,13 @@ char	**make_cmd_tab(t_val *cmd)
 	return (tab);
 }
 
+/**
+ * @brief look if the functiun called has a path that can be used for execve
+ *
+ * @param val
+ * @param env
+ * @return the path if founded else null
+ */
 char	*pathfinder(char *val, char **env)
 {
 	char	**path;
