@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/23 17:37:09 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/24 22:22:30 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,8 @@ void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_strlen( char *str);
 void	msg(char *str);
 char	*ft_itoa(int n);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	ft_putchar_err(char c);
 
 // expand
 int		quote_treatment(t_val *data);

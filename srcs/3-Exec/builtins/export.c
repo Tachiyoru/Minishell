@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:18 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/22 23:01:16 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/24 01:25:23 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	export_cmd(char *key_val)
 	{
 		while (env && env->key)
 		{
-			printf("%s=\"%s\"\n", env->key, env->val);
+			printf("export %s=\"%s\"\n", env->key, env->val);
 			env = env->next;
 		}
 		return (0);

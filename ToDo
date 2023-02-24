@@ -5,3 +5,21 @@ tu fais export unset et env
 gerer le -nnnnnnnnnnna a
 doit afficher
 a a
+
+GERER LE changement de pwd au demarrage + changer le PWD au deplacement avec CD + le OLDPWD
+
+Modfier le home au demarrage de minishell
+
+Gerer le SHVL dans l'env
+
+Creer un minimum d'env en cas de env -i
+
+Modification des variables env avec export
+
+variables vide (genre sans =)
+
+SI pas de = et que valeur existe pas de changement
+
+SI juste valeur sans = et que pas existe appliquer et ne pas afficher dans env
+
+SI 

@@ -39,7 +39,8 @@ SRCS		=	main.c	\
 				cd.c	\
 				env.c	\
 				unset.c	\
-				export.c
+				export.c	\
+				expand_ambigous_redirect.c
 
 
 OBJS		=	$(SRCS:%.c=${OBJ_DIR}/%.o)
