@@ -39,6 +39,7 @@ SRCS		=	main.c	\
 				cd.c	\
 				env.c	\
 				unset.c	\
+				exit.c	\
 				export.c
 
 

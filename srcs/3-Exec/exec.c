@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/23 17:36:51 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/24 12:30:44 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ int	is_builtin(char *cmd, t_pipex *exec)
 		res = b_in_echo(exec->cmd->next, exec->fd[1]);
 	else if (!ft_strcmp(cmd, "pwd"))
 		res = b_in_pwd(exec->fd[1]);
-	else if (!ft_strcmp(cmd, "unset") && exec->cmd->next)
+	else if (!ft_strcmp(cmd, "env"))
+		res = env_cmd();
+	else if (!ft_strcmp(cmd, "exit"))
+		res = b_in_exit(exec->cmd->next, exec);
+	else if (!ft_strcmp(cmd, "unset"))
 	{
 		while (exec->cmd->next)
 		{
@@ -80,8 +84,6 @@ int	is_builtin(char *cmd, t_pipex *exec)
 		res = export_cmd(NULL);
 	return (res);
 }
-	// else if (!ft_strcmp(cmd, "exit"))
-	// 	res = b_in_exit((*exec)->cmd->next, cmd);
 
 /**
  * @brief call all the functiun before the exec

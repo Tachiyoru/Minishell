@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:13:30 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/21 18:08:44 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/24 12:16:20 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,24 @@ void	free_lst(t_val	*data)
 	data = NULL;
 }
 
-void	free_lst_env(t_env	*data)
+void	free_lst_exec(t_pipex *exec)
 {
-	t_env	*save;
+	t_pipex	*tmp;
 
-	while (data)
+	while (exec)
 	{
-		save = data;
-		data = data->next;
-		free(save->key);
-		free(save->val);
-		free(save);
+		if (exec->cmd)
+			free_lst(exec->cmd);
+		if (exec->redir)
+			free_lst(exec->redir);
+		if (exec->fd[0] != 0)
+			close(exec->fd[0]);
+		if (exec->fd[1] != 1)
+			close(exec->fd[1]);
+		tmp = exec;
+		exec = exec->next;
+		free(tmp);
 	}
-	data = NULL;
 }
 
 // void	free_char(char **cmd, char **env, char *path);

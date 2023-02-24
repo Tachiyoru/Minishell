@@ -6,11 +6,27 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:07:51 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/23 13:06:17 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/24 12:07:32 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	del_env(void)
+{
+	t_env	*tmp;
+	t_env	*env;
+
+	tmp = NULL;
+	env = *get_env();
+	while (env)
+	{
+		tmp = env;
+		env = env->next;
+		free(tmp->key);
+		free(tmp->val);
+	}
+}
 
 /**
  * @brief depending on the way it is call it will either init the env, add
