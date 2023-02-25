@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/25 06:45:54 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/25 13:40:11 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ int		expand_space(char *content, t_val *data);
 int		ambigous_redirect_checker(t_val *data);
 
 // buildin
-int		env_cmd();
+int		env_cmd(void);
 int		unset_cmd(char *key_d);
 int		export_cmd(char *key_val);
 int		existing_key_replace_val(char *key, char *val);

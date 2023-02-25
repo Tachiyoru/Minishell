@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 12:55:30 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/25 13:39:21 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ void	exec_pipex(t_pipex **exec)
 		start = start->next;
 	}
 }
-//check if the functiun called is a builtin in exec_pipex
 
 /**
  * @brief make a new struct, each node is for a pipe
