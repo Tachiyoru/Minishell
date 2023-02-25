@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 22:22:30 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/25 03:18:13 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ void	msg(char *str);
 char	*ft_itoa(int n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putchar_err(char c);
+int		contain_equals(char *key_val);
 
 // expand
 int		quote_treatment(t_val *data);
@@ -164,5 +165,10 @@ int		ambigous_redirect_checker(t_val *data);
 int		env_cmd();
 int		unset_cmd(char *key_d);
 int		export_cmd(char *key_val);
+int		existing_key_replace_val(char *key, char *val);
+int		existing_key(char *key);
+int		key_checker(char *key);
+int		env_add_back(char *key, char *val);
+int		contain_equals(char *key_val);
 
 #endif

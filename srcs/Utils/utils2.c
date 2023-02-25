@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:57:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/22 19:27:42 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/25 02:21:38 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	*ft_strdup(const char *s)
 	int		i;
 	int		size;
 
+	if (!s)
+		return (NULL);
 	size = 0;
 	while (s[size])
 		size++;

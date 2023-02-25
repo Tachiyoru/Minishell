@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:55:50 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/22 22:23:33 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/25 02:24:02 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ t_env	*lst_env_new(char *key, char *val)
 	t_env	*new_element;
 
 	new_element = malloc(sizeof(t_env));
+	new_element->key = ft_strdup(key);
+	new_element->val = ft_strdup(val);
 	if (!new_element)
 		return (NULL);
-	new_element->key = key;
-	new_element->val = val;
 	new_element->next = NULL;
 	return (new_element);
 }
