@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:24 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/23 13:07:41 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/25 06:33:20 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_env(t_env *data)
 {
-	while (data && data->key)
+	while (data && data->key && data->val)
 	{
 		printf("%s=%s\n", data->key, data->val);
 		data = data->next;

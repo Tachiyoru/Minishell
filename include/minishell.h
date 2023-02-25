@@ -6,7 +6,11 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/02/24 12:55:20 by sleon            ###   ########.fr       */
+=======
+/*   Updated: 2023/02/25 03:18:13 by ajeanne          ###   ########.fr       */
+>>>>>>> fixambigous
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +159,9 @@ void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_strlen( char *str);
 void	msg(char *str);
 char	*ft_itoa(int n);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	ft_putchar_err(char c);
+int		contain_equals(char *key_val);
 
 // expand
 int		quote_treatment(t_val *data);
@@ -163,5 +170,15 @@ int		quote_parsing(char *content, t_val *data);
 int		is_var(char *content, int i, t_val *data, int *iadd);
 int		expand_space(char *content, t_val *data);
 int		ambigous_redirect_checker(t_val *data);
+
+// buildin
+int		env_cmd();
+int		unset_cmd(char *key_d);
+int		export_cmd(char *key_val);
+int		existing_key_replace_val(char *key, char *val);
+int		existing_key(char *key);
+int		key_checker(char *key);
+int		env_add_back(char *key, char *val);
+int		contain_equals(char *key_val);
 
 #endif

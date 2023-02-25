@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:37:20 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/23 17:05:21 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/25 03:25:11 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,38 +32,21 @@ t_val	*ft_lstnew_token(void *content, t_val *next)
 	return (new_element);
 }
 
-int	existing_var(char *val)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_env	*env;
-	char	*name;
+	size_t	i;
 
-	name = ft_substr(val, 1, ft_strlen(val));
-	env = *get_env();
-	while (env && ft_strcmp(env->key, name))
-		env = env->next;
-	if (!env)
-		return (1);
-	if (!(env->val))
-		return (1);
+	i = 0;
+	while ((s1[i] || s2[i]) && i < n)
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
 	return (0);
 }
 
-int	ambigous_redirect_checker(t_val *data)
+void	ft_putchar_err(char c)
 {
-	t_val	*tmp;
-
-	tmp = data;
-	while (tmp)
-	{
-		if ((!ft_strcmp(tmp->val, "<") || !ft_strcmp(tmp->val, ">>")
-			|| !ft_strcmp(tmp->val, ">")) && tmp->next->val[0] == '$'
-			&& existing_var(tmp->next->val))
-		{
-			msg(tmp->next->val);
-			msg(": ambiguous redirect\n");
-			return (1);
-		}
-		tmp = tmp->next;
-	}
-	return (0);
+	write(STDERR_FILENO, &c, 1);
 }

@@ -1,55 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD:srcs/3-Exec/builtins/export.c
 /*   Created: 2023/02/08 15:21:18 by sleon             #+#    #+#             */
 /*   Updated: 2023/02/24 13:04:28 by sleon            ###   ########.fr       */
+=======
+/*   Created: 2023/02/25 03:14:26 by ajeanne           #+#    #+#             */
+/*   Updated: 2023/02/25 03:22:01 by ajeanne          ###   ########.fr       */
+>>>>>>> fixambigous:srcs/3-Exec/builtins/export/export_utils.c
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*val_gen(char *key_val, int *no_val)
+int	existing_key_replace_val(char *key, char *val)
 {
-	int	i;
-	int	j;
+	t_env	*env;
 
-	i = 0;
-	j = 0;
-	while (key_val[i])
+	env = *get_env();
+	while (env)
 	{
-		if (key_val[i] == '=')
+		if (!ft_strcmp(key, env->key))
 		{
-			i++;
-			if (key_val[i])
-			{
-				while (key_val[i + j])
-					j++;
-				return (ft_substr(key_val, i, i + j));
-			}
-			*no_val = 1;
-			return (ft_substr(key_val, 0, 0));
+			if (env->val)
+				free(env->val);
+			env->val = ft_strdup(val);
+			return (1);
 		}
-		i++;
+		env = env->next;
 	}
-	return (NULL);
+	return (0);
 }
 
-char	*key_gen(char *key_val)
+int	existing_key(char *key)
 {
-	int	i;
+	t_env	*env;
 
-	i = 0;
-	while (key_val[i])
+	env = *get_env();
+	while (env)
 	{
-		if (key_val[i] == '=')
-			return (ft_substr(key_val, 0, i));
-		i++;
+		if (!ft_strcmp(key, env->key))
+			return (1);
+		env = env->next;
 	}
-	return (NULL);
+	return (0);
 }
 
 int	key_checker(char *key)
@@ -58,23 +56,36 @@ int	key_checker(char *key)
 
 	i = 1;
 	if ((key[0] >= '0' && key[0] <= '9')
+<<<<<<< HEAD:srcs/3-Exec/builtins/export.c
 		|| ((key[0] <= 'A' || (key[0] >= 'Z' && key[0] <= 'a') || key[0] >= 'z')
 			&& key[0] != '_'))
 		return (1);
 	while (key[i] && ((key[i] >= '0' && key[i] <= '9')
 			|| (key[i] >= 'A' && key[i] <= 'Z')
 			|| (key[i] >= 'a' && key[i] <= 'z') || key[i] == '_'))
+=======
+		|| ((key[0] <= 'A' || (key[0] >= 'Z'
+					&& key[0] <= 'a') || key[0] >= 'z')
+			&& key[0] != '_'))
+		return (0);
+	while (key[i] && ((key[i] >= '0' && key[i] <= '9')
+			|| (key[i] >= 'A' && key[i] <= 'Z')
+			|| (key[i] >= 'a' && key[i] <= 'z')
+			|| key[i] == '_'))
+>>>>>>> fixambigous:srcs/3-Exec/builtins/export/export_utils.c
 		i++;
 	if (!key[i])
-		return (0);
-	return (1);
+		return (1);
+	return (i);
 }
 
-int	env_add_back(t_env *env, char *key, char *val)
+int	env_add_back(char *key, char *val)
 {
 	t_env	*tmp;
 	t_env	*tmp_prev;
+	t_env	*env;
 
+	env = *get_env();
 	tmp = env;
 	while (tmp)
 	{
@@ -87,31 +98,16 @@ int	env_add_back(t_env *env, char *key, char *val)
 	return (0);
 }
 
-int	export_cmd(char *key_val)
+int	contain_equals(char *key_val)
 {
-	char	*key;
-	char	*val;
-	int		no_val;
-	t_env	*env;
+	int	i;
 
-	env = *get_env();
-	if (!key_val)
+	i = 0;
+	while (key_val && key_val[i])
 	{
-		while (env && env->key)
-		{
-			printf("%s=\"%s\"\n", env->key, env->val);
-			env = env->next;
-		}
-		return (0);
+		if (key_val[i] == '=')
+			return (1);
+		i++;
 	}
-	no_val = 0;
-	key = key_gen(key_val);
-	val = val_gen(key_val, &no_val);
-	if (!key || (!val && !no_val))
-		return (-1);
-	if (key_checker(key))
-		return (0);
-	if (env_add_back(env, key, val))
-		return (-1);
-	return (1);
+	return (0);
 }
