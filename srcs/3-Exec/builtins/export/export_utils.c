@@ -3,15 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD:srcs/3-Exec/builtins/export.c
-/*   Created: 2023/02/08 15:21:18 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 13:04:28 by sleon            ###   ########.fr       */
-=======
 /*   Created: 2023/02/25 03:14:26 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/25 03:22:01 by ajeanne          ###   ########.fr       */
->>>>>>> fixambigous:srcs/3-Exec/builtins/export/export_utils.c
+/*   Updated: 2023/02/25 06:46:47 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +51,6 @@ int	key_checker(char *key)
 
 	i = 1;
 	if ((key[0] >= '0' && key[0] <= '9')
-<<<<<<< HEAD:srcs/3-Exec/builtins/export.c
-		|| ((key[0] <= 'A' || (key[0] >= 'Z' && key[0] <= 'a') || key[0] >= 'z')
-			&& key[0] != '_'))
-		return (1);
-	while (key[i] && ((key[i] >= '0' && key[i] <= '9')
-			|| (key[i] >= 'A' && key[i] <= 'Z')
-			|| (key[i] >= 'a' && key[i] <= 'z') || key[i] == '_'))
-=======
 		|| ((key[0] <= 'A' || (key[0] >= 'Z'
 					&& key[0] <= 'a') || key[0] >= 'z')
 			&& key[0] != '_'))
@@ -72,7 +59,6 @@ int	key_checker(char *key)
 			|| (key[i] >= 'A' && key[i] <= 'Z')
 			|| (key[i] >= 'a' && key[i] <= 'z')
 			|| key[i] == '_'))
->>>>>>> fixambigous:srcs/3-Exec/builtins/export/export_utils.c
 		i++;
 	if (!key[i])
 		return (1);
