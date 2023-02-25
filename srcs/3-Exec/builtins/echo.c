@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:29 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 12:58:04 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/25 13:55:02 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	b_in_echo(t_val *options, int fd)
 	g_error = 0;
 	if (!options)
 		return (write(fd, "\n", 1), 1);
-	if (options->val[0] == '-' && options->val[1] == 'n'
-		&& options->val[2] == ' ')
+	while (options->val[0] == '-' && options->val[1] == 'n')
 	{
 		options = options->next;
 		n = 1;
