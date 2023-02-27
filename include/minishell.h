@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/25 13:40:11 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/27 20:25:32 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ t_env	*init_env(char **env);
 char	*find_env(char *find);
 
 void	print_list(t_val *data);
+char	*ft_itoa(int n);
+int		ft_atoi(const char *str);
+void	set_shlvl(void);
 
 int		main(int ac, char **av, char **envp);
 
@@ -105,6 +108,10 @@ int		set_redir_in(t_pipex *cmd);
 int		set_redir_out(t_pipex *cmd);
 int		set_redir_append(t_pipex *cmd);
 
+char	*fillpath(t_pipex *exec, char **env);
+int		is_builtin2(char *cmd, t_pipex *exec, int res);
+
+char	*is_exec(char *cmd);
 char	*ft_strdup_env(t_env *env);
 int		lst_size(t_env *env);
 char	**make_env_tab(void);

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/25 13:39:21 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/27 20:25:18 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	exec_call(t_pipex *exec, t_pipex *start)
 	char	**env;
 	char	*path;
 
-	(void)start;
 	g_error = 0;
 	if (!exec->cmd->val)
 		return ;
@@ -38,7 +37,8 @@ void	exec_call(t_pipex *exec, t_pipex *start)
 		check_fd(exec);
 		env = make_env_tab();
 		cmd = make_cmd_tab(exec->cmd);
-		path = pathfinder(exec->cmd->val, env);
+		path = fillpath(exec, env);
+		(void)start;//free all
 		if (path)
 			execve(path, cmd, env);
 		exit(g_error);
@@ -47,7 +47,7 @@ void	exec_call(t_pipex *exec, t_pipex *start)
 		exec->pid = pid;
 }
 	// free_lst_exec(start);
-
+	
 /**
  * @brief check if the cmd that will be executed is a builtin or not
  *
@@ -78,19 +78,7 @@ int	is_builtin(char *cmd, t_pipex *exec)
 			exec->cmd->next = exec->cmd->next->next;
 		}
 	}
-	else if (!ft_strcmp(cmd, "env"))
-		res = env_cmd();
-	else if (!ft_strcmp(cmd, "export") && exec->cmd->next)
-	{
-		while (exec->cmd->next)
-		{
-			res = export_cmd(exec->cmd->next->val);
-			exec->cmd->next = exec->cmd->next->next;
-		}
-	}
-	else if (!ft_strcmp(cmd, "export") && !exec->cmd->next)
-		res = export_cmd(NULL);
-	return (res);
+	return (is_builtin2(cmd, exec, res));
 }
 
 /**

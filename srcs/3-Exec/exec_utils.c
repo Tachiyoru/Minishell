@@ -6,11 +6,28 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:13:03 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 12:48:41 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/27 19:56:33 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*is_exec(char *cmd)
+{
+	int	res;
+
+	if (!ft_strcmp(cmd, "."))
+		return (msg("Minishell~ .: filename argument required\n"), NULL);
+	else if (!ft_strcmp(cmd, ".."))
+		return (msg("..: command not found\n"), NULL);
+	else if (!ft_strcmp(cmd, "./"))
+		return (msg("Minishell~ ./: Is a directory\n"), NULL);
+	res = access(cmd, 1);
+	if (res >= 0)
+		return (ft_strdup(cmd));
+	g_error = 126;
+	return (perror(cmd), NULL);
+}
 
 /**
  * @brief strdup but modified to make env variable style

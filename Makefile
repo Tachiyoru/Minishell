@@ -33,6 +33,7 @@ SRCS		=	main.c	\
 				redir_fct.c		\
 				redir_utils.c		\
 				exec_utils.c		\
+				exec_utils2.c		\
 				cmd_utils.c			\
 				pwd.c				\
 				echo.c				\
@@ -40,6 +41,7 @@ SRCS		=	main.c	\
 				env.c	\
 				unset.c	\
 				exit.c	\
+				shlvl.c	\
 				export.c	\
 				expand_ambigous_redirect.c	\
 				export_utils.c

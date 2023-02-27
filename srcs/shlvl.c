@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   shlvl.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 16:24:33 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/27 19:05:46 by sleon            ###   ########.fr       */
+/*   Created: 2023/02/25 15:21:22 by sleon             #+#    #+#             */
+/*   Updated: 2023/02/27 19:08:26 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	g_error;
-
-int	main(int ac, char **av, char **envp)
+void	set_shlvl(void)
 {
-	char	*buf;
+	t_env	*env;
+	int		lvl;
 
-	(void)av;
-	(void)ac;
-	store_env(envp);
-	set_shlvl();
-	buf = NULL;
-	while (1)
+	env = *get_env();
+	while (env)
 	{
-		buf = readline("Minishell ~");
-		if (!buf)
+		if (!ft_strcmp(env->key, "SHLVL"))
 			break ;
-		else
-		{
-			add_history(buf);
-			split_pars(buf);
-		}
+		env = env->next;
 	}
-	rl_clear_history();
-	write(STDOUT_FILENO, "exit\n", 5);
-	return (g_error);
+	if (env)
+	{
+		lvl = ft_atoi(env->val);
+		free(env->val);
+		lvl++;
+		env->val = ft_itoa(lvl);
+	}
 }
