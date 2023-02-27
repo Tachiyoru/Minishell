@@ -8,14 +8,8 @@ Alex gere ton appel de fonction dans les builtin c'est trop grand separe la fonc
 
 et j'ai pas compris ton truc la c'est pour moi ou toi ?
 
-gerer le -nnnnnnnnnnna a
-doit afficher
-a a
-
 Gerer le SHVL dans l'env
 
 Creer un minimum d'env en cas de env -i
 
 echo < " $toto$USER$lul" mal traite
-
-mettre a jour la variable _ ( dernier commande tapee avec son path absolu)

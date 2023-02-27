@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/20 20:50:17 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/25 15:43:16 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,17 @@ char	*var_replacing(int start, int end, char *content, int *i)
 	if (!tmp)
 	{
 		dest = word_replacing_var(start, end, content, NULL);
-		if (!dest)
-			return (NULL);
 		if (content)
 			free(content);
+		if (!dest)
+			return (NULL);
 		return ((*i)--, dest);
 	}
 	dest = word_replacing_var(start, end, content, tmp->val);
-	if (!dest)
-		return (NULL);
 	if (content)
 		free(content);
+	if (!dest)
+		return (NULL);
 	return (dest);
 }
 
