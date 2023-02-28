@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:13:03 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/27 19:56:33 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 14:09:42 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,21 @@ char	*ft_strdup_env(t_env *env)
 	int		j;
 	int		size;
 
-	size = 0;
-	size += ft_strlen(env->key);
-	size += ft_strlen(env->val);
-	str = (char *)ft_calloc((sizeof(char)), (size + 2));
-	if (str == 0)
+	size = ft_strlen(env->key) + ft_strlen(env->val);
+	str = ft_calloc(size + 1, sizeof(char));
+	if (!str)
 		return (NULL);
-	i = -1;
-	j = -1;
-	while (++i < size)
+	i = 0;
+	j = 0;
+	while ((i + j) < size)
 	{
 		if (env->key[i])
-			str[i] = env->key[i];
-		else if (!env->key[i] && ++j == 0)
-			str[i] = '=';
+			reduce_dup_env_key(env, str, &i);
+		else if (!env->key[i] && j == 0)
+			str[i + (j++)] = '=';
 		else
-			str[i] = env->val[j++];
+			reduce_dup_env_val(env, str, &i, &j);
 	}
-	str[i] = '\0';
 	return (str);
 }
 

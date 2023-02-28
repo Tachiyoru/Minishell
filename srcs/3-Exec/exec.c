@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 10:17:35 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 13:13:08 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	exec_call(t_pipex *exec, t_pipex *start)
 		env = make_env_tab();
 		cmd = make_cmd_tab(exec->cmd);
 		path = fillpath(exec, env);
-		(void)start;//free all
+		free_lst_exec(start);
 		if (path)
 			execve(path, cmd, env);
 		exit(g_error);
@@ -46,7 +46,6 @@ void	exec_call(t_pipex *exec, t_pipex *start)
 	else
 		exec->pid = pid;
 }
-	// free_lst_exec(start);
 	
 /**
  * @brief check if the cmd that will be executed is a builtin or not

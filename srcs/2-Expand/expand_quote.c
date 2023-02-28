@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/28 10:19:21 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 13:11:34 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,11 @@ int	quote_treatment(t_val *data)
 		if (tmp->token == WORD || tmp->token == FD)
 		{
 			if (is_error_qm(tmp->val))
-				return (1);
+				return (free_lst(data), 1);
 			if (quote_parsing(tmp->val, tmp))
-				return (1);
+				return (free_lst(data), 1);
 			if (expand_space(tmp->val, tmp))
-				return (1);
+				return (free_lst(data), 1);
 			back_to_positive(tmp);
 		}
 		tmp = tmp->next;

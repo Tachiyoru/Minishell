@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:17:47 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/27 20:25:21 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 14:10:33 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	reduce_dup_env_key(t_env *env, char *str, int *i)
+{
+	str[*i] = env->key[*i];
+	*i = *i + 1;
+}
+
+void	reduce_dup_env_val(t_env *env, char *str, int *i, int *j)
+{
+	str[*i + *j] = env->val[*j];
+	*j = *j + 1;
+}
 
 char	*fillpath(t_pipex *exec, char **env)
 {

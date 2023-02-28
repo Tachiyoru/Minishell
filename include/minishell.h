@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 01:30:36 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 14:08:10 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,5 +185,9 @@ int		existing_key(char *key);
 int		key_checker(char *key);
 int		env_add_back(char *key, char *val);
 int		contain_equals(char *key_val);
+
+// env
+void	reduce_dup_env_key(t_env *env, char *str, int *i);
+void	reduce_dup_env_val(t_env *env, char *str, int *i, int *j);
 
 #endif
