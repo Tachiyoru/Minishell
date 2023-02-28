@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:24:33 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 15:19:33 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 17:02:36 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 	(void)ac;
 	store_env(envp);
-	set_shlvl();
+	// set_shlvl();
 	buf = NULL;
 	while (1)
 	{

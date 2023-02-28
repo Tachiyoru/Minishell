@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:07:51 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 13:10:53 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 17:04:07 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,13 @@ t_env	**handle_env(char **env)
 	static t_env	*our_env = NULL;
 
 	if (env)
+	{
+		// printf("///////////////////////////////////////////////////\n");
 		our_env = init_env(env);
+		// print_list2(our_env);
+	}
+	// printf("222222222222222222222222222222222222222222\n");
+	// print_list2(our_env);
 	return (&our_env);
 }
 
@@ -57,6 +63,7 @@ t_env	**handle_env(char **env)
  */
 t_env	**get_env(void)
 {
+	printf("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
 	return (handle_env(NULL));
 }
 
@@ -67,5 +74,6 @@ t_env	**get_env(void)
  */
 void	store_env(char **env)
 {
+	printf("salut\n");
 	handle_env(env);
 }

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 14:53:19 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 16:50:40 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_env	*ft_last_env(t_env **data);
 t_env	*init_env(char **env);
 char	*find_env(char *find);
 
+void	print_list2(t_env *data);
 void	print_list(t_val *data);
 char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
