@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:13:03 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 14:47:22 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 18:19:53 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_strdup_env(t_env *env)
 		return (NULL);
 	i = -1;
 	j = -1;
-	while (++i < size)
+	while (++i <= size)
 	{
 		if (i < ft_strlen(env->key) && env->key[i])
 			str[i] = env->key[i];
@@ -84,9 +84,11 @@ char	**make_env_tab(void)
 	while (env)
 	{
 		*tab = ft_strdup_env(env);
+		// printf("%s\n\n", *tab);
 		tab++;
 		env = env->next;
 	}
+	tab = NULL;
 	return (start);
 }
 

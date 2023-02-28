@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:24 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 17:05:37 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 18:45:26 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	env_cmd(void)
 	t_env	*env;
 
 	env = *get_env();
-	printf("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii\n");
 	print_env(env);
 	return (1);
 }
