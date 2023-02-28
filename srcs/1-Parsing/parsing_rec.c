@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_rec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 12:01:56 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/23 14:25:19 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 14:55:58 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	split_pars(char *buf)
 	data = NULL;
 	tab = NULL;
 	split_rec(buf, &tab, 0);
+	if (buf)
+		free(buf);
 	tab_to_list(tab, &data);
 	free_tab(tab);
 	if (data)
