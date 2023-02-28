@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:42:31 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 14:53:30 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 15:14:07 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ int	set_redir_heredoc(t_pipex *cmd)
 
 	fd = check_quote_limitor(cmd->redir);
 	if (!fd)
-		fd = expand_heredoc(cmd->redir);
-	else
 		fd = simple_heredoc(cmd->redir);
+	else
+		fd = expand_heredoc(cmd->redir);
 	if (fd < 0)
 		return (0);
 	close(fd);
