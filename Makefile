@@ -32,6 +32,7 @@ SRCS		=	main.c	\
 				exec.c		\
 				pre_exec_utils.c	\
 				redir_fct.c		\
+				redir_heredoc.c		\
 				redir_utils.c		\
 				exec_utils.c		\
 				exec_utils2.c		\

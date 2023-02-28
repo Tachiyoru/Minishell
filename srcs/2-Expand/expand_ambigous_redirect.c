@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_ambigous_redirect.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 22:12:13 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/28 10:02:40 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 14:18:30 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	ambigous_redirect_checker(t_val *data)
 		tmp2 = tmp;
 		tmp = tmp->next;
 	}
-	if (tmp && tmp2->val 
+	if (tmp && tmp2->val
 		&& (!ft_strcmp(tmp2->val, "<") || !ft_strcmp(tmp2->val, ">>")
 			|| !ft_strcmp(tmp2->val, ">")) && tmp2->next->val[0] == '$'
 		&& !is_okvar_present(tmp2->next->val))

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 13:18:28 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 13:55:32 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void	setup_redir(t_pipex *cmd)
 			set_redir_out(cmd);
 		else if (cmd->redir->token == APPEND)
 			set_redir_append(cmd);
+		if (cmd->redir->token == HEREDOC)
+			set_redir_heredoc(cmd);
 		cmd->redir = cmd->redir->next;
 	}
 }
-		// if (cmd->redir->token == HEREDOC)
-		// 	set_redir_heredoc(cmd);
 //	MEMO a faire apres que l'expand soit termine !!!
 
 /**

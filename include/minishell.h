@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 01:30:36 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 14:53:19 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,12 @@ void	exec(t_val	*data);
 int		set_redir_in(t_pipex *cmd);
 int		set_redir_out(t_pipex *cmd);
 int		set_redir_append(t_pipex *cmd);
+int		set_redir_heredoc(t_pipex *cmd);
+
+int		check_quote_limitor(t_val *red);
+int		expand_heredoc(t_val *redir);
+int		simple_heredoc(t_val *redir);
+int		make_heredoc(int type);
 
 char	*fillpath(t_pipex *exec, char **env);
 int		is_builtin2(char *cmd, t_pipex *exec, int res);
