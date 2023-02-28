@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/27 20:25:32 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 01:30:36 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ int		unset_cmd(char *key_d);
 void	free_lst(t_val	*data);
 void	free_tab(char **tab);
 void	free_lst_exec(t_pipex *exec);
+void	free_wr(char *content, char *nw);
+void	free_vr(char *name);
 
 //utils3
 char	*ft_substr(char *s, unsigned int start, size_t len);

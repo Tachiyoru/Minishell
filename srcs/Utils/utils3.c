@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:55:50 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/25 06:42:41 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 10:57:50 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	if (ft_strlen((char *)s) - start < len)
 		len = ft_strlen((char *)s) - start;
 	str = (char *)malloc(sizeof (char) * (len + 1));
+	str = ft_calloc(len ,1);
 	if (!str)
 		return (NULL);
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:33:47 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/20 20:50:42 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 10:29:08 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,11 @@ int	quote_parsing(char *content, t_val *data)
 	while (content[i])
 	{
 		if (content[i] == '\'')
-		{
 			content = case_of_sq(&i, &j, content);
-		}
 		else if (content[i] == '"')
-		{
 			content = case_of_dq(&i, &j, content, data);
-		}
 		else
-		{
 			content = case_of_nq(&i, &j, content, data);
-		}
 	}
 	if (!content)
 		return (1);

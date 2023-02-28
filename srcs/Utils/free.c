@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:13:30 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 13:12:33 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 10:12:02 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,20 @@ void	free_lst_exec(t_pipex *exec)
 	}
 }
 
+void	free_wr(char *content, char *nw)
+{
+	(void)nw;
+	if (content)
+		free(content);
+	// if (nw)
+	// 	free(nw);
+}
+
+void	free_vr(char *name)
+{
+	if (name)
+		free(name);
+}
 // void	free_char(char **cmd, char **env, char *path);
 
 // void	free_struct(t_pipex *start)

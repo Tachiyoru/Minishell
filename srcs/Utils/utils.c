@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:25:35 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/21 16:30:30 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 10:07:35 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	char	*mem;
 
-	mem = malloc(size * nmemb);
+	mem = malloc(size * nmemb + 1);
 	if (!mem)
 		return (NULL);
 	ft_memset(mem, 0, nmemb * size);

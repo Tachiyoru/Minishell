@@ -13,3 +13,5 @@ Gerer le SHVL dans l'env
 Creer un minimum d'env en cas de env -i
 
 echo < " $toto$USER$lul" mal traite
+
+Si ambigous redirect + | executer quand meme les commandes suivantes

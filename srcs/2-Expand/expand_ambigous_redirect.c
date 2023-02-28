@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 22:12:13 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/25 03:24:53 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 10:02:40 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,14 @@ int	ambigous_redirect_checker(t_val *data)
 	t_val	*tmp2;
 
 	tmp = data;
+	tmp2 = tmp;
 	while (tmp && tmp->val[0] != '$')
 	{
 		tmp2 = tmp;
 		tmp = tmp->next;
 	}
-	if ((!ft_strcmp(tmp2->val, "<") || !ft_strcmp(tmp2->val, ">>")
+	if (tmp && tmp2->val 
+		&& (!ft_strcmp(tmp2->val, "<") || !ft_strcmp(tmp2->val, ">>")
 			|| !ft_strcmp(tmp2->val, ">")) && tmp2->next->val[0] == '$'
 		&& !is_okvar_present(tmp2->next->val))
 	{
@@ -91,28 +93,3 @@ int	ambigous_redirect_checker(t_val *data)
 	}
 	return (0);
 }
-
-// int	ambigous_redirect_checker(t_val *data)
-// {
-// 	t_val	*tmp;
-
-// 	tmp = data;
-// 	while (tmp)
-// 	{
-// 		if (tmp->val && tmp->val[0] && !is_okvar_present(tmp->val))
-// 			return (0);
-// 		tmp = tmp->next;
-// 	}
-// 	tmp = data;
-// 	while (tmp)
-// 	{
-// 		if ((!ft_strcmp(tmp->val, "<") || !ft_strcmp(tmp->val, ">>")
-// 			|| !ft_strcmp(tmp->val, ">")) && tmp->next->val[0] == '$')
-// 		{
-//             message_ambigous(tmp->next->val);
-// 			return (1);
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// 	return (0);
-// }

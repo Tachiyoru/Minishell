@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/25 15:43:16 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 11:42:24 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*word_replacing_var(int start, int end, char *content, char *new_word)
 	i = 0;
 	j = 0;
 	word_size = end - start;
-	dest = calloc((ft_strlen(content) - word_size) + ft_strlen(new_word), 1);
+	dest = ft_calloc((ft_strlen(content) - word_size) + ft_strlen(new_word), 1);
 	if (!dest)
 		return (NULL);
 	while (content && i < start)
@@ -66,6 +66,7 @@ char	*word_replacing_var(int start, int end, char *content, char *new_word)
 	}
 	end++;
 	dest = end_of_replacing(dest, content, i + j, end);
+	// free_wr(content, new_word);
 	return (dest);
 }
 
@@ -99,8 +100,7 @@ char	*var_replacing(int start, int end, char *content, int *i)
 		return ((*i)--, dest);
 	}
 	dest = word_replacing_var(start, end, content, tmp->val);
-	if (content)
-		free(content);
+	free_vr(name);
 	if (!dest)
 		return (NULL);
 	return (dest);
@@ -154,6 +154,7 @@ int	is_var(char *content, int i, t_val *data, int *iadd)
 		data->val = var_replacing(i, i + j, content, iadd);
 		if (!data->val)
 			return (1);
+		return (0);
 	}
 	unusual_state(content, i, j, data);
 	return (0);
