@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:40:43 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/25 00:55:01 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 15:36:00 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,15 @@ t_env	*init_env(char **env)
 	t_env	*tmp;
 	int		i;
 
-	env_struct = ft_calloc(sizeof(t_env), 1);
-	tmp = env_struct;
+	env_struct = NULL;
 	i = -1;
 	while (*env)
 	{
+		i++;
 		tmp = ft_calloc(sizeof(t_env), 1);
 		tmp = init_env2(*env, tmp);
 		env++;
-		if (!env_struct->key)
+		if (!i)
 			env_struct = tmp;
 		else
 			ft_last_env(&env_struct)->next = tmp;

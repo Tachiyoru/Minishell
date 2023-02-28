@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:06:28 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 15:04:12 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 15:42:04 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ int	expand_heredoc(t_val *redir)
 		if (ft_strchr(line, '$'))
 		{
 			write(fd, "ca doit expand la", 17);
-			line = is_var(line); //expand a faire ici
-		}
 		if (line)
 			write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
