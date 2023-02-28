@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:13:03 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/27 19:56:33 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 14:47:22 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,20 @@ char	*ft_strdup_env(t_env *env)
 	size = 0;
 	size += ft_strlen(env->key);
 	size += ft_strlen(env->val);
-	str = (char *)ft_calloc((sizeof(char)), (size + 2));
+	str = ft_calloc(size + 1, sizeof(char));
 	if (str == 0)
 		return (NULL);
 	i = -1;
 	j = -1;
 	while (++i < size)
 	{
-		if (env->key[i])
+		if (i < ft_strlen(env->key) && env->key[i])
 			str[i] = env->key[i];
-		else if (!env->key[i] && ++j == 0)
+		else if (i == ft_strlen(env->key) && !env->key[i] && ++j == 0)
 			str[i] = '=';
 		else
 			str[i] = env->val[j++];
 	}
-	str[i] = '\0';
 	return (str);
 }
 
