@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:06:28 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 16:45:06 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 18:56:57 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	check_quote_limitor(t_val *red)
 	{
 		if (red->token == LIMITOR)
 		{
-			if (red->val[0] == '\'' && red->val[0] == '"')
+			printf("%s \n", red->val);
+			if (red->val[0] == '\'' || red->val[0] == '"')
 				return (0);
 		}
 		red = red->next;
