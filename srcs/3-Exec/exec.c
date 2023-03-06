@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 17:35:22 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/06 17:05:40 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ void	exec_call(t_pipex *exec, t_pipex *start)
 		path = fillpath(exec, env);
 		free_lst_exec(start);
 		if (path)
+		{
+			init_signal(1);
 			execve(path, cmd, env);
+		}
 		exit(g_error);
 	}
 	else
@@ -78,6 +81,54 @@ int	is_builtin(char *cmd, t_pipex *exec)
 	return (is_builtin2(cmd, exec, res));
 }
 
+void	error_signal(void)
+{
+	if (g_error == 128 + SIGTERM)
+		ft_putstr_fd(STDERR_FILENO, "Terminated\n");
+	else if (g_error == 128 + SIGSEGV)
+		ft_putstr_fd(STDERR_FILENO, "Segmentation fault (core dumped)\n");
+	else if (g_error == 128 + SIGQUIT)
+		ft_putstr_fd(STDERR_FILENO, "Quit (core dumped)\n");
+	else if (g_error == 128 + SIGABRT)
+		ft_putstr_fd(STDERR_FILENO, "Aborted (core dumped)\n");
+}
+
+void	ret_child(int pid)
+{
+	int	status;
+
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		g_error = WEXITSTATUS(status);
+	else if (WIFSIGNALED(status))
+	{
+		g_error = 128 + WIFEXITED(status);
+		error_signal();
+	}
+}
+
+void	wait_child_exec(t_pipex *start)
+{
+	t_pipex	*save;
+
+	while (start)
+	{
+		signal(SIGINT, SIG_IGN);
+		if (start->pid > 0)
+			ret_child(start->pid);
+		init_signal(0);
+		save = start;
+		start = start->next;
+		if (save->fd[0] != STDIN_FILENO)
+			close(save->fd[0]);
+		if (save->fd[1] != STDOUT_FILENO)
+			close(save->fd[1]);
+		// free_lst(save->redir);
+		// free_lst(save->cmd);
+		// free(save);
+	}
+}
+
 /**
  * @brief call all the functiun before the exec
  *
@@ -86,17 +137,19 @@ int	is_builtin(char *cmd, t_pipex *exec)
 void	exec_pipex(t_pipex **exec)
 {
 	t_pipex	*start;
-	int		builtin;
+	int		error_check;
 
-	builtin = 0;
+	error_check = 1;
 	start = *exec;
 	while (*exec)
 	{
 		if ((*exec)->next)
 			setup_pipe(*exec);
 		if ((*exec)->redir)
-			setup_redir(*exec);
-		if (!is_builtin((*exec)->cmd->val, (*exec)))
+			error_check = setup_redir(*exec);
+		if (error_check == -1)
+			break ;
+		if (error_check && !is_builtin((*exec)->cmd->val, (*exec)))
 			exec_call((*exec), start);
 		if ((*exec)->fd[0] != STDIN_FILENO)
 			close((*exec)->fd[0]);
@@ -104,11 +157,7 @@ void	exec_pipex(t_pipex **exec)
 			close((*exec)->fd[1]);
 		(*exec) = (*exec)->next;
 	}
-	while (start)
-	{
-		waitpid(start->pid, NULL, 0);
-		start = start->next;
-	}
+	wait_child_exec(start);
 }
 
 /**
@@ -162,7 +211,10 @@ void	exec(t_val	*data)
 	if (!make_struct_exec(data, &cmd))
 		return ;
 	if (!cmd)
+	{
+		free_lst(data);
 		return ;
+	}
 	exec_pipex(&cmd);
 	free_lst_exec(cmd);
 	free_lst(data);

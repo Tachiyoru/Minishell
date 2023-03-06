@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:17:47 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/27 20:25:21 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/06 15:24:21 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*fillpath(t_pipex *exec, char **env)
 int	is_builtin2(char *cmd, t_pipex *exec, int res)
 {
 	if (!ft_strcmp(cmd, "env"))
-		res = env_cmd();
+		res = env_cmd(exec->fd[1]);
 	else if (!ft_strcmp(cmd, "export") && exec->cmd->next)
 	{
 		while (exec->cmd->next)

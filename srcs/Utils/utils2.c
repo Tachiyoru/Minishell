@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:57:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 15:24:45 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/06 15:11:35 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_strjoin(char *s1, char *s2)
  * @param s the string to duplicate
  * @return a copy malloced
  */
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *s)
 {
 	char	*str;
 	int		i;
@@ -55,7 +55,7 @@ char	*ft_strdup(const char *s)
 	size = 0;
 	while (s[size])
 		size++;
-	str = (char *)malloc(sizeof (char) * (size + 1));
+	str = ft_calloc(sizeof(char *), size);
 	i = 0;
 	if (str == 0)
 		return (NULL);
@@ -113,9 +113,9 @@ char	*word_replacing(int start, int end, char *content, char *new_word)
 		dest[i + j] = content[end];
 		i++;
 	}
-	// free_wr(content, new_word);
 	return (dest);
 }
+	// free_wr(content, new_word);
 
 /**
  * @brief duplicate only the size received from the string

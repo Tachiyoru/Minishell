@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:20 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 13:10:16 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/06 15:42:53 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ int	b_in_exit(t_val *option, t_pipex *exec)
 		{
 			msg("Minishell: exit: ");
 			msg(option->val);
-			msg(": too many arguments\n");
-			exit(2);
+			msg(": numeric argument required\n");
+			g_error = 2;
 		}
 	}
 	del_env();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_rec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 12:01:56 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 14:55:58 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/06 13:46:32 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,14 @@ void	tab_to_list(char **tab, t_val **data)
 	if (!tab)
 		return ;
 	while (tab[++i])
-		set_val_tab(tab[i], data);
+	{
+		if (set_val_tab(tab[i], data))
+		{
+			free_lst(*data);
+			return ;
+		}
+	}
+	return ;
 }
 
 /**
