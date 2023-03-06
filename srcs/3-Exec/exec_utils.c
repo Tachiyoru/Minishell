@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:13:03 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 18:19:53 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/06 13:24:14 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ char	**make_env_tab(void)
 	while (env)
 	{
 		*tab = ft_strdup_env(env);
-		// printf("%s\n\n", *tab);
 		tab++;
 		env = env->next;
 	}
