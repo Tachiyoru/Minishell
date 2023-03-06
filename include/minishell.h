@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 16:50:40 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/06 16:18:09 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@ struct s_pipex
 	t_val	*redir;
 	t_pipex	*next;
 };
+
+////SIGNAL/////
+void	init_signal(int type);
+void	signal_heredoc(int sig);
 
 /////\ ENV \//////
 void	del_env(void);
@@ -126,7 +130,7 @@ char	**make_cmd_tab(t_val *cmd);
 char	*pathfinder(char *val, char **env);
 
 void	check_fd(t_pipex *exec);
-void	setup_redir(t_pipex *cmd);
+int		setup_redir(t_pipex *cmd);
 void	setup_pipe(t_pipex *cmd);
 
 char	*ft_strnstr(const char *big, const char *little, size_t len);
@@ -136,7 +140,6 @@ char	**ft_split2(char	*str, char set);
 
 int		b_in_cd(t_val *option);
 int		b_in_echo(t_val *options, int fd);
-int		env_cmd(void);
 int		b_in_exit(t_val *option, t_pipex *exec);
 int		export_cmd(char *key_val);
 int		b_in_pwd(int fd_out);
@@ -159,7 +162,7 @@ t_env	*lst_env_new(char *key, char *val);
 
 //utils2
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(const char *s);
+char	*ft_strdup(char *s);
 char	*word_replacing(int start, int end, char *content, char *new_word);
 char	*var_replacing(int start, int end, char *content, int *i);
 char	*ft_strndup(const char *s, int size);
@@ -184,7 +187,7 @@ int		expand_space(char *content, t_val *data);
 int		ambigous_redirect_checker(t_val *data);
 
 // buildin
-int		env_cmd(void);
+int		env_cmd(int fd);
 int		unset_cmd(char *key_d);
 int		export_cmd(char *key_val);
 int		existing_key_replace_val(char *key, char *val);

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:13:03 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/06 13:24:14 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/06 15:11:13 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ char	*ft_strdup_env(t_env *env)
 		else
 			str[i] = env->val[j++];
 	}
+	str[i] = '\0';
 	return (str);
 }
 
@@ -130,12 +131,11 @@ char	*pathfinder(char *val, char **env)
 	char	*cmd;
 	int		i;
 
-	i = 0;
-	while (env[i])
+	i = -1;
+	while (env[++i])
 	{
 		if (ft_strnstr(env[i], "PATH", 4) != NULL)
 			tmp = ft_strdup(&env[i][5]);
-		i++;
 	}
 	path = ft_split2(tmp, ':');
 	while (*path)

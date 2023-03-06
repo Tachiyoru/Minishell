@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:55:50 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 10:57:50 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/06 15:41:32 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	if (ft_strlen((char *)s) - start < len)
 		len = ft_strlen((char *)s) - start;
 	str = (char *)malloc(sizeof (char) * (len + 1));
-	str = ft_calloc(len ,1);
 	if (!str)
 		return (NULL);
 	i = 0;

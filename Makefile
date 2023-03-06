@@ -44,6 +44,7 @@ SRCS		=	main.c	\
 				unset.c	\
 				exit.c	\
 				shlvl.c	\
+				signal.c	\
 				export.c	\
 				expand_ambigous_redirect.c	\
 				export_utils.c
