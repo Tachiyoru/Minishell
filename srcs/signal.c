@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:53:43 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/06 15:59:52 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/08 14:05:55 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,16 @@ static void	handler_signal(int sig)
 	}
 }
 
-void	init_signal(int type)
+void	init_signal2(void)
 {
-	if (!type)
-	{
-		signal(SIGINT, &handler_signal);
-		signal(SIGQUIT, SIG_IGN);
-	}
-	else if (type)
-	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
-	}
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+}
+
+void	init_signal1(void)
+{
+	signal(SIGINT, &handler_signal);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 void	signal_heredoc(int sig)

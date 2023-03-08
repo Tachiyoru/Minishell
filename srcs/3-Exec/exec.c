@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/06 17:05:40 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/08 14:04:41 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	exec_call(t_pipex *exec, t_pipex *start)
 		free_lst_exec(start);
 		if (path)
 		{
-			init_signal(1);
+			init_signal2();
 			execve(path, cmd, env);
 		}
 		exit(g_error);
@@ -116,7 +116,7 @@ void	wait_child_exec(t_pipex *start)
 		signal(SIGINT, SIG_IGN);
 		if (start->pid > 0)
 			ret_child(start->pid);
-		init_signal(0);
+		init_signal1();
 		save = start;
 		start = start->next;
 		if (save->fd[0] != STDIN_FILENO)

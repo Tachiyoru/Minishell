@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/06 16:18:09 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/08 14:05:49 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ struct s_pipex
 };
 
 ////SIGNAL/////
-void	init_signal(int type);
+void	init_signal1(void);
+void	init_signal2(void);
 void	signal_heredoc(int sig);
 
 /////\ ENV \//////
