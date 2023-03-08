@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:13:30 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/08 15:41:03 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/08 15:48:09 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	free_lst(t_val	*data)
 {
 	t_val	*save;
 
-	printf("aaaaaaaa33\n");
 	if (data)
 	{
 		while (data)
@@ -90,4 +89,3 @@ void	free_vr(char *name)
 		free(name);
 }
 // void	free_char(char **cmd, char **env, char *path);
-

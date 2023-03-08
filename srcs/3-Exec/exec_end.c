@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:08:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/08 15:41:56 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/08 16:08:31 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,8 @@ void	wait_child_exec(t_pipex *start)
 			close(save->fd[0]);
 		if (save->fd[1] != STDOUT_FILENO)
 			close(save->fd[1]);
-		printf("aaaaaaaa\n");
-		if (start->cmd)
-			free_lst(start->cmd);
-		printf("aaaaaaaa222222\n");
-		free_lst(start->redir);
-		free(start);
+		free_lst(save->cmd);
+		free_lst(save->redir);
+		free(save);
 	}
 }
