@@ -6,11 +6,30 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/08 14:08:34 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/08 14:21:34 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	exec_call2(t_pipex *exec, t_pipex *start)
+{
+	char	**cmd;
+	char	**env;
+	char	*path;
+
+	check_fd(exec);
+	env = make_env_tab();
+	cmd = make_cmd_tab(exec->cmd);
+	path = fillpath(exec, env);
+	free_lst_exec(start);
+	if (path)
+	{
+		init_signal2();
+		execve(path, cmd, env);
+	}
+	exit(g_error);
+}
 
 /**
  * @brief create child process give him his list of action so that he can
@@ -22,9 +41,6 @@
 void	exec_call(t_pipex *exec, t_pipex *start)
 {
 	pid_t	pid;
-	char	**cmd;
-	char	**env;
-	char	*path;
 
 	g_error = 0;
 	if (!exec->cmd->val)
@@ -33,52 +49,9 @@ void	exec_call(t_pipex *exec, t_pipex *start)
 	if (pid == -1)
 		printf("Error fork on cmd = %s\n", exec->cmd->val);
 	else if (pid == 0)
-	{
-		check_fd(exec);
-		env = make_env_tab();
-		cmd = make_cmd_tab(exec->cmd);
-		path = fillpath(exec, env);
-		free_lst_exec(start);
-		if (path)
-		{
-			init_signal2();
-			execve(path, cmd, env);
-		}
-		exit(g_error);
-	}
+		exec_call2(exec, start);
 	else
 		exec->pid = pid;
-}
-
-/**
- * @brief check if the cmd that will be executed is a builtin or not
- *
- * @param cmd the cmd to execute
- * @param exec the struct
- * @return int
- */
-int	is_builtin(char *cmd, t_pipex *exec)
-{
-	int	res;
-
-	res = 0;
-	if (!ft_strcmp(cmd, "cd"))
-		res = b_in_cd(exec->cmd->next);
-	else if (!ft_strcmp(cmd, "echo"))
-		res = b_in_echo(exec->cmd->next, exec->fd[1]);
-	else if (!ft_strcmp(cmd, "pwd"))
-		res = b_in_pwd(exec->fd[1]);
-	else if (!ft_strcmp(cmd, "exit"))
-		res = b_in_exit(exec->cmd->next, exec);
-	else if (!ft_strcmp(cmd, "unset"))
-	{
-		while (exec->cmd->next)
-		{
-			res = unset_cmd(exec->cmd->next->val);
-			exec->cmd->next = exec->cmd->next->next;
-		}
-	}
-	return (is_builtin2(cmd, exec, res));
 }
 
 /**

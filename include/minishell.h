@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/08 14:09:32 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/08 14:22:41 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int		make_heredoc(int type);
 
 char	*fillpath(t_pipex *exec, char **env);
 int		is_builtin2(char *cmd, t_pipex *exec, int res);
+int		is_builtin(char *cmd, t_pipex *exec);
 
 char	*is_exec(char *cmd);
 char	*ft_strdup_env(t_env *env);
