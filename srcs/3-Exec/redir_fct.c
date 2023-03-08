@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:42:31 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/08 14:04:31 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/08 15:29:15 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,9 @@ int	set_redir_append(t_pipex *cmd)
 int	set_redir_heredoc(t_pipex *cmd)
 {
 	int	fd;
+	int	stdin_copy;
 
+	stdin_copy = dup(STDIN_FILENO);
 	fd = check_quote_limitor(cmd->redir);
 	signal(SIGINT, &signal_heredoc);
 	if (!fd)
@@ -98,9 +100,11 @@ int	set_redir_heredoc(t_pipex *cmd)
 	close(fd);
 	if (g_error == 128)
 	{
+		dup2(stdin_copy, 0);
 		init_signal1();
-		return (write(STDOUT_FILENO, "\n", 1), g_error = 130, -1);
+		return (close(stdin_copy), write(STDOUT_FILENO, "\n", 1), g_error = 130, -1);
 	}
+	close(stdin_copy);
 	init_signal1();
 	fd = make_heredoc(0);
 	if (cmd->fd[0] != STDIN_FILENO)
