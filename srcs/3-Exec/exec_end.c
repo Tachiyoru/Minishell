@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:08:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/08 14:08:47 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/08 15:13:22 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ret_child(int pid)
 		g_error = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
 	{
-		g_error = 128 + WIFEXITED(status);
+		g_error = 128 + WTERMSIG(status);
 		error_signal();
 	}
 }
