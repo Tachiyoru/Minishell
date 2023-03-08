@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/08 14:05:49 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/08 14:09:32 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	add_redir(t_pipex **exec, t_val **data);
 t_pipex	*ft_last_cmd(t_pipex **data);
 int		init_cmd(t_pipex **cmd);
 void	exec(t_val	*data);
+void	wait_child_exec(t_pipex *start);
 
 int		set_redir_in(t_pipex *cmd);
 int		set_redir_out(t_pipex *cmd);

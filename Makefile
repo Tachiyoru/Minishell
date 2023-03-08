@@ -30,6 +30,7 @@ SRCS		=	main.c	\
 				expand_error.c	\
 				ft_itoa.c		\
 				exec.c		\
+				exec_end.c		\
 				pre_exec_utils.c	\
 				redir_fct.c		\
 				redir_heredoc.c		\
