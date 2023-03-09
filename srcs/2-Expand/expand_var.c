@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/28 11:42:24 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/09 08:34:40 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*word_replacing_var(int start, int end, char *content, char *new_word)
 	}
 	end++;
 	dest = end_of_replacing(dest, content, i + j, end);
-	// free_wr(content, new_word);
+	free_wr(content, new_word);
 	return (dest);
 }
 

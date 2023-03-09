@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/08 14:22:41 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/09 08:37:55 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,11 @@ int		quote_parsing(char *content, t_val *data);
 int		is_var(char *content, int i, t_val *data, int *iadd);
 int		expand_space(char *content, t_val *data);
 int		ambigous_redirect_checker(t_val *data);
+char	*word_replacing_var(int start, int end, char *content, char *new_word);
+char	*h_expand_var(char *line);
+char	*end_of_replacing(char *dest, char *content, int i, int end);
+char	*h_var_replacing(int start, int end, char *line);
+char	*h_word_replacing_var(int start, int end, char *content, char *new_word);
 
 // buildin
 int		env_cmd(int fd);

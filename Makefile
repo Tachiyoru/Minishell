@@ -48,7 +48,9 @@ SRCS		=	main.c	\
 				signal.c	\
 				export.c	\
 				expand_ambigous_redirect.c	\
-				export_utils.c
+				export_utils.c	\
+				redir_expand.c	\
+				redir_expand_utils.c
 
 
 OBJS		=	$(SRCS:%.c=${OBJ_DIR}/%.o)

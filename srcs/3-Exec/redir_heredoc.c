@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_heredoc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:06:28 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 18:56:57 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/09 07:56:37 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	expand_heredoc(t_val *redir)
 		if (!ft_strcmp(line, redir->next->val))
 			break ;
 		if (ft_strchr(line, '$'))
-			write(fd, "ca doit expand la", 17);
+			line = h_expand_var(line);
 		if (line)
 			write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
