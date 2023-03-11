@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:06:28 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 13:37:37 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/11 14:23:48 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ int	expand_heredoc(t_val *redir)
 	int		fd;
 	char	*line;
 
+	line = NULL;
 	fd = make_heredoc(1);
 	if (fd < 0)
 		return (msg("error"), fd);
-	rem_quotes(redir);
 	while (1)
 	{
 		line = readline(">>");

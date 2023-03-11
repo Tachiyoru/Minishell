@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:04:58 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/11 12:05:14 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/11 14:34:27 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*word_hreplacing_var(int start, int end, char *content, char *new_word)
 		j++;
 	}
 	end++;
-	dest = end_of_replacing(dest, content, i + j, end);
+	end_of_replacing(&dest, content, i + j, end);
 	free_wr(content, new_word);
 	return (dest);
 }
@@ -52,11 +52,13 @@ char	*expand_heredoc_var(char *line)
 	i = 0;
 	j = 0;
 	dest = NULL;
+	name = NULL;
+	new_word = NULL;
 	while (line && line[i])
 	{
 		while (line && line[i] && line[i] != '$')
 			i++;
-		while (line[(i + j) + 1]
+		while (line[i + j] && line[(i + j) + 1]
 				&& ((line[(i + j) + 1] >= 'A' && line[(i + j) + 1] <= 'Z')
 					|| (line[(i + j) + 1] >= 'a' && line[(i + j) + 1] <= 'z')
 					|| line[(i + j) + 1] == '_'))
@@ -66,8 +68,6 @@ char	*expand_heredoc_var(char *line)
 		if (name)
 			free(name);
 		dest = word_hreplacing_var(i, i + j, line, new_word);
-		if (line)
-			free(line);
 		line = dest;
 		if (line[i])
 			i = 0;
