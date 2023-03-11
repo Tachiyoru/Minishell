@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_heredoc_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:04:58 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/11 12:05:14 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/11 15:02:27 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*expand_heredoc_var(char *line)
 	char	*new_word;
 	char	*name;
 	char	*dest;
-	
+
 	i = 0;
 	j = 0;
 	dest = NULL;
@@ -57,9 +57,9 @@ char	*expand_heredoc_var(char *line)
 		while (line && line[i] && line[i] != '$')
 			i++;
 		while (line[(i + j) + 1]
-				&& ((line[(i + j) + 1] >= 'A' && line[(i + j) + 1] <= 'Z')
-					|| (line[(i + j) + 1] >= 'a' && line[(i + j) + 1] <= 'z')
-					|| line[(i + j) + 1] == '_'))
+			&& ((line[(i + j) + 1] >= 'A' && line[(i + j) + 1] <= 'Z')
+				|| (line[(i + j) + 1] >= 'a' && line[(i + j) + 1] <= 'z')
+				|| line[(i + j) + 1] == '_'))
 			j++;
 		name = ft_substr(line, i + 1, j);
 		new_word = find_env(name);

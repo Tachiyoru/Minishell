@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 13:50:05 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/11 14:59:59 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	exec_call2(t_pipex *exec, t_pipex *start)
 	char	**env;
 	char	*path;
 
+	(void)start;
 	check_fd(exec);
 	env = make_env_tab();
 	cmd = make_cmd_tab(exec->cmd);
