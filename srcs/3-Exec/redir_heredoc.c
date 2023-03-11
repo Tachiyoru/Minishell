@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:06:28 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 11:04:56 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/11 13:37:37 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,23 @@ int	check_quote_limitor(t_val *red)
 	return (1);
 }
 
-// void	rem_quotes(t_val *redir)
-// {
-// 	int	len;
-// 	char	*dest;
+void	rem_quotes(t_val *redir)
+{
+	int	len;
+	char	*dest;
 
-// 	len = ft_strlen(redir->next->val);
-// 	if ((redir->next->val[0] == '"' && redir->next->val[len] == '"')
-// 		|| (redir->next->val[0] == '\'' && redir->next->val[len] == '\''))
-// 		dest = ft_substr(redir->next->val, 1, len - 1);
-// 	else if (redir->next->val[0] == '\'' || redir->next->val[0] == '"')
-		
-// }
+	dest = NULL;
+	len = ft_strlen(redir->next->val);
+	if ((redir->next->val[0] == '"' && redir->next->val[len - 1] == '"')
+		|| (redir->next->val[0] == '\'' && redir->next->val[len - 1] == '\''))
+		dest = ft_substr(redir->next->val, 1, len - 2);
+	else if (redir->next->val[0] == '\'' || redir->next->val[0] == '"')
+		dest = ft_substr(redir->next->val, 1, len);
+	if (redir->next->val && dest)
+		free(redir->next->val);
+	if (dest)
+		redir->next->val = dest;
+}
 
 int	expand_heredoc(t_val *redir)
 {
@@ -68,6 +73,7 @@ int	expand_heredoc(t_val *redir)
 	fd = make_heredoc(1);
 	if (fd < 0)
 		return (msg("error"), fd);
+	rem_quotes(redir);
 	while (1)
 	{
 		line = readline(">>");
@@ -93,6 +99,7 @@ int	simple_heredoc(t_val *redir)
 	fd = make_heredoc(1);
 	if (fd < 0)
 		return (msg("error"), fd);
+	rem_quotes(redir);
 	while (1)
 	{
 		line = readline(">>");
