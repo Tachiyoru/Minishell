@@ -3,29 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:24 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/25 06:33:20 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/06 15:24:58 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_env(t_env *data)
-{
-	while (data && data->key && data->val)
-	{
-		printf("%s=%s\n", data->key, data->val);
-		data = data->next;
-	}
-}
-
-int	env_cmd(void)
+int	env_cmd(int fd)
 {
 	t_env	*env;
 
 	env = *get_env();
-	print_env(env);
-	return (1);
+	while (env)
+	{
+		ft_putstr_fd(fd, env->key);
+		write(fd, "=", 1);
+		ft_putstr_fd(fd, env->val);
+		write(fd, "\n", 1);
+		env = env->next;
+	}
+	return (g_error = 0, 1);
 }

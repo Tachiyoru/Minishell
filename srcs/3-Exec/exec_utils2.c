@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:17:47 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/27 20:25:21 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/08 14:21:48 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*fillpath(t_pipex *exec, char **env)
 int	is_builtin2(char *cmd, t_pipex *exec, int res)
 {
 	if (!ft_strcmp(cmd, "env"))
-		res = env_cmd();
+		res = env_cmd(exec->fd[1]);
 	else if (!ft_strcmp(cmd, "export") && exec->cmd->next)
 	{
 		while (exec->cmd->next)
@@ -35,4 +35,35 @@ int	is_builtin2(char *cmd, t_pipex *exec, int res)
 	else if (!ft_strcmp(cmd, "export") && !exec->cmd->next)
 		res = export_cmd(NULL);
 	return (res);
+}
+
+/**
+ * @brief check if the cmd that will be executed is a builtin or not
+ *
+ * @param cmd the cmd to execute
+ * @param exec the struct
+ * @return int
+ */
+int	is_builtin(char *cmd, t_pipex *exec)
+{
+	int	res;
+
+	res = 0;
+	if (!ft_strcmp(cmd, "cd"))
+		res = b_in_cd(exec->cmd->next);
+	else if (!ft_strcmp(cmd, "echo"))
+		res = b_in_echo(exec->cmd->next, exec->fd[1]);
+	else if (!ft_strcmp(cmd, "pwd"))
+		res = b_in_pwd(exec->fd[1]);
+	else if (!ft_strcmp(cmd, "exit"))
+		res = b_in_exit(exec->cmd->next, exec);
+	else if (!ft_strcmp(cmd, "unset"))
+	{
+		while (exec->cmd->next)
+		{
+			res = unset_cmd(exec->cmd->next->val);
+			exec->cmd->next = exec->cmd->next->next;
+		}
+	}
+	return (is_builtin2(cmd, exec, res));
 }

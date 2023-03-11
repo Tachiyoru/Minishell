@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 13:55:32 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/08 15:29:50 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,27 @@ void	check_fd(t_pipex *exec)
  *
  * @param cmd
  */
-void	setup_redir(t_pipex *cmd)
+int	setup_redir(t_pipex *cmd)
 {
+	int	res;
+
 	while (cmd->redir)
 	{
 		if (cmd->redir->token == R_IN)
-			set_redir_in(cmd);
+			res = set_redir_in(cmd);
 		else if (cmd->redir->token == R_OUT)
-			set_redir_out(cmd);
+			res = set_redir_out(cmd);
 		else if (cmd->redir->token == APPEND)
-			set_redir_append(cmd);
-		if (cmd->redir->token == HEREDOC)
-			set_redir_heredoc(cmd);
+			res = set_redir_append(cmd);
+		else if (cmd->redir->token == HEREDOC)
+			res = set_redir_heredoc(cmd);
+		if (res != 1)
+			break ;
 		cmd->redir = cmd->redir->next;
 	}
+	if (cmd->redir)
+		return (res);
+	return (1);
 }
 //	MEMO a faire apres que l'expand soit termine !!!
 

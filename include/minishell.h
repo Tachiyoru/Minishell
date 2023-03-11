@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 19:16:54 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/11 11:05:17 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ struct s_pipex
 	t_pipex	*next;
 };
 
+////SIGNAL/////
+void	init_signal1(void);
+void	init_signal2(void);
+void	signal_heredoc(int sig);
+
 /////\ ENV \//////
 void	del_env(void);
 
@@ -78,6 +83,7 @@ t_env	*ft_last_env(t_env **data);
 t_env	*init_env(char **env);
 char	*find_env(char *find);
 
+void	print_list2(t_env *data);
 void	print_list(t_val *data);
 char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
@@ -103,6 +109,7 @@ void	add_redir(t_pipex **exec, t_val **data);
 t_pipex	*ft_last_cmd(t_pipex **data);
 int		init_cmd(t_pipex **cmd);
 void	exec(t_val	*data);
+void	wait_child_exec(t_pipex *start);
 
 int		set_redir_in(t_pipex *cmd);
 int		set_redir_out(t_pipex *cmd);
@@ -116,6 +123,7 @@ int		make_heredoc(int type);
 
 char	*fillpath(t_pipex *exec, char **env);
 int		is_builtin2(char *cmd, t_pipex *exec, int res);
+int		is_builtin(char *cmd, t_pipex *exec);
 
 char	*is_exec(char *cmd);
 char	*ft_strdup_env(t_env *env);
@@ -125,7 +133,7 @@ char	**make_cmd_tab(t_val *cmd);
 char	*pathfinder(char *val, char **env);
 
 void	check_fd(t_pipex *exec);
-void	setup_redir(t_pipex *cmd);
+int		setup_redir(t_pipex *cmd);
 void	setup_pipe(t_pipex *cmd);
 
 char	*ft_strnstr(const char *big, const char *little, size_t len);
@@ -135,7 +143,6 @@ char	**ft_split2(char	*str, char set);
 
 int		b_in_cd(t_val *option);
 int		b_in_echo(t_val *options, int fd);
-int		env_cmd(void);
 int		b_in_exit(t_val *option, t_pipex *exec);
 int		export_cmd(char *key_val);
 int		b_in_pwd(int fd_out);
@@ -158,7 +165,7 @@ t_env	*lst_env_new(char *key, char *val);
 
 //utils2
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(const char *s);
+char	*ft_strdup(char *s);
 char	*word_replacing(int start, int end, char *content, char *new_word);
 char	*var_replacing(int start, int end, char *content, int *i);
 char	*ft_strndup(const char *s, int size);
@@ -185,7 +192,7 @@ int		ambigous_redirect_checker(t_val *data);
 char	*expand_heredoc_var(char *line);
 
 // buildin
-int		env_cmd(void);
+int		env_cmd(int fd);
 int		unset_cmd(char *key_d);
 int		export_cmd(char *key_val);
 int		existing_key_replace_val(char *key, char *val);
