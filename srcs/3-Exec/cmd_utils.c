@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:04:39 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/24 12:52:45 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/11 13:02:28 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ char	**ft_split2(char	*str, char set)
 		return (NULL);
 	while (j < word_count(str, set))
 	{
-		tab[j] = ft_calloc(1, char_count(str, set, j) + 1);
+		tab[j] = ft_calloc(sizeof(char), char_count(str, set, j));
 		if (!tab[j])
 			return (free_tab(tab), NULL);
 		tab[j] = ft_putword(str, tab[j], set, j);

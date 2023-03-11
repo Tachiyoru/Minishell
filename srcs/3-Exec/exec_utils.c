@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:13:03 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/06 15:11:13 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/11 13:16:08 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,9 @@ char	*pathfinder(char *val, char **env)
 	char	*tmp;
 	char	*cmd;
 	int		i;
+	int		j;
 
+	j = -1;
 	i = -1;
 	while (env[++i])
 	{
@@ -138,15 +140,15 @@ char	*pathfinder(char *val, char **env)
 			tmp = ft_strdup(&env[i][5]);
 	}
 	path = ft_split2(tmp, ':');
-	while (*path)
+	while (path[++j])
 	{
-		tmp = ft_strjoin (*path, "/");
+		tmp = ft_strjoin (path[j], "/");
 		cmd = ft_strjoin (tmp, val);
 		free(tmp);
 		if (access(cmd, 0) == 0)
 			return (cmd);
 		free(cmd);
-		path++;
 	}
+	free_tab(path);
 	return (NULL);
 }
