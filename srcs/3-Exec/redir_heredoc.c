@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:06:28 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 14:23:48 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/11 17:55:10 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_quote_limitor(t_val *red)
 
 void	rem_quotes(t_val *redir)
 {
-	int	len;
+	int		len;
 	char	*dest;
 
 	dest = NULL;

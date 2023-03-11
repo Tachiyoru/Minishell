@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 13:10:11 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/11 15:24:18 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	exec_call2(t_pipex *exec, t_pipex *start)
 	char	**env;
 	char	*path;
 
+	(void)start;
 	check_fd(exec);
 	env = make_env_tab();
 	cmd = make_cmd_tab(exec->cmd);
@@ -50,7 +51,7 @@ void	exec_call(t_pipex *exec, t_pipex *start)
 	g_error = 0;
 	if (!exec->cmd->val)
 		return ;
-	pid = 0;
+	pid = fork();
 	if (pid == -1)
 		printf("Error fork on cmd = %s\n", exec->cmd->val);
 	else if (pid == 0)

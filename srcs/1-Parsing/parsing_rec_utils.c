@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_rec_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 12:01:56 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 11:08:10 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/11 15:01:17 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	set_val_tab(char *str, t_val **data)
 {
 	t_val	*new;
 
-	new = malloc(sizeof(t_val));
+	new = ft_calloc(1, sizeof(t_val));
 	if (!new)
 		return (1);
 	new->next = NULL;

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/08 15:29:50 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/11 15:23:32 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ void	check_fd(t_pipex *exec)
  */
 int	setup_redir(t_pipex *cmd)
 {
-	int	res;
+	int		res;
+	t_val	*tmp;
 
+	tmp = cmd->redir;
 	while (cmd->redir)
 	{
 		if (cmd->redir->token == R_IN)
@@ -56,6 +58,7 @@ int	setup_redir(t_pipex *cmd)
 	}
 	if (cmd->redir)
 		return (res);
+	cmd->redir = tmp;
 	return (1);
 }
 //	MEMO a faire apres que l'expand soit termine !!!

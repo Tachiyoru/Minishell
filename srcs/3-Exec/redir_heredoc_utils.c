@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:04:58 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/11 14:34:27 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/11 17:55:15 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*expand_heredoc_var(char *line)
 	char	*new_word;
 	char	*name;
 	char	*dest;
-	
+
 	i = 0;
 	j = 0;
 	dest = NULL;
