@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 14:53:19 by sleon            ###   ########.fr       */
+/*   Updated: 2023/02/28 19:16:54 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ char	*ft_itoa(int n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putchar_err(char c);
 int		contain_equals(char *key_val);
+int		is_error_qm(char *content);
 
 // expand
 int		quote_treatment(t_val *data);
@@ -181,6 +182,7 @@ int		quote_parsing(char *content, t_val *data);
 int		is_var(char *content, int i, t_val *data, int *iadd);
 int		expand_space(char *content, t_val *data);
 int		ambigous_redirect_checker(t_val *data);
+char	*expand_heredoc_var(char *line);
 
 // buildin
 int		env_cmd(void);
@@ -191,5 +193,6 @@ int		existing_key(char *key);
 int		key_checker(char *key);
 int		env_add_back(char *key, char *val);
 int		contain_equals(char *key_val);
+char	*end_of_replacing(char *dest, char *content, int i, int end);
 
 #endif

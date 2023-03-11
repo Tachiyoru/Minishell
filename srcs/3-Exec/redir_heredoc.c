@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:06:28 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/28 15:42:04 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/02/28 19:25:13 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,28 @@ int	check_quote_limitor(t_val *red)
 	{
 		if (red->token == LIMITOR)
 		{
-			if (red->val[0] == '\'' && red->val[0] == '"')
+			if (is_error_qm(red->val))
+				return (-1);
+			if (red->val[0] == '\'' || red->val[0] == '"')
 				return (0);
 		}
 		red = red->next;
 	}
 	return (1);
 }
+
+// void	rem_quotes(t_val *redir)
+// {
+// 	int	len;
+// 	char	*dest;
+
+// 	len = ft_strlen(redir->next->val);
+// 	if ((redir->next->val[0] == '"' && redir->next->val[len] == '"')
+// 		|| (redir->next->val[0] == '\'' && redir->next->val[len] == '\''))
+// 		dest = ft_substr(redir->next->val, 1, len - 1);
+// 	else if (redir->next->val[0] == '\'' || redir->next->val[0] == '"')
+		
+// }
 
 int	expand_heredoc(t_val *redir)
 {
@@ -61,8 +76,7 @@ int	expand_heredoc(t_val *redir)
 		if (!ft_strcmp(line, redir->next->val))
 			break ;
 		if (ft_strchr(line, '$'))
-		{
-			write(fd, "ca doit expand la", 17);
+			line = expand_heredoc_var(line);
 		if (line)
 			write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);

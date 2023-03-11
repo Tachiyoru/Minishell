@@ -46,7 +46,8 @@ SRCS		=	main.c	\
 				shlvl.c	\
 				export.c	\
 				expand_ambigous_redirect.c	\
-				export_utils.c
+				export_utils.c	\
+				redir_heredoc_utils.c
 
 
 OBJS		=	$(SRCS:%.c=${OBJ_DIR}/%.o)
