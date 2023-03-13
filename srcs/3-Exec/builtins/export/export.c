@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:18 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/13 17:18:35 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/13 18:24:31 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	with_equal(char *key_val)
 	return (0);
 }
 
-void	print_export(void)
+void	print_export(int fd)
 {
 	t_env	*env;
 
@@ -62,24 +62,34 @@ void	print_export(void)
 	while (env && env->key)
 	{
 		if (env && env->key && env->val)
-			printf("export %s=\"%s\"\n", env->key, env->val);
+		{
+			ft_putstr_fd(fd, "export ");
+			ft_putstr_fd(fd, env->key);
+			ft_putstr_fd(fd, "=\"");
+			ft_putstr_fd(fd, env->val);
+			ft_putstr_fd(fd, "\"\n");
+		}
 		else if (env && env->key)
-			printf("export %s\n", env->key);
+		{
+			ft_putstr_fd(fd, "export ");
+			ft_putstr_fd(fd, env->key);
+			ft_putstr_fd(fd, "\n");
+		}
 		env = env->next;
 	}
 }
 
-int	export_cmd(char *key_val)
+int	export_cmd(char *key_val, int fd)
 {
 	if (!key_val)
-		print_export();
+		print_export(fd);
 	else if (!contain_equals(key_val))
 	{
 		if (without_equal(key_val))
 			return (-1);
-		return (0);
+		return (1);
 	}
 	else if (with_equal(key_val))
 		return (-1);
-	return (0);
+	return (1);
 }

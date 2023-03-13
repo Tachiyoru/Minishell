@@ -1,13 +1,1 @@
-_test 150 echo $"" = doit rien renvoyer
-_test 153 echo $"HOME" = doit afficher HOME
-
-test 162 bizarre echo "" $HOME = doit mettre un espace avant la var env
-
-205 Permission denied au lieu de is directory
-207 Pas de command not found
-catch le ctrl-z
-223 Affiche 3x le ^Quit
-command not found quand j'export
-237 le grep passe pas
-284 ne considere pas jour comme une commande a part
-285 ne considere pas !jour comme un event
+330

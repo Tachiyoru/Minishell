@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/13 15:58:40 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/13 18:22:06 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,6 @@ char	**ft_split2(char	*str, char set);
 int		b_in_cd(t_val *option);
 int		b_in_echo(t_val *options, int fd);
 int		b_in_exit(t_val *option, t_pipex *exec);
-int		export_cmd(char *key_val);
 int		b_in_pwd(int fd_out);
 int		unset_cmd(char *key_d);
 
@@ -196,7 +195,7 @@ char	*expand_heredoc_var(char *line);
 // buildin
 int		env_cmd(int fd);
 int		unset_cmd(char *key_d);
-int		export_cmd(char *key_val);
+int		export_cmd(char *key_val, int fd);
 int		existing_key_replace_val(char *key, char *val);
 int		existing_key(char *key);
 int		key_checker(char *key);

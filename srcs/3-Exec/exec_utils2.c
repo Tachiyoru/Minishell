@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:17:47 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/13 13:59:22 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/13 18:24:55 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	is_builtin2(char *cmd, t_pipex *exec, int res)
 	{
 		while (exec->cmd->next)
 		{
-			res = export_cmd(exec->cmd->next->val);
+			res = export_cmd(exec->cmd->next->val, exec->fd[1]);
 			exec->cmd->next = exec->cmd->next->next;
 		}
 	}
 	else if (!ft_strcmp(cmd, "export") && !exec->cmd->next)
-		res = export_cmd(NULL);
+		res = export_cmd(NULL, exec->fd[1]);
 	return (res);
 }
 
