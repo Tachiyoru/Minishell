@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 12:01:56 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 15:01:17 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/13 12:57:56 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ int	word_end(char *line, int start)
 	{
 		start++;
 		if ((line[start - 1] != '|' && line[start - 1] != '&')
-			&& (line[start] == '>' || line[start] == '<'))
+			&& ((line[start] == '>' && line[start - 1] == '>')
+				|| (line[start] == '<' && line[start - 1] == '<')))
 			start++;
 		return (start);
 	}

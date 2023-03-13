@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 15:24:18 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/13 12:53:29 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,21 @@ void	exec_call2(t_pipex *exec, t_pipex *start)
 	env = make_env_tab();
 	cmd = make_cmd_tab(exec->cmd);
 	path = fillpath(exec, env);
-	free_lst_exec(start);
 	if (path)
 	{
+		free_lst_exec(start);
 		init_signal2();
 		execve(path, cmd, env);
 	}
+	msg(exec->cmd->val);
+	msg(": command not found\n");
+	free_lst_exec(start);
 	if (env)
 		free_tab(env);
 	if (cmd)
 		free_tab(cmd);
 	del_env();
-	exit(g_error);
+	exit(g_error = 1);
 }
 
 /**
