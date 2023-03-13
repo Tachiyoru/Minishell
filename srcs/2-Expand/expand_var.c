@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/11 12:05:54 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:57:07 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@
  * @param end
  * @return char*
  */
-char	*end_of_replacing(char *dest, char *content, int i, int end)
+void	end_of_replacing(char **dest, char *content, int i, int end)
 {
+	
 	while (content && content[end])
 	{
-		dest[i] = content[end];
+		*dest[i] = content[end];
 		end++;
 		i++;
 	}
-	return (dest);
 }
 
 /**
@@ -65,8 +65,8 @@ char	*word_replacing_var(int start, int end, char *content, char *new_word)
 		j++;
 	}
 	end++;
-	dest = end_of_replacing(dest, content, i + j, end);
-	free_wr(content, new_word);
+	end_of_replacing(&dest, content, i + j, end);
+	free_wr(content, NULL);
 	return (dest);
 }
 
@@ -93,8 +93,6 @@ char	*var_replacing(int start, int end, char *content, int *i)
 	if (!tmp)
 	{
 		dest = word_replacing_var(start, end, content, NULL);
-		if (content)
-			free(content);
 		if (!dest)
 			return (NULL);
 		return ((*i)--, dest);
@@ -149,6 +147,7 @@ int	is_var(char *content, int i, t_val *data, int *iadd)
 		while (content[(i + j) + 1]
 			&& ((content[(i + j) + 1] >= 'A' && content[(i + j) + 1] <= 'Z')
 				|| (content[(i + j) + 1] >= 'a' && content[(i + j) + 1] <= 'z')
+				|| ((content[(i + j) + 1] >= '0') && (content[(i + j) + 1] <= '9'))
 				|| content[(i + j) + 1] == '_'))
 			j++;
 		data->val = var_replacing(i, i + j, content, iadd);

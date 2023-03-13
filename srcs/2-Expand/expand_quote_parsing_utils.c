@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:33:47 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/28 10:29:08 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:41:47 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*case_of_dq(int	*i, int	*j, char *content, t_val *data)
  */
 char	*case_of_nq(int	*i, int	*j, char *content, t_val *data)
 {
-	while (content[*i + *j] == '$' && ((content[(*i + *j) + 1] >= 'A'
+	while (content && content[*i + *j] == '$' && ((content[(*i + *j) + 1] >= 'A'
 				&& content[(*i + *j) + 1] <= 'Z')
 			|| (content[(*i + *j) + 1] >= 'a' && content[(*i + *j) + 1] <= 'z')
 			|| (content[(*i + *j) + 1] >= '0' && content[(*i + *j) + 1] <= '9')
@@ -102,6 +102,8 @@ int	quote_parsing(char *content, t_val *data)
 
 	i = 0;
 	j = 0;
+	if (!content)
+		return (0);
 	while (content[i])
 	{
 		if (content[i] == '\'')

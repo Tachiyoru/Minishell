@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/13 13:46:32 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/13 15:58:40 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,6 @@ int		existing_key(char *key);
 int		key_checker(char *key);
 int		env_add_back(char *key, char *val);
 int		contain_equals(char *key_val);
-char	*end_of_replacing(char *dest, char *content, int i, int end);
+void	end_of_replacing(char **dest, char *content, int i, int end);
 
 #endif

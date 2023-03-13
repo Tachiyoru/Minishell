@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:57:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/06 15:11:35 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/13 15:47:42 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*word_replacing(int start, int end, char *content, char *new_word)
 
 	i = -1;
 	j = 0;
-	dest = ft_calloc((ft_strlen(content) - end - start)
+	dest = ft_calloc((ft_strlen(content) - (end - start))
 			+ ft_strlen(new_word), 1);
 	if (!dest)
 		return (NULL);
