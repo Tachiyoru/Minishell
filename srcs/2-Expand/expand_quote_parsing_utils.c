@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:33:47 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/11 14:10:10 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:41:47 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int	quote_parsing(char *content, t_val *data)
 
 	i = 0;
 	j = 0;
+	if (!content)
+		return (0);
 	while (content[i])
 	{
 		if (content[i] == '\'')
