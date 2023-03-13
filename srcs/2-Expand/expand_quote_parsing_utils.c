@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_quote_parsing_utils.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:33:47 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/28 10:29:08 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:29:22 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	quote_parsing(char *content, t_val *data)
 
 	i = 0;
 	j = 0;
-	while (content[i])
+	while (content && content[i])
 	{
 		if (content[i] == '\'')
 			content = case_of_sq(&i, &j, content);

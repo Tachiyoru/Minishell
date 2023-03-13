@@ -1,17 +1,2 @@
--faire les differents message d'erreur au different moment possibles.
--faire le heredoc
-
-
-Alex gere ton appel de fonction dans les builtin c'est trop grand separe la fonction en 2 au pire
-
-
-
-et j'ai pas compris ton truc la c'est pour moi ou toi ?
-
-Gerer le SHVL dans l'env
-
-Creer un minimum d'env en cas de env -i
-
-echo < " $toto$USER$lul" mal traite
-
-Si ambigous redirect + | executer quand meme les commandes suivantes
+_test 117 echo \$HOME = pas bon
+_
