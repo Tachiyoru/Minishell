@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/11 14:35:08 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:57:07 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*word_replacing_var(int start, int end, char *content, char *new_word)
 	}
 	end++;
 	end_of_replacing(&dest, content, i + j, end);
-	free_wr(content, new_word);
+	free_wr(content, NULL);
 	return (dest);
 }
 
@@ -147,6 +147,7 @@ int	is_var(char *content, int i, t_val *data, int *iadd)
 		while (content[(i + j) + 1]
 			&& ((content[(i + j) + 1] >= 'A' && content[(i + j) + 1] <= 'Z')
 				|| (content[(i + j) + 1] >= 'a' && content[(i + j) + 1] <= 'z')
+				|| ((content[(i + j) + 1] >= '0') && (content[(i + j) + 1] <= '9'))
 				|| content[(i + j) + 1] == '_'))
 			j++;
 		data->val = var_replacing(i, i + j, content, iadd);
