@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 11:05:17 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/13 13:46:32 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int		expand_heredoc(t_val *redir);
 int		simple_heredoc(t_val *redir);
 int		make_heredoc(int type);
 
+void	error_cmd(char *cmd);
+char	*open_cmd(char *val);
 char	*fillpath(t_pipex *exec, char **env);
 int		is_builtin2(char *cmd, t_pipex *exec, int res);
 int		is_builtin(char *cmd, t_pipex *exec);

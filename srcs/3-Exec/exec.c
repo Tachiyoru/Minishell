@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/13 12:53:29 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/13 13:59:53 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,29 @@ void	exec_call2(t_pipex *exec, t_pipex *start)
 	char	**env;
 	char	*path;
 
-	(void)start;
 	check_fd(exec);
 	env = make_env_tab();
 	cmd = make_cmd_tab(exec->cmd);
 	path = fillpath(exec, env);
+	free_lst_exec(start);
 	if (path)
 	{
-		free_lst_exec(start);
 		init_signal2();
 		execve(path, cmd, env);
 	}
-	msg(exec->cmd->val);
-	msg(": command not found\n");
-	free_lst_exec(start);
+	if (path)
+	{
+		perror(path);
+		free(path);
+	}
 	if (env)
 		free_tab(env);
 	if (cmd)
 		free_tab(cmd);
 	del_env();
-	exit(g_error = 1);
+	exit(g_error);
 }
+//ptet free path
 
 /**
  * @brief create child process give him his list of action so that he can

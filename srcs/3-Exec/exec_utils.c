@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:13:03 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 13:16:08 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/13 13:59:10 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*is_exec(char *cmd)
 {
 	int	res;
 
+	g_error = 126;
 	if (!ft_strcmp(cmd, "."))
 		return (msg("Minishell~ .: filename argument required\n"), NULL);
 	else if (!ft_strcmp(cmd, ".."))
@@ -25,7 +26,6 @@ char	*is_exec(char *cmd)
 	res = access(cmd, 1);
 	if (res >= 0)
 		return (ft_strdup(cmd));
-	g_error = 126;
 	return (perror(cmd), NULL);
 }
 
@@ -135,10 +135,8 @@ char	*pathfinder(char *val, char **env)
 	j = -1;
 	i = -1;
 	while (env[++i])
-	{
 		if (ft_strnstr(env[i], "PATH", 4) != NULL)
 			tmp = ft_strdup(&env[i][5]);
-	}
 	path = ft_split2(tmp, ':');
 	while (path[++j])
 	{
@@ -150,5 +148,5 @@ char	*pathfinder(char *val, char **env)
 		free(cmd);
 	}
 	free_tab(path);
-	return (NULL);
+	return (error_cmd(val), NULL);
 }

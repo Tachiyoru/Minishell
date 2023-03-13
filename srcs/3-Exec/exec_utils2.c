@@ -6,11 +6,18 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:17:47 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/08 14:21:48 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/13 13:59:22 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	error_cmd(char *cmd)
+{
+	g_error = 127;
+	msg(cmd);
+	msg(": command not found\n");
+}
 
 char	*fillpath(t_pipex *exec, char **env)
 {
