@@ -6,18 +6,30 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:18 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/25 03:23:22 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/13 17:18:35 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	error_export(char *key_val)
+{
+	g_error = 1;
+	msg("export `");
+	msg(key_val);
+	msg("' : not a valid identifier\n");
+}
+
 int	without_equal(char *key_val)
 {
 	if (key_checker(key_val))
+	{
 		if (!existing_key(key_val))
 			if (env_add_back(key_val, NULL))
 				return (1);
+		return (0);
+	}
+	error_export(key_val);
 	return (0);
 }
 
@@ -29,7 +41,10 @@ int	with_equal(char *key_val)
 	val_start = 0;
 	val_start = key_checker(key_val);
 	if (!val_start)
+	{
+		error_export(key_val);
 		return (1);
+	}
 	val_tmp = key_val + val_start + 1;
 	key_val[val_start] = '\0';
 	if (existing_key_replace_val(key_val, val_tmp))

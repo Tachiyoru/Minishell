@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 03:14:26 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/25 06:46:47 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/13 17:11:47 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ int	key_checker(char *key)
 		i++;
 	if (!key[i])
 		return (1);
-	return (i);
+	else if (key[i] == '=')
+		return (i);
+	return (0);
 }
 
 int	env_add_back(char *key, char *val)
