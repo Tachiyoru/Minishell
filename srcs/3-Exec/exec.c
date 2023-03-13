@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/13 13:59:53 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/13 15:38:12 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,3 @@ void	exec(t_val	*data)
 	}
 	exec_pipex(&cmd);
 }
-	// free_lst_exec(cmd);
-	// free_lst(data);

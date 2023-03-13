@@ -1,17 +1,14 @@
--faire les differents message d'erreur au different moment possibles.
--faire le heredoc
+_test 117 echo \$HOME = pas bon
+_test 97 ""''echo hola""'''' que""'' tal""'' = les quotes a enlever dans ta partie
+_test 120/121 echo my shit terminal is [$TERM4/[$TERM4] = ne dois pas donner la val de $TERM
+tu dois tarreter a la var qui existe et pas prendre ce qui existe et ajouter la suite
+genre HOME9 qui devient /mnt/nfs/homes/sleon9 c pas bon
+et tas un double free quand la var existe pas.
+ah sauf si cest un % apparement test 125 est bon
+test probleme du coup a cause de ca
+_test 150 echo $"" = doit rien renvoyer
+_test 153 echo $"HOME" = doit afficher HOME
+pareil 155 apres pas testable a cause du double free
 
+test 162 bizarre echo "" $HOME = doit mettre un espace avant la var env
 
-Alex gere ton appel de fonction dans les builtin c'est trop grand separe la fonction en 2 au pire
-
-
-
-et j'ai pas compris ton truc la c'est pour moi ou toi ?
-
-Gerer le SHVL dans l'env
-
-Creer un minimum d'env en cas de env -i
-
-echo < " $toto$USER$lul" mal traite
-
-Si ambigous redirect + | executer quand meme les commandes suivantes
