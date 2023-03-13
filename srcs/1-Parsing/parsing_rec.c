@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 12:01:56 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/06 13:46:32 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/13 12:55:37 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	split_pars(char *buf)
 		free(buf);
 	tab_to_list(tab, &data);
 	free_tab(tab);
+	print_list(data);
 	if (data)
 		check_token(data);
 	return ;
