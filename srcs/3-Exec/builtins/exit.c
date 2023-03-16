@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:20 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/16 14:24:51 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/16 17:15:22 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,8 @@ int	b_in_exit(t_val *option, t_pipex *exec)
 	if (option)
 	{
 		if (lst_size_val(option) > 1)
-		{
-			g_error = 1;
-			return (msg("Minishell ~ exit: too many arguments\n"), 1);
-		}
+			return (g_error = 1,
+				msg("Minishell ~ exit: too many arguments\n"), 1);
 		else if (option_is_digit(option->val))
 			g_error = ft_atoi(option->val);
 		else

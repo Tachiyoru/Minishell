@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/13 16:10:40 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/16 17:15:47 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  */
 void	end_of_replacing(char **dest, char *content, int i, int end)
 {
-	
 	while (content && content[end])
 	{
 		dest[0][i] = content[end];
