@@ -1,0 +1,45 @@
+330
+
+454 pb (pas compris c quoi le probleme)
+
+476 ne doit gere que 1 arg ingnorer les autres SI pas numeric (c bon)
+
+487 Si negatif doit fonctionner, le passer dans un unsigned char oklm (ptdr nimporte quoi)
+
+494 doit marcher avec 1 + ou 1 - (c bon)
+
+520 n'est pas cense exit (ptdr alors la)
+
+523 n'affiche pas hola$ (c bon)
+
+550 le grep chie dans la glue (y a pas de probleme)
+
+572 - 573 ne devrait pas exit (c bon)
+
+574 ne devrait pas faire d'erreur (c bon jcrois)
+
+642 >> reagis comme > (tromper dans les droit du open c bon)
+
+646 ne modifier pas la value (ptdr jcrois c bon le hola du resutat il sort de nul part wesh)
+
+647 ne genere pas Docs/bonjour (c bon ps ca doit pas generer)
+
+652 ne met pas l'erreur (c bon)
+
+654 - 655 Ne devrait pas mettre d'erreur (c bon)
+
+658 manque un hola (c bon)
+
+660 manque un hola (c bon)
+
+662 manque du hola (c bon)
+
+674 pas bon (c bon)
+
+675 ne devrait pas mettre d'erreur (c bon)
+
+676 ne devrait pas mettre d'erreur (c bon)
+
+677 pas bonne sortie (c bon)
+
+678 last tested

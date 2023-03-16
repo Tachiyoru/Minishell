@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/13 15:38:12 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/16 16:12:34 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ void	exec_pipex(t_pipex **exec)
 			error_check = setup_redir(*exec);
 		if (error_check == -1)
 			break ;
-		if (error_check && !is_builtin((*exec)->cmd->val, (*exec)))
-			exec_call((*exec), start);
+		if (error_check && (*exec)->cmd)
+			if (!is_builtin((*exec)->cmd->val, (*exec)))
+				exec_call((*exec), start);
 		if ((*exec)->fd[0] != STDIN_FILENO)
 			close((*exec)->fd[0]);
 		if ((*exec)->fd[1] != STDOUT_FILENO)

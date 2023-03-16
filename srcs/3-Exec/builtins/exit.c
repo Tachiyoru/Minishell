@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:20 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/06 15:42:53 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/16 14:24:51 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	option_is_digit(char *str)
 	int	i;
 
 	i = -1;
+	if (str[0] == '-' || str[0] == '+')
+		i++;
 	while (str[++i])
 		if (str[i] < '0' || str[i] > '9')
 			return (0);
@@ -70,19 +72,21 @@ int	option_is_digit(char *str)
 int	b_in_exit(t_val *option, t_pipex *exec)
 {
 	g_error = 0;
+	if (exec->fd[0] != STDIN_FILENO || exec->fd[1] != STDOUT_FILENO)
+		return (1);
 	write(exec->fd[1], "exit\n", 5);
-	if (lst_size_val(option) > 1)
-	{
-		g_error = 1;
-		return (msg("Minishell: exit: too many arguments\n"), 1);
-	}
 	if (option)
 	{
-		if (option_is_digit(option->val))
+		if (lst_size_val(option) > 1)
+		{
+			g_error = 1;
+			return (msg("Minishell ~ exit: too many arguments\n"), 1);
+		}
+		else if (option_is_digit(option->val))
 			g_error = ft_atoi(option->val);
 		else
 		{
-			msg("Minishell: exit: ");
+			msg("Minishell ~ exit: ");
 			msg(option->val);
 			msg(": numeric argument required\n");
 			g_error = 2;

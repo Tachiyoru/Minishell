@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:05:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/02/21 16:27:37 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/16 14:45:34 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,25 @@ void	token_error(char *val)
  */
 int	good_parsing(t_val *data, int pre)
 {
-	t_val	*prev;
-
-	prev = data;
-	while (data)
+	while (data->next)
 	{
-		if (prev->token == HEREDOC && data->token != LIMITOR)
+		if (pre == HEREDOC && data->token != LIMITOR)
 			return (token_error(data->val), 0);
-		if ((prev->token == R_OUT || prev->token == APPEND)
+		if ((pre == R_OUT || pre == APPEND)
 			&& data->token != FD)
 			return (token_error(data->val), 0);
-		if (data->token == PIPE && (prev->token == PIPE || prev->token == R_IN
-				|| prev->token == APPEND || prev->token == HEREDOC))
+		if (data->token == PIPE && (pre == PIPE || pre == R_IN
+				|| pre == APPEND || pre == HEREDOC))
 			return (token_error(data->val), 0);
 		if (data->token == PIPE && pre == -1)
 			return (token_error(data->val), 0);
-		pre = 0;
-		prev = data;
+		pre = data->token;
 		data = data->next;
 	}
-	if (!data)
-		if (prev->token == PIPE || prev->token == R_IN || prev->token == R_OUT
-			|| prev->token == APPEND || prev->token == HEREDOC)
-			return (token_error(prev->val), 0);
+	if (!data->next)
+		if (data->token == PIPE || data->token == R_IN || data->token == R_OUT
+			|| data->token == APPEND || data->token == HEREDOC)
+			return (token_error(data->val), 0);
 	return (1);
 }
 

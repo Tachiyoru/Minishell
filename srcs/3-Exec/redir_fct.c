@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_fct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:42:31 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 11:05:33 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/16 16:05:40 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ int	set_redir_in(t_pipex *cmd)
 		return (0);
 	fd = open(cmd->redir->next->val, O_RDONLY);
 	if (fd < 0)
+	{
+		msg(cmd->redir->next->val);
+		msg(": No such file or directory\n");
 		return (0);
+	}
 	if (cmd->fd[0] != 0)
 	{
 		dup2(fd, cmd->fd[0]);
@@ -49,7 +53,11 @@ int	set_redir_out(t_pipex *cmd)
 		return (0);
 	fd = open(cmd->redir->next->val, O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (fd < 0)
+	{
+		msg(cmd->redir->next->val);
+		msg(": No such file or directory\n");
 		return (0);
+	}
 	if (cmd->fd[1] != 1)
 	{
 		dup2(fd, cmd->fd[1]);
@@ -71,7 +79,7 @@ int	set_redir_append(t_pipex *cmd)
 
 	if (!cmd->redir->next)
 		return (0);
-	fd = open(cmd->redir->next->val, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	fd = open(cmd->redir->next->val, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd < 0)
 		return (0);
 	if (cmd->fd[1] != 1)
