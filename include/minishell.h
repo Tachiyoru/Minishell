@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stddef.h>
 # include <signal.h>
-# include <wait.h>
+# include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/types.h>

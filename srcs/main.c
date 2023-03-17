@@ -20,6 +20,8 @@ int	main(int ac, char **av, char **envp)
 
 	(void)av;
 	(void)ac;
+	if (envp[0] == NULL)
+		return (g_error);
 	store_env(envp);
 	set_shlvl();
 	init_signal1();

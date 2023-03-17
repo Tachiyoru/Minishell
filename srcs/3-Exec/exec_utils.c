@@ -134,9 +134,12 @@ char	*pathfinder(char *val, char **env)
 
 	j = -1;
 	i = -1;
+	tmp = NULL;
 	while (env[++i])
 		if (ft_strnstr(env[i], "PATH", 4) != NULL)
 			tmp = ft_strdup(&env[i][5]);
+	if (!tmp)
+		return (error_cmd(val), NULL);
 	path = ft_split2(tmp, ':');
 	while (path[++j])
 	{
