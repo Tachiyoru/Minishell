@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:13:30 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 14:12:17 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/20 16:28:00 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,10 @@ void	free_lst_exec(t_pipex *exec)
 
 void	free_wr(char *content, char *nw)
 {
-	(void)nw;
 	if (content)
 		free(content);
-	// if (nw)
-	// 	free(nw);
+	if (nw)
+		free(nw);
 }
 
 void	free_vr(char *name)

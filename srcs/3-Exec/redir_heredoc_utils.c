@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_heredoc_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:04:58 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/16 17:16:20 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/20 16:21:42 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,21 @@ char	*expand_heredoc_var(char *line)
 	{
 		while (line && line[i] && line[i] != '$')
 			i++;
-		while (line[i + j] && line[(i + j) + 1]
-			&& ((line[(i + j) + 1] >= 'A' && line[(i + j) + 1] <= 'Z')
-				|| (line[(i + j) + 1] >= 'a' && line[(i + j) + 1] <= 'z')
-				|| line[(i + j) + 1] == '_'))
+		while (line[i + j] && line[i + j + 1]
+			&& ((line[i + j + 1] >= 'A' && line[i + j + 1] <= 'Z')
+				|| (line[i + j + 1] >= 'a' && line[i + j + 1] <= 'z')
+				|| line[i + j + 1] == '_' || line[i + j + 1] == '?'))
 			j++;
 		name = ft_substr(line, i + 1, j);
-		new_word = find_env(name);
+		if (!ft_strcmp(name, "?"))
+			new_word = ft_itoa(g_error);
+		else
+			new_word = find_env(name);
+		dest = word_hreplacing_var(i, i + j, line, new_word);
 		if (name)
 			free(name);
-		dest = word_hreplacing_var(i, i + j, line, new_word);
 		line = dest;
-		if (line[i])
+		if (line && line[i])
 			i = 0;
 		j = 0;
 	}

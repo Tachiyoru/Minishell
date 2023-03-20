@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 14:57:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/13 15:47:42 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/20 19:54:16 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,14 +108,14 @@ char	*word_replacing(int start, int end, char *content, char *new_word)
 		dest[i + j] = new_word[j];
 		j++;
 	}
-	while (content && content[++end])
+	while (content && content[end] && content[++end])
 	{
 		dest[i + j] = content[end];
 		i++;
 	}
+	free_wr(content, new_word);
 	return (dest);
 }
-	// free_wr(content, new_word);
 
 /**
  * @brief duplicate only the size received from the string

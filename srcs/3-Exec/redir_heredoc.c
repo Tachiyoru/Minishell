@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:06:28 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 17:55:10 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:30:47 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	simple_heredoc(t_val *redir)
 	int		fd;
 	char	*line;
 
+	line = NULL;
 	fd = make_heredoc(1);
 	if (fd < 0)
 		return (msg("error"), fd);

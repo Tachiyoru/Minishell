@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/16 17:15:47 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/20 19:37:37 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*word_replacing_var(int start, int end, char *content, char *new_word)
 	}
 	end++;
 	end_of_replacing(&dest, content, i + j, end);
-	free_wr(content, NULL);
+	free_wr(content, new_word);
 	return (dest);
 }
 
@@ -89,6 +89,7 @@ char	*var_replacing(int start, int end, char *content, int *i)
 	tmp = *get_env();
 	while (tmp && ft_strcmp(tmp->key, name))
 		tmp = tmp->next;
+	free_vr(name);
 	if (!tmp)
 	{
 		dest = word_replacing_var(start, end, content, NULL);
@@ -97,7 +98,6 @@ char	*var_replacing(int start, int end, char *content, int *i)
 		return ((*i)--, dest);
 	}
 	dest = word_replacing_var(start, end, content, tmp->val);
-	free_vr(name);
 	if (!dest)
 		return (NULL);
 	return (dest);
@@ -113,16 +113,18 @@ char	*var_replacing(int start, int end, char *content, int *i)
  */
 void	unusual_state(char *content, int i, int j, t_val *data)
 {
-	if (content[(i + j) + 1] && ((content[(i + j) + 1] == '?')))
+	if (content[(i + j)] && content[(i + j) + 1] && ((content[(i + j) + 1] == '?')))
 	{
 		j++;
 		data->val = word_replacing_var(i, i + j, content, ft_itoa(g_error));
+		return ;
 	}
-	if (content[(i + j) + 1] && ((content[(i + j) + 1] >= '0')
+	if (content[(i + j)] && content[(i + j) + 1] && ((content[(i + j) + 1] >= '0')
 			&& (content[(i + j) + 1] <= '9')))
 	{
 		j++;
 		data->val = word_replacing_var(i, i + j, content, NULL);
+		return ;
 	}
 }
 
