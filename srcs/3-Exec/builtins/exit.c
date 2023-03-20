@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:20 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/16 17:15:22 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/20 12:24:56 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,18 @@ int	b_in_exit(t_val *option, t_pipex *exec)
 	write(exec->fd[1], "exit\n", 5);
 	if (option)
 	{
-		if (lst_size_val(option) > 1)
-			return (g_error = 1,
-				msg("Minishell ~ exit: too many arguments\n"), 1);
-		else if (option_is_digit(option->val))
-			g_error = ft_atoi(option->val);
-		else
+		if (!option_is_digit(option->val))
 		{
 			msg("Minishell ~ exit: ");
 			msg(option->val);
 			msg(": numeric argument required\n");
 			g_error = 2;
 		}
+		else if (lst_size_val(option) > 1)
+			return (g_error = 1,
+				msg("Minishell ~ exit: too many arguments\n"), 1);
+		if (option_is_digit(option->val))
+			g_error = ft_atoi(option->val);
 	}
 	del_env();
 	free_lst_exec(exec);
@@ -96,4 +96,3 @@ int	b_in_exit(t_val *option, t_pipex *exec)
 	exit(g_error);
 	return (1);
 }
-// free exec
