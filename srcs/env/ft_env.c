@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:07:51 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 13:53:13 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/21 12:37:38 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@ void	del_env(void)
 	{
 		tmp = env;
 		env = env->next;
-		free(tmp->key);
-		free(tmp->val);
-		free(tmp);
+		if (tmp->key)
+			free(tmp->key);
+		if (tmp->val)
+			free(tmp->val);
+		if (tmp)
+			free(tmp);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/20 19:37:37 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/21 12:40:25 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char	*var_replacing(int start, int end, char *content, int *i)
 	char	*dest;
 	t_env	*tmp;
 
+	*i = *i;
 	name = ft_substr(content, start + 1, end - (start));
 	dest = NULL;
 	tmp = *get_env();
@@ -95,9 +96,9 @@ char	*var_replacing(int start, int end, char *content, int *i)
 		dest = word_replacing_var(start, end, content, NULL);
 		if (!dest)
 			return (NULL);
-		return ((*i)--, dest);
+		return (dest);
 	}
-	dest = word_replacing_var(start, end, content, tmp->val);
+	dest = word_replacing_var(start, end, content, ft_strdup(tmp->val));
 	if (!dest)
 		return (NULL);
 	return (dest);

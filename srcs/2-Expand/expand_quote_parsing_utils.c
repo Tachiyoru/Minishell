@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:33:47 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/20 19:49:06 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/21 12:35:15 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ char	*case_of_dq(int	*i, int	*j, char *content, t_val *data)
 			if (is_var(content, *i + *j, data, i))
 				return (NULL);
 			content = data->val;
+			*j = 0;
+			// (*i)++;
 		}
 		(*j)++;
 	}
