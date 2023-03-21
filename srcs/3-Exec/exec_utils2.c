@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:17:47 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/21 16:12:26 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/21 16:43:23 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	is_builtin(char *cmd, t_pipex *exec)
 
 	res = 0;
 	if (!ft_strcmp(cmd, "cd"))
-		res = b_in_cd(exec->cmd->next);
+		res = b_in_cd(exec->cmd->next, exec->fd[0], exec->fd[1]);
 	else if (!ft_strcmp(cmd, "echo"))
 		res = b_in_echo(exec->cmd->next, exec->fd[1]);
 	else if (!ft_strcmp(cmd, "pwd"))
