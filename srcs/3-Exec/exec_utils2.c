@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:17:47 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/13 18:24:55 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/21 14:06:57 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	*fillpath(t_pipex *exec, char **env)
 
 int	is_builtin2(char *cmd, t_pipex *exec, int res)
 {
+	t_val	*tmp;
+
 	if (!ft_strcmp(cmd, "env"))
 		res = env_cmd(exec->fd[1]);
 	else if (!ft_strcmp(cmd, "export") && exec->cmd->next)
@@ -36,7 +38,9 @@ int	is_builtin2(char *cmd, t_pipex *exec, int res)
 		while (exec->cmd->next)
 		{
 			res = export_cmd(exec->cmd->next->val, exec->fd[1]);
+			tmp = exec->cmd->next;
 			exec->cmd->next = exec->cmd->next->next;
+			free_lst(tmp);
 		}
 	}
 	else if (!ft_strcmp(cmd, "export") && !exec->cmd->next)
@@ -53,7 +57,8 @@ int	is_builtin2(char *cmd, t_pipex *exec, int res)
  */
 int	is_builtin(char *cmd, t_pipex *exec)
 {
-	int	res;
+	int		res;
+	t_val	*tmp;
 
 	res = 0;
 	if (!ft_strcmp(cmd, "cd"))
@@ -69,7 +74,9 @@ int	is_builtin(char *cmd, t_pipex *exec)
 		while (exec->cmd->next)
 		{
 			res = unset_cmd(exec->cmd->next->val);
+			tmp = exec->cmd->next;
 			exec->cmd->next = exec->cmd->next->next;
+			free_lst(tmp);
 		}
 	}
 	return (is_builtin2(cmd, exec, res));
