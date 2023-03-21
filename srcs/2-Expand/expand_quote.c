@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/21 17:16:16 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/21 18:54:17 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	clean_data(t_val **data)
 	{
 		if (!(*(tmp->val)))
 		{
+			tmp2->next = tmp->next;
 			tmp2 = tmp->next;
 			free(tmp->val);
 			free(tmp);

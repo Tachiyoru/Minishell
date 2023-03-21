@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:13:30 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/20 16:28:00 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/21 18:37:06 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	free_lst(t_val	*data)
 {
 	t_val	*save;
 
+	if (!data)
+		return ;
 	while (data)
 	{
 		save = data;
