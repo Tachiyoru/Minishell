@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:29 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/20 14:40:07 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/21 18:07:00 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ int	check_n(char *val)
 {
 	if (*val == '-')
 		val++;
+	else
+		return (0);
 	if (!*val)
 		return (0);
 	while (*val)
 	{
-		if (*val != 'n' && *val != ' ')
+		if (*val != 'n')
 			return (0);
 		val++;
 	}
