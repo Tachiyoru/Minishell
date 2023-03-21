@@ -1,3 +1,0 @@
-284 expor doit s'arreter au ;
-302 c'est normal tu supprimes les espaces dans les quotes  ???
-327/328 a revoir je suis pas sur de comment tu le traite

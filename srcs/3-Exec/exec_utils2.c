@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:17:47 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/21 14:06:57 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/21 14:40:06 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,11 @@ int	is_builtin(char *cmd, t_pipex *exec)
 		res = b_in_exit(exec->cmd->next, exec);
 	else if (!ft_strcmp(cmd, "unset"))
 	{
-		while (exec->cmd->next)
+		tmp = exec->cmd->next;
+		while (tmp)
 		{
-			res = unset_cmd(exec->cmd->next->val);
-			tmp = exec->cmd->next;
-			exec->cmd->next = exec->cmd->next->next;
-			free_lst(tmp);
+			res = unset_cmd(tmp->val);
+			tmp = tmp->next;
 		}
 	}
 	return (is_builtin2(cmd, exec, res));
