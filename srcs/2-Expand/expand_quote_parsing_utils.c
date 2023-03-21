@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:33:47 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/21 12:35:15 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/21 13:09:47 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ char	*case_of_dq(int	*i, int	*j, char *content, t_val *data)
 				return (NULL);
 			content = data->val;
 			*j = 0;
-			// (*i)++;
 		}
 		(*j)++;
 	}
@@ -64,8 +63,7 @@ char	*case_of_dq(int	*i, int	*j, char *content, t_val *data)
 	if (!content)
 		return (NULL);
 	*i = (*i - 1) + *j;
-	*j = 0;
-	return (content);
+	return (*j = 0, content);
 }
 
 /**
@@ -78,7 +76,7 @@ char	*case_of_nq(int	*i, int	*j, char *content, t_val *data)
 {
 	while (content && content[*i + *j]
 				&& content[*i + *j] == '$' && ((content[(*i + *j) + 1] >= 'A'
-				&& content[(*i + *j) + 1] <= 'Z')
+			&& content[(*i + *j) + 1] <= 'Z')
 			|| (content[(*i + *j) + 1] >= 'a' && content[(*i + *j) + 1] <= 'z')
 			|| (content[(*i + *j) + 1] >= '0' && content[(*i + *j) + 1] <= '9')
 			|| content[(*i + *j) + 1] == '_' || content[(*i + *j) + 1] == '?'))
