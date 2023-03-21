@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:13:03 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/13 13:59:10 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/21 13:10:01 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,5 @@ char	*pathfinder(char *val, char **env)
 			return (cmd);
 		free(cmd);
 	}
-	free_tab(path);
-	return (error_cmd(val), NULL);
+	return (free_tab(path), error_cmd(val), NULL);
 }

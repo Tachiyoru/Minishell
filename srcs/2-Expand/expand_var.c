@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:43:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/21 12:40:25 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/21 13:02:07 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,15 @@ char	*var_replacing(int start, int end, char *content, int *i)
  */
 void	unusual_state(char *content, int i, int j, t_val *data)
 {
-	if (content[(i + j)] && content[(i + j) + 1] && ((content[(i + j) + 1] == '?')))
+	if (content[(i + j)] && content[(i + j) + 1]
+		&& ((content[(i + j) + 1] == '?')))
 	{
 		j++;
 		data->val = word_replacing_var(i, i + j, content, ft_itoa(g_error));
 		return ;
 	}
-	if (content[(i + j)] && content[(i + j) + 1] && ((content[(i + j) + 1] >= '0')
+	if (content[(i + j)] && content[(i + j) + 1]
+		&& ((content[(i + j) + 1] >= '0')
 			&& (content[(i + j) + 1] <= '9')))
 	{
 		j++;
@@ -149,7 +151,8 @@ int	is_var(char *content, int i, t_val *data, int *iadd)
 		while (content[(i + j) + 1]
 			&& ((content[(i + j) + 1] >= 'A' && content[(i + j) + 1] <= 'Z')
 				|| (content[(i + j) + 1] >= 'a' && content[(i + j) + 1] <= 'z')
-				|| ((content[(i + j) + 1] >= '0') && (content[(i + j) + 1] <= '9'))
+				|| ((content[(i + j) + 1] >= '0')
+					&& (content[(i + j) + 1] <= '9'))
 				|| content[(i + j) + 1] == '_'))
 			j++;
 		data->val = var_replacing(i, i + j, content, iadd);
