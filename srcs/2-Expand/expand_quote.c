@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/21 16:05:55 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/21 17:13:24 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	back_to_positive(t_val *data)
  *
  * @param data
  */
-void	clean_data(t_val **data)
+int	clean_data(t_val **data)
 {
 	t_val	*tmp;
 	t_val	*tmp2;
@@ -46,18 +46,21 @@ void	clean_data(t_val **data)
 		tmp = tmp->next;
 	*data = tmp;
 	tmp = tmp2;
-	while (tmp2)
+	while (tmp)
 	{
-		if (!(*(tmp2->val)))
+		if (!(*(tmp->val)))
 		{
-			tmp->next = tmp2->next;
-			free(tmp2->val);
-			free(tmp2);
-			tmp2 = tmp;
+			tmp2 = tmp->next;
+			free(tmp->val);
+			free(tmp);
+			tmp = tmp2;
 		}
-		tmp = tmp2;
-		tmp2 = tmp2->next;
+		if (tmp)
+			tmp = tmp->next;
 	}
+	if (!(*data))
+		return (1);
+	return (0);
 }
 
 /**
@@ -143,8 +146,8 @@ int	quote_treatment(t_val *data)
 			tmp_prev = NULL;
 		tmp = tmp->next;
 	}
-	if (data)
-		return (clean_data(&data), exec(data), 0);
+	if (!clean_data(&data))
+		return (exec(data), 0);
 	else
 		return (printf("Minishell ~ : command not found\n"), 0);
 }
