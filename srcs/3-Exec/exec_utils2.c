@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:17:47 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/21 14:40:06 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/21 16:12:26 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,11 @@ int	is_builtin2(char *cmd, t_pipex *exec, int res)
 		res = env_cmd(exec->fd[1]);
 	else if (!ft_strcmp(cmd, "export") && exec->cmd->next)
 	{
-		while (exec->cmd->next)
+		tmp = exec->cmd->next;
+		while (tmp)
 		{
-			res = export_cmd(exec->cmd->next->val, exec->fd[1]);
-			tmp = exec->cmd->next;
-			exec->cmd->next = exec->cmd->next->next;
-			free_lst(tmp);
+			res = export_cmd(tmp->val, exec->fd[1]);
+			tmp = tmp->next;
 		}
 	}
 	else if (!ft_strcmp(cmd, "export") && !exec->cmd->next)
