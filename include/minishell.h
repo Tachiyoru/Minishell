@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/21 15:50:30 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/21 16:44:27 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ char	**ft_split2(char	*str, char set);
 
 /////\ BUILTINS \//////
 
-int		b_in_cd(t_val *option);
+int		b_in_cd(t_val *option, int infile, int outfile);
 int		b_in_echo(t_val *options, int fd);
 int		b_in_exit(t_val *option, t_pipex *exec);
 int		b_in_pwd(int fd_out);
