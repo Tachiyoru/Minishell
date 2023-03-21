@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/13 18:22:06 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/21 15:50:30 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,9 @@ char	*ft_itoa(int n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putchar_err(char c);
 int		contain_equals(char *key_val);
-int		is_error_qm(char *content);
+int		is_error_qm(char *content, t_val *tmp, t_val *tmp_prev);
+int		is_error_qm_h(char *content);
+int		simple_increment(char *content, int *i);
 
 // expand
 int		quote_treatment(t_val *data);

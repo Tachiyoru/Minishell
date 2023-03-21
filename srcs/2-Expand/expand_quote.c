@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/21 14:11:56 by sleon            ###   ########.fr       */
+=======
+/*   Updated: 2023/03/21 15:55:24 by ajeanne          ###   ########.fr       */
+>>>>>>> CorrecEchoGest
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +89,7 @@ int	simple_increment(char *content, int *i)
  * @param content
  * @return int
  */
-int	is_error_qm(char *content)
+int	is_error_qm(char *content, t_val *tmp, t_val *tmp_prev)
 {
 	int	i;
 
@@ -107,6 +111,10 @@ int	is_error_qm(char *content)
 		}
 		i++;
 	}
+	if (quote_parsing(tmp->val, tmp))
+		return (1);
+	if (!tmp_prev && expand_space(tmp->val, tmp))
+		return (1);
 	return (0);
 }
 
@@ -119,28 +127,28 @@ int	is_error_qm(char *content)
 int	quote_treatment(t_val *data)
 {
 	t_val	*tmp;
+	t_val	*tmp_prev;
 
 	tmp = data;
+	tmp_prev = NULL;
 	if (ambigous_redirect_checker(data))
 		return (1);
 	while (tmp)
 	{
 		if (tmp->token == WORD || tmp->token == FD)
 		{
-			if (is_error_qm(tmp->val))
-				return (1);
-			if (quote_parsing(tmp->val, tmp))
-				return (1);
-			if (expand_space(tmp->val, tmp))
+			if (is_error_qm(tmp->val, tmp, tmp_prev))
 				return (1);
 			back_to_positive(tmp);
+			if (!ft_strcmp(tmp->val, "echo"))
+				tmp_prev = tmp;
 		}
+		else
+			tmp_prev = NULL;
 		tmp = tmp->next;
 	}
-	clean_data(&data);
 	if (data)
-		exec(data);
+		return (clean_data(&data), exec(data), 0);
 	else
-		printf("Minishell ~ : command not found\n");
-	return (0);
+		return (printf("Minishell ~ : command not found\n"), 0);
 }

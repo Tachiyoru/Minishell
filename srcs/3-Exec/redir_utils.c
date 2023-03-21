@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 15:23:32 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/21 15:51:48 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,29 @@ void	setup_pipe(t_pipex *cmd)
 	pipe(tmp_pipe);
 	cmd->fd[1] = tmp_pipe[1];
 	cmd->next->fd[0] = tmp_pipe[0];
+}
+
+int	is_error_qm_h(char *content)
+{
+	int	i;
+
+	i = 0;
+	while (content[i])
+	{
+		if (content[i] == '\'')
+			if (simple_increment(content, &i))
+				return (1);
+		if (content[i] == '"')
+		{
+			i++;
+			while (content[i] != '"')
+			{
+				if (!content[i])
+					return (1);
+				i++;
+			}
+		}
+		i++;
+	}
+	return (0);
 }
