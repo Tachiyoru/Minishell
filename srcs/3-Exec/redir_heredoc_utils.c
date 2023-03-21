@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:04:58 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/20 16:21:42 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/21 13:44:39 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,23 @@ char	*word_hreplacing_var(int start, int end, char *content, char *new_word)
 	return (dest);
 }
 
+void	incr_exp_h_var(int *j, int i, char *line)
+{
+	while (line[i + (*j)] && line[i + (*j) + 1]
+		&& ((line[i + (*j) + 1] >= 'A' && line[i + (*j) + 1] <= 'Z')
+			|| (line[i + (*j) + 1] >= 'a' && line[i + (*j) + 1] <= 'z')
+			|| line[i + (*j) + 1] == '_' || line[i + (*j) + 1] == '?'))
+			(*j)++;
+}
+
+void	unusual_case_exp_h_var(char *name, char **new_word)
+{
+	if (!ft_strcmp(name, "?"))
+		*new_word = ft_itoa(g_error);
+	else
+		*new_word = ft_strdup(find_env(name));
+}
+
 char	*expand_heredoc_var(char *line)
 {
 	int		i;
@@ -51,29 +68,20 @@ char	*expand_heredoc_var(char *line)
 
 	i = 0;
 	j = 0;
-	dest = NULL;
-	name = NULL;
-	new_word = NULL;
 	while (line && line[i])
 	{
 		while (line && line[i] && line[i] != '$')
 			i++;
-		while (line[i + j] && line[i + j + 1]
-			&& ((line[i + j + 1] >= 'A' && line[i + j + 1] <= 'Z')
-				|| (line[i + j + 1] >= 'a' && line[i + j + 1] <= 'z')
-				|| line[i + j + 1] == '_' || line[i + j + 1] == '?'))
-			j++;
+		if (line && !line[i])
+			break ;
+		incr_exp_h_var(&j, i, line);
 		name = ft_substr(line, i + 1, j);
-		if (!ft_strcmp(name, "?"))
-			new_word = ft_itoa(g_error);
-		else
-			new_word = find_env(name);
+		unusual_case_exp_h_var(name, &new_word);
 		dest = word_hreplacing_var(i, i + j, line, new_word);
 		if (name)
 			free(name);
 		line = dest;
-		if (line && line[i])
-			i = 0;
+		i = 0;
 		j = 0;
 	}
 	return (dest);
