@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:32 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/22 14:30:34 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 18:31:01 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	modify_pwd(void)
 		free(env_tmp->val);
 	env_tmp->val = getcwd(NULL, 0);
 	if (!env_tmp->val)
-		return (g_error = 127, msg("getcwd fail"), 1);
+		return (g_error = 127, msg("getcwd fail\n"), 1);
 	return (0);
 }
 
