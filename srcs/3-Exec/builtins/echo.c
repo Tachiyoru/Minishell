@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:29 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/22 18:17:40 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 19:19:35 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,6 @@ int	check_n(char *val)
 	return (1);
 }
 
-void	print_rest(char *val, int fd)
-{
-	if (*val == '-')
-		val++;
-	while (*val == 'n')
-		val++;
-	while (*val == ' ')
-		val++;
-	if (*val)
-		ft_putstr_fd(fd, val);
-}
-
 /**
  * @brief behave like the echo functiun
  *
@@ -61,7 +49,6 @@ int	b_in_echo(t_val *options, int fd)
 		return (write(fd, "\n", 1), 1);
 	while (options && options->val && check_n(options->val))
 	{
-		print_rest(options->val, fd);
 		options = options->next;
 		n = 1;
 	}
