@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/21 18:54:17 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/22 14:23:42 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	clean_data(t_val **data)
 	while (tmp && !(*(tmp->val)))
 		tmp = tmp->next;
 	*data = tmp;
-	tmp = tmp2;
+	tmp2 = tmp;
 	while (tmp)
 	{
 		if (!(*(tmp->val)))
@@ -57,7 +57,10 @@ int	clean_data(t_val **data)
 			tmp = tmp2;
 		}
 		if (tmp)
+		{
+			tmp2 = tmp;
 			tmp = tmp->next;
+		}
 	}
 	if (!(*data))
 		return (1);
