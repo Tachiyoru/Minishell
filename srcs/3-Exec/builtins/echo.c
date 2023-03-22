@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:29 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/22 15:48:08 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 17:59:22 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	check_n(char *val)
 		return (0);
 	while (*val)
 	{
+		if (*val == ' ')
+			return (1);
 		if (*val != 'n')
 			return (0);
 		val++;
