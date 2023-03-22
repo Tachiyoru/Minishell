@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:05:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/22 15:40:21 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 15:42:25 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	set_up_echo(t_val *data)
 			tmp = data;
 			while (tmp && tmp->token != 4)
 			{
-				if (!ft_strcmp("\"\"", tmp->val))
+				if (!ft_strcmp("\'\'", tmp->val) || !ft_strcmp("\"\"", tmp->val))
 				{
 					free(tmp->val);
 					tmp->val = ft_calloc(2, sizeof(char));
