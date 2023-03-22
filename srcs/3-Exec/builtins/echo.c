@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:29 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/21 18:07:00 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 15:48:08 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	check_n(char *val)
  */
 int	b_in_echo(t_val *options, int fd)
 {
-	int	n;
+	int		n;
+	char	*a;
 
 	n = 0;
 	g_error = 0;
@@ -53,8 +54,9 @@ int	b_in_echo(t_val *options, int fd)
 	{
 		if (options->val)
 			ft_putstr_fd(fd, options->val);
+		a = options->val;
 		options = options->next;
-		if (options)
+		if (options && ft_strcmp(" ", a))
 			write(fd, " ", 1);
 	}
 	if (!n)
