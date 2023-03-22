@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:32 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/22 19:19:41 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 19:20:48 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	b_in_cd(t_val *option, int infile, int outfile)
 			{
 				perror(NULL);
 				g_error = 1;
+				chdir("/");
 			}
 		}
 		return (1);
@@ -63,6 +64,7 @@ int	b_in_cd(t_val *option, int infile, int outfile)
 	{
 		perror(NULL);
 		g_error = 1;
+		chdir("/");
 	}
 	modify_pwd();
 	return (1);
