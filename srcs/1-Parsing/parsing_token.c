@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:05:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/22 15:42:25 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 16:20:49 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	good_parsing(t_val *data, int pre)
 	{
 		if (pre == HEREDOC && data->token != LIMITOR)
 			return (token_error(data->val), 0);
-		if ((pre == R_OUT || pre == APPEND)
+		if ((pre == R_IN || pre == R_OUT || pre == APPEND)
 			&& data->token != FD)
 			return (token_error(data->val), 0);
 		if (data->token == PIPE && (pre == PIPE || pre == R_IN
@@ -91,14 +91,14 @@ int	what_token(char *str, int prev)
 	return (WORD);
 }
 
-void	print_list(t_val *data)
-{
-	while (data)
-	{
-		printf("%s - token = %d\n", data->val, data->token);
-		data = data->next;
-	}
-}
+// void	print_list(t_val *data)
+// {
+// 	while (data)
+// 	{
+// 		printf("%s - token = %d\n", data->val, data->token);
+// 		data = data->next;
+// 	}
+// }
 
 void	set_up_echo(t_val *data)
 {
