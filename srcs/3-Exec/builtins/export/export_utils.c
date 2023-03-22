@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 03:14:26 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/21 13:02:38 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 17:29:20 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	existing_key_replace_val(char *key, char *val)
 			if (env->val)
 				free(env->val);
 			env->val = ft_strdup(val);
+			if (val)
+				free(val);
 			return (1);
 		}
 		env = env->next;
@@ -81,6 +83,8 @@ int	env_add_back(char *key, char *val)
 		tmp = tmp->next;
 	}
 	tmp_prev->next = lst_env_new(key, val);
+	if (val)
+		free(val);
 	if (!tmp_prev->next)
 		return (1);
 	return (0);

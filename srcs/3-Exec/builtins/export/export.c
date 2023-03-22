@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:18 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/21 13:02:33 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 17:27:39 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	with_equal(char *key_val)
 	}
 	val_tmp = key_val + val_start + 1;
 	key_val[val_start] = '\0';
+	val_tmp = rem_whitespace_export(val_tmp);
 	if (existing_key_replace_val(key_val, val_tmp))
 		return (0);
 	if (env_add_back(key_val, val_tmp))

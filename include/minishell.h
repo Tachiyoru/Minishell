@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/21 16:44:27 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 16:58:01 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,5 +204,6 @@ int		key_checker(char *key);
 int		env_add_back(char *key, char *val);
 int		contain_equals(char *key_val);
 void	end_of_replacing(char **dest, char *content, int i, int end);
+char	*rem_whitespace_export(char *value);
 
 #endif

@@ -48,6 +48,7 @@ SRCS		=	main.c	\
 				export.c	\
 				expand_ambigous_redirect.c	\
 				export_utils.c	\
+				export_utils2.c	\
 				redir_heredoc_utils.c
 
 
