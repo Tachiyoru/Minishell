@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/22 18:08:18 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/22 19:22:44 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,8 @@ int	quote_treatment(t_val *data)
 			if (is_error_qm(tmp->val, tmp, tmp_prev))
 				return (free_lst(data), 0);
 			back_to_positive(tmp);
-			if (!ft_strcmp(tmp->val, "echo"))
-				tmp_prev = tmp;
+			// if (!ft_strcmp(tmp->val, "echo"))
+			// 	tmp_prev = tmp;
 		}
 		else
 			tmp_prev = NULL;
