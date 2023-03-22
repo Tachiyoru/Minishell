@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/22 14:23:42 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 14:35:27 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	clean_data(t_val **data)
 	while (tmp && !(*(tmp->val)))
 		tmp = tmp->next;
 	*data = tmp;
-	tmp2 = tmp;
+	tmp = tmp2;
 	while (tmp)
 	{
 		if (!(*(tmp->val)))

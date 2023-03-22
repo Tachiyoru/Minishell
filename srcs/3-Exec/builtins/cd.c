@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:32 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/22 13:56:18 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 14:30:34 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	modify_pwd(void)
 }
 
 /**
- * @brief behave like the cmd cd, changing the directory from wich we operate ft_putstr_fd(outfile, "Error\n")
+ * @brief behave like the cmd cd, changing the directory from wich we operate
  *
  * @param option possible option is a path to a directory
  * @return int
@@ -47,10 +47,13 @@ int	b_in_cd(t_val *option, int infile, int outfile)
 	g_error = 0;
 	if (infile != STDIN_FILENO || outfile != STDOUT_FILENO)
 	{
-		if (chdir(option->val) == -1)
+		if (outfile == STDOUT_FILENO)
 		{
-			perror(NULL);
-			g_error = 1;
+			if (chdir(option->val) == -1)
+			{
+				perror(NULL);
+				g_error = 1;
+			}
 		}
 		return (1);
 	}
