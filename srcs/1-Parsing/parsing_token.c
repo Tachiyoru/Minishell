@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:05:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/16 14:45:34 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/22 15:40:21 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,31 @@ void	print_list(t_val *data)
 	}
 }
 
+void	set_up_echo(t_val *data)
+{
+	t_val	*tmp;
+
+	while (data)
+	{
+		if (!ft_strcmp("echo", data->val))
+		{
+			tmp = data;
+			while (tmp && tmp->token != 4)
+			{
+				if (!ft_strcmp("\"\"", tmp->val))
+				{
+					free(tmp->val);
+					tmp->val = ft_calloc(2, sizeof(char));
+					tmp->val[0] = ' ';
+					tmp->val[1] = '\0';
+				}
+				tmp = tmp->next;
+			}
+		}
+		data = data->next;
+	}
+}
+
 /**
  * @brief go trhough the linkchain et set what kind of token it is
  *
@@ -123,5 +148,6 @@ void	check_token(t_val *data)
 		free_lst(data);
 		return ;
 	}
+	set_up_echo(data);
 	quote_treatment(data);
 }
