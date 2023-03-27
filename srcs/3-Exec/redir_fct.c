@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_fct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:42:31 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/16 16:05:40 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/27 17:58:38 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,11 @@ int	set_redir_heredoc(t_pipex *cmd)
 	int	stdin_copy;
 
 	stdin_copy = dup(STDIN_FILENO);
-	fd = check_quote_limitor(cmd->redir);
+	fd = is_error_qm_h(cmd->redir);
 	if (fd == 1)
-		fd = expand_heredoc(cmd->redir);
-	else if (!fd)
 		fd = simple_heredoc(cmd->redir);
+	else if (!fd)
+		fd = expand_heredoc(cmd->redir);
 	if (fd < 0)
 		return (0);
 	close(fd);
