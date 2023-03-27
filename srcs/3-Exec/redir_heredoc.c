@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:06:28 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/27 23:14:13 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/27 23:16:51 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,21 @@ int	make_heredoc(int type)
 	return (ret);
 }
 
-int	check_quote_limitor(t_val *red)
-{
-	while (red)
-	{
-		if (red->token == LIMITOR)
-		{
-			if (is_error_qm_h(red->val))
-				return (-1);
-			if (red->val[0] == '\'' || red->val[0] == '"')
-				return (0);
-		}
-		red = red->next;
-	}
-	return (1);
-}
+// int	check_quote_limitor(t_val *red)
+// {
+// 	while (red)
+// 	{
+// 		if (red->token == LIMITOR)
+// 		{
+// 			if (is_error_qm_h(red->val))
+// 				return (-1);
+// 			if (red->val[0] == '\'' || red->val[0] == '"')
+// 				return (0);
+// 		}
+// 		red = red->next;
+// 	}
+// 	return (1);
+// }
 
 void	rem_quotes(t_val *redir)
 {
@@ -74,6 +74,8 @@ int	expand_heredoc(t_val *redir)
 	fd = make_heredoc(1);
 	if (fd < 0)
 		return (msg("error"), fd);
+	if (quote_treatment_h(redir))
+		return (fd);
 	while (1)
 	{
 		line = readline(">>");
@@ -100,7 +102,8 @@ int	simple_heredoc(t_val *redir)
 	fd = make_heredoc(1);
 	if (fd < 0)
 		return (msg("error"), fd);
-	rem_quotes(redir);
+	if (quote_treatment_h(redir))
+		return (fd);
 	while (1)
 	{
 		line = readline(">>");

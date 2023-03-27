@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/22 16:58:01 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/27 17:46:01 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putchar_err(char c);
 int		contain_equals(char *key_val);
 int		is_error_qm(char *content, t_val *tmp, t_val *tmp_prev);
-int		is_error_qm_h(char *content);
+int		is_error_qm_h(t_val *data);
 int		simple_increment(char *content, int *i);
 
 // expand
@@ -205,5 +205,7 @@ int		env_add_back(char *key, char *val);
 int		contain_equals(char *key_val);
 void	end_of_replacing(char **dest, char *content, int i, int end);
 char	*rem_whitespace_export(char *value);
+void	back_to_positive(t_val *data);
+int		quote_treatment_h(t_val *data);
 
 #endif
