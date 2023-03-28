@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:40:43 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/11 13:51:31 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/28 10:50:27 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ t_env	*init_env2(char *env, t_env *env_s)
 		size++;
 	env_s->key = ft_strndup(env, size);
 	env += size;
-	size = 0;
 	env_s->val = ft_strdup(++env);
 	env_s->next = NULL;
 	return (env_s);

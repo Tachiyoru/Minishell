@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/27 17:32:57 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 10:47:38 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	setup_redir(t_pipex *cmd)
 		cmd->redir = cmd->redir->next;
 	}
 	if (cmd->redir)
-		return (res);
+		return (cmd->redir = tmp, res);
 	cmd->redir = tmp;
 	return (1);
 }

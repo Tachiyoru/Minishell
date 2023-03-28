@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_fct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:42:31 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/28 00:40:21 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 10:42:58 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	set_redir_in(t_pipex *cmd)
 			msg(": Permission denied\n");
 		else
 			msg(": No such file or directory\n");
-		return (0);
+		return (-1);
 	}
 	if (cmd->fd[0] != 0)
 	{
@@ -63,7 +63,7 @@ int	set_redir_out(t_pipex *cmd)
 			msg(": Permission denied\n");
 		else
 			msg(": No such file or directory\n");
-		return (0);
+		return (-1);
 	}
 	if (cmd->fd[1] != 1)
 	{
@@ -88,7 +88,7 @@ int	set_redir_append(t_pipex *cmd)
 		return (0);
 	fd = open(cmd->redir->next->val, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd < 0)
-		return (0);
+		return (-1);
 	if (cmd->fd[1] != 1)
 	{
 		dup2(fd, cmd->fd[1]);
