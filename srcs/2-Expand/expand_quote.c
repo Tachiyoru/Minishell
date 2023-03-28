@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/28 00:07:33 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 11:48:24 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,8 @@ int	clean_data(t_val **data)
 	t_val	*tmp;
 	t_val	*tmp2;
 
-	tmp = *data;
+	place_data(data);
 	tmp2 = *data;
-	while (tmp && !(*(tmp->val)))
-		tmp = tmp->next;
-	*data = tmp;
 	tmp = tmp2;
 	while (tmp)
 	{
