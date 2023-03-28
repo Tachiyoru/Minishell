@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/28 10:54:08 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/28 11:59:50 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,10 @@ void	exec_pipex(t_pipex **exec)
 int	make_struct_exec(t_val *data, t_pipex **exec)
 {
 	t_val	*save;
+	t_pipex	*head;
 
 	save = data;
+	head = *exec;
 	while (data)
 	{
 		if (data->token == WORD)
@@ -126,6 +128,7 @@ int	make_struct_exec(t_val *data, t_pipex **exec)
 		else
 			add_redir(exec, &data);
 	}
+*exec = head;
 	return (1);
 }
 
