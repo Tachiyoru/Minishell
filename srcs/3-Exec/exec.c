@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/21 14:07:59 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/28 09:04:27 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ int	make_struct_exec(t_val *data, t_pipex **exec)
 		else
 			add_redir(exec, &data);
 	}
-	*exec = head;
 	return (1);
 }
 

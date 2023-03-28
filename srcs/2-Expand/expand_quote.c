@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/27 17:02:22 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 00:07:33 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	clean_data(t_val **data)
 	tmp = tmp2;
 	while (tmp)
 	{
-		if (!(*(tmp->val)))
+		if (!(*(tmp->val)) && (!(*data) || ft_strcmp((*data)->val, "echo")))
 		{
 			tmp2->next = tmp->next;
 			tmp2 = tmp->next;

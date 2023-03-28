@@ -6,11 +6,12 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:42:31 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/27 17:58:38 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 00:40:21 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <errno.h>
 
 /**
  * @brief setup the redir in if the file exist else return 0
@@ -27,7 +28,10 @@ int	set_redir_in(t_pipex *cmd)
 	if (fd < 0)
 	{
 		msg(cmd->redir->next->val);
-		msg(": No such file or directory\n");
+		if (errno == 13)
+			msg(": Permission denied\n");
+		else
+			msg(": No such file or directory\n");
 		return (0);
 	}
 	if (cmd->fd[0] != 0)
@@ -55,7 +59,10 @@ int	set_redir_out(t_pipex *cmd)
 	if (fd < 0)
 	{
 		msg(cmd->redir->next->val);
-		msg(": No such file or directory\n");
+		if (errno == 13)
+			msg(": Permission denied\n");
+		else
+			msg(": No such file or directory\n");
 		return (0);
 	}
 	if (cmd->fd[1] != 1)
