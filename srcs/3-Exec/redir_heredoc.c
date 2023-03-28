@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_heredoc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:06:28 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/27 23:16:51 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 14:38:37 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,6 @@ int	make_heredoc(int type)
 	}
 	return (ret);
 }
-
-// int	check_quote_limitor(t_val *red)
-// {
-// 	while (red)
-// 	{
-// 		if (red->token == LIMITOR)
-// 		{
-// 			if (is_error_qm_h(red->val))
-// 				return (-1);
-// 			if (red->val[0] == '\'' || red->val[0] == '"')
-// 				return (0);
-// 		}
-// 		red = red->next;
-// 	}
-// 	return (1);
-// }
 
 void	rem_quotes(t_val *redir)
 {
@@ -84,7 +68,8 @@ int	expand_heredoc(t_val *redir)
 		if (!ft_strcmp(line, redir->next->val))
 			break ;
 		if (ft_strchr(line, '$'))
-			line = expand_heredoc_var(line);
+			if (find_env(line))
+				line = expand_heredoc_var(line);
 		if (line)
 			write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
