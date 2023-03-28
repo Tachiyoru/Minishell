@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:46:38 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/22 17:24:39 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 11:39:42 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ char	*rem_whitespace_export(char *value)
 {
 	int		i;
 	int		j;
-	char 	*dest;
-	
+	char	*dest;
+
 	if (!value)
 		return (NULL);
 	i = 0;

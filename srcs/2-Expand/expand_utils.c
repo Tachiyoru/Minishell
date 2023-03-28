@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:37:20 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/02/25 03:25:11 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 11:48:51 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,14 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 void	ft_putchar_err(char c)
 {
 	write(STDERR_FILENO, &c, 1);
+}
+
+void	place_data(t_val **data)
+{
+	t_val	*tmp;
+
+	tmp = *data;
+	while (tmp && !(*(tmp->val)))
+		tmp = tmp->next;
+	*data = tmp;
 }

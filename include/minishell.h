@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/27 17:46:01 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 11:47:44 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ int		is_var(char *content, int i, t_val *data, int *iadd);
 int		expand_space(char *content, t_val *data);
 int		ambigous_redirect_checker(t_val *data);
 char	*expand_heredoc_var(char *line);
+void	place_data(t_val **data);
 
 // buildin
 int		env_cmd(int fd);

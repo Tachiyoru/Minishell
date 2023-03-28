@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:31:01 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/27 17:45:00 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 11:50:19 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ int	is_error_qm_h(t_val *data)
 	int	i;
 	int	q;
 
-	i = 0;
+	i = -1;
 	q = 0;
 	while (data)
 	{
-		while (data->val[i])
+		while (data->val[++i])
 		{
 			if (data->val[i] == '\'')
 			{
@@ -59,7 +59,6 @@ int	is_error_qm_h(t_val *data)
 				if (double_increment_h(data->val, &i))
 					return (1);
 			}
-			i++;
 		}
 		data = data->next;
 	}
