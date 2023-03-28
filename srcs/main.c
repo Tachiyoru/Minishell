@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:24:33 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/28 00:51:09 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 10:54:30 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	main(int ac, char **av, char **envp)
 
 	(void)av;
 	(void)ac;
-	if (envp[0] == NULL)
-		return (g_error);
+	// if (envp[0] == NULL)
+	// 	return (g_error);
 	store_env(envp);
 	set_shlvl();
 	init_signal1();

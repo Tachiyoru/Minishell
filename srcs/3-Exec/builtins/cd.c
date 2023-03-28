@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:32 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/22 19:20:48 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 11:12:05 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,17 @@ int	modify_pwd(void)
 		env_tmp = env_tmp->next;
 	while (env && ft_strcmp(env->key, "OLDPWD"))
 		env = env->next;
-	if (env && env->val)
+	if (env && env->val && env_tmp->val)
+	{
 		free(env->val);
-	env->val = ft_strdup(env_tmp->val);
-	if (!env->val)
-		return (1);
+		env->val = ft_strdup(env_tmp->val);
+	}
 	if (env_tmp && env_tmp->val)
+	{
 		free(env_tmp->val);
-	env_tmp->val = getcwd(NULL, 0);
-	if (!env_tmp->val)
+		env_tmp->val = getcwd(NULL, 0);
+	}
+	else
 		return (g_error = 127, msg("getcwd fail\n"), 1);
 	return (0);
 }
