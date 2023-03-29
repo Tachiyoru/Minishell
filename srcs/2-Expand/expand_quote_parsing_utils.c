@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:33:47 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/28 15:28:35 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/29 14:24:24 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ char	*case_of_nq(int	*i, int	*j, char *content, t_val *data)
 	{
 		if (is_var(content, *i + *j, data, i))
 			return (NULL);
+		if (!data->val[0])
+			data->q = 1;
 		content = data->val;
 		if (*i < 0)
 			break ;

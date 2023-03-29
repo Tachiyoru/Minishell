@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:17:47 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/21 16:43:23 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/29 14:07:54 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	is_builtin(char *cmd, t_pipex *exec)
 	t_val	*tmp;
 
 	res = 0;
+	g_error = 0;
 	if (!ft_strcmp(cmd, "cd"))
 		res = b_in_cd(exec->cmd->next, exec->fd[0], exec->fd[1]);
 	else if (!ft_strcmp(cmd, "echo"))

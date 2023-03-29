@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:29 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/22 19:25:58 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/29 14:13:43 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,19 @@ int	check_n(char *val)
 	return (1);
 }
 
+int	make_check_n(t_val **options)
+{
+	int	n;
+
+	n = 0;
+	while (*options && (*options)->val && check_n((*options)->val))
+	{
+		*options = (*options)->next;
+		n = 1;
+	}
+	return (n);
+}
+
 /**
  * @brief behave like the echo functiun
  *
@@ -41,23 +54,23 @@ int	b_in_echo(t_val *options, int fd)
 	int		n;
 	char	*a;
 
-	n = 0;
-	g_error = 0;
 	if (!options)
 		return (write(fd, "\n", 1), 1);
-	while (options && options->val && check_n(options->val))
-	{
-		options = options->next;
-		n = 1;
-	}
+	if (options && options->val)
+		n = make_check_n(&options);
 	while (options)
 	{
-		if (options->val)
-			ft_putstr_fd(fd, options->val);
-		a = options->val;
-		options = options->next;
-		if (options && ft_strcmp(" ", a))
-			write(fd, " ", 1);
+		if (options->q == 0)
+		{
+			if (options->val)
+				ft_putstr_fd(fd, options->val);
+			a = options->val;
+			options = options->next;
+			if (options && ft_strcmp(" ", a))
+				write(fd, " ", 1);
+		}
+		else
+			options = options->next;
 	}
 	if (!n)
 		write(fd, "\n", 1);
