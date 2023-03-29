@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/28 11:48:24 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 15:30:23 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	simple_increment(char *content, int *i)
  */
 int	is_error_qm(char *content, t_val *tmp, t_val *tmp_prev)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (content[i])
@@ -111,6 +111,8 @@ int	is_error_qm(char *content, t_val *tmp, t_val *tmp_prev)
 		}
 		i++;
 	}
+	if (!find_env(content))
+		return (0);
 	if (quote_parsing(tmp->val, tmp))
 		return (1);
 	if (!tmp_prev && expand_space(tmp->val, tmp))

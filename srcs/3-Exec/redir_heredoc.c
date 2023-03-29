@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:06:28 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/28 12:18:54 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/29 10:06:24 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int	expand_heredoc(t_val *redir)
 		if (!ft_strcmp(line, redir->next->val))
 			break ;
 		if (ft_strchr(line, '$'))
-			line = expand_heredoc_var(line);
+			if (find_env(line))
+				line = expand_heredoc_var(line);
 		if (line)
 			write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
