@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:07:51 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/21 12:37:38 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/29 16:37:41 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ void	del_env(void)
 	}
 }
 
+void	base_env(t_env **our_env)
+{
+	t_env	*tmp;
+
+	tmp = ft_calloc(sizeof(t_env), 1);
+	tmp->next = NULL;
+	tmp->key = ft_strdup("PWD");
+	tmp->val = getcwd(NULL, 0);
+	*our_env = tmp;
+}
+
 /**
  * @brief depending on the way it is call it will either init the env, add
  * or delete parts of it
@@ -51,6 +62,8 @@ t_env	**handle_env(char **env)
 
 	if (env)
 		our_env = init_env(env);
+	if (!our_env)
+		base_env(&our_env);
 	return (&our_env);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:40:43 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/28 10:50:27 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/29 16:44:04 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,6 @@ t_env	*init_env2(char *env, t_env *env_s)
 	return (env_s);
 }
 
-void	print_list2(t_env *data)
-{
-	while (data)
-	{
-		printf("%s - key = %s\n", data->val, data->key);
-		data = data->next;
-	}
-}
-
 /**
  * @brief will make the whole structure that we use to store the env and
  * that will serv in the funciun needing it
@@ -108,11 +99,3 @@ t_env	*init_env(char **env)
 	}
 	return (env_struct);
 }
-
-// t_env	*add_env(t_env *our_env, char *add)
-// {
-// }
-
-// t_env	*env_deleter(t_env *our_env, char *delete)
-// {
-// }

@@ -6,20 +6,11 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 19:05:48 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/22 16:20:49 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/29 16:42:34 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// WORD = Si c'est pas autre choses c'est un mot
-// FD = always after < > << >>
-// LIMITOR = Cat du HDOC le mot apres et le limiteur || voir si autre cas
-// R_IN = Redirection in donc <
-// HDOC (HEREDOC)= Redirection << [LIMITEUR]
-// R_OUT = redirection out donc >
-// APPEND = >>
-// PIPE = |
 
 void	token_error(char *val)
 {
@@ -90,15 +81,6 @@ int	what_token(char *str, int prev)
 		return (FD);
 	return (WORD);
 }
-
-// void	print_list(t_val *data)
-// {
-// 	while (data)
-// 	{
-// 		printf("%s - token = %d\n", data->val, data->token);
-// 		data = data->next;
-// 	}
-// }
 
 void	set_up_echo(t_val *data)
 {

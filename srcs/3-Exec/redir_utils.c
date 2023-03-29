@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:35:37 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/28 10:47:38 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/29 16:43:56 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	setup_redir(t_pipex *cmd)
 	cmd->redir = tmp;
 	return (1);
 }
-//	MEMO a faire apres que l'expand soit termine !!!
 
 /**
  * @brief Set the up pipe between the two command
