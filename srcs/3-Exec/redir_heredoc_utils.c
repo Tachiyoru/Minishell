@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:04:58 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/21 13:44:39 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/28 12:34:06 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ char	*expand_heredoc_var(char *line)
 			break ;
 		incr_exp_h_var(&j, i, line);
 		name = ft_substr(line, i + 1, j);
+		if (!find_env(name))
+			return (free(name), line);
 		unusual_case_exp_h_var(name, &new_word);
 		dest = word_hreplacing_var(i, i + j, line, new_word);
 		if (name)
