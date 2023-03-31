@@ -6,7 +6,7 @@
 /*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:42:31 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/28 10:42:58 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/31 13:50:30 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	set_redir_in(t_pipex *cmd)
 			msg(": Permission denied\n");
 		else
 			msg(": No such file or directory\n");
-		return (-1);
+		return (g_error = 1, -1);
 	}
 	if (cmd->fd[0] != 0)
 	{
@@ -63,7 +63,7 @@ int	set_redir_out(t_pipex *cmd)
 			msg(": Permission denied\n");
 		else
 			msg(": No such file or directory\n");
-		return (-1);
+		return (g_error = 1, -1);
 	}
 	if (cmd->fd[1] != 1)
 	{
@@ -105,6 +105,7 @@ int	set_redir_heredoc(t_pipex *cmd)
 
 	stdin_copy = dup(STDIN_FILENO);
 	fd = is_error_qm_h(cmd->redir);
+	signal(SIGINT, &signal_heredoc);
 	if (fd == 1)
 		fd = simple_heredoc(cmd->redir);
 	else if (!fd)

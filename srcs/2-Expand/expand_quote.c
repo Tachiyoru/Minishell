@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/29 11:23:09 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/31 13:49:26 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	clean_data(t_val **data)
 	t_val	*tmp;
 	t_val	*tmp2;
 
-	place_data(data);
 	tmp2 = *data;
 	tmp = tmp2;
+	place_data(data);
 	while (tmp)
 	{
 		if (!(*(tmp->val)) && (!(*data) || ft_strcmp((*data)->val, "echo")))

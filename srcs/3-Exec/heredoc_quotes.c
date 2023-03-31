@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:31:01 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/28 11:50:19 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/03/31 13:57:34 by sleon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int	is_error_qm_h(t_val *data)
 	int	i;
 	int	q;
 
-	i = -1;
 	q = 0;
 	while (data)
 	{
+		i = -1;
 		while (data->val[++i])
 		{
 			if (data->val[i] == '\'')
