@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:41:10 by sleon             #+#    #+#             */
-/*   Updated: 2023/03/29 16:41:02 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/31 14:48:21 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,10 @@ int		expand_space(char *content, t_val *data);
 int		ambigous_redirect_checker(t_val *data);
 char	*expand_heredoc_var(char *line);
 void	place_data(t_val **data);
+char	*case_of_sq(int	*i, int	*j, char *content);
+int		is_error_qm2(char *content, t_val *tmp);
+int		quote_parsing2(char *content, t_val *data);
+char	*case_of_dq2(int	*i, int	*j, char *content);
 
 // buildin
 int		env_cmd(int fd);

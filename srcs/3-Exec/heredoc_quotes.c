@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:31:01 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/31 13:57:34 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/31 14:47:46 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	quote_treatment_h(t_val *data)
 	{
 		if (tmp->token == WORD || tmp->token == FD || tmp->token == LIMITOR)
 		{
-			if (is_error_qm(tmp->val, tmp, tmp_prev))
+			if (is_error_qm2(tmp->val, tmp))
 				return (free_lst(data), 0);
 			back_to_positive(tmp);
 		}

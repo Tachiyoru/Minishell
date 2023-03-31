@@ -50,6 +50,7 @@ SRCS		=	main.c	\
 				export_utils.c	\
 				export_utils2.c	\
 				heredoc_quotes.c	\
+				heredoc_quotes_utils.c	\
 				redir_heredoc_utils.c
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleon <sleon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:53:23 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/03/31 13:49:26 by sleon            ###   ########.fr       */
+/*   Updated: 2023/03/31 14:27:02 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	is_error_qm(char *content, t_val *tmp, t_val *tmp_prev)
 			}
 		}
 	}
-	if (tmp->token == LIMITOR && !find_env(content))
+	if (tmp->token == LIMITOR)
 		return (0);
 	if (quote_parsing(tmp->val, tmp)
 		|| (!tmp_prev && expand_space(tmp->val, tmp)))
