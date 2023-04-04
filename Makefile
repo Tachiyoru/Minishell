@@ -10,7 +10,7 @@ SRC_DIR		=	$(shell find srcs -type d)
 
 vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 
-RM			= /usr/bin/rm
+RM			= /usr/bin/rm -rf
 
 SRCS		=	main.c	\
 				ft_env.c	\
